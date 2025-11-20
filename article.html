@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Centre Dentaire EL AMRI</title>
+    <meta name="description" content="Lire l'article complet du Centre Dentaire EL AMRI sur la santé bucco-dentaire">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-light: #fce4ec;
+            --secondary: #212121;
+            --accent: #ffffff;
+            --light: #f8f9fa;
+            --gray: #757575;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Article Hero */
+        .article-hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--primary-light), white);
+        }
+
+        .article-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+        }
+
+        .article-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .article-image {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Article Content */
+        .article-content {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .article-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .conclusion {
+            background: var(--primary-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Navigation Articles */
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--light);
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* CTA Section */
+        .article-cta {
+            background: var(--light);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d81b60;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .article-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .article-image {
+                height: 250px;
+            }
+            
+            .article-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tooth logo-icon"></i>
+                <h1>Centre <span>Dentaire</span> EL AMRI</h1>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#docteur">Docteur</a></li>
+                    <li><a href="index.html#gallery">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="container">
+            <div class="article-header">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> <span id="article-date">15 janvier 2025</span></span>
+                    <span><i class="far fa-user"></i> <span id="article-author">Dr Leila EL AMRI</span></span>
+                    <span><i class="far fa-clock"></i> 5 min de lecture</span>
+                </div>
+                <h1 id="article-title">L'importance des soins dentaires préventifs</h1>
+                <div class="article-image">
+                    <img id="article-image" src="/img/blog1.jpg" alt="Soins dentaires préventifs">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <div class="article-body" id="article-body">
+                <!-- Le contenu de l'article sera chargé ici -->
+            </div>
+
+            <div class="article-navigation">
+                <a href="blog.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour au blog
+                </a>
+                <a href="index.html#contact" class="nav-btn">
+                    Prendre rendez-vous
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="article-cta">
+        <div class="container">
+            <h2>Besoin de conseils personnalisés ?</h2>
+            <p>Prenez rendez-vous pour une consultation avec notre équipe</p>
+            <a href="index.html#contact" class="btn">Contactez-nous</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centre Dentaire EL AMRI</h3>
+                    <p>Partenaire de votre sourire depuis de nombreuses années, nous nous engageons à vous offrir des soins dentaires de qualité.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#docteur">Docteur</a></li>
+                        <li><a href="index.html#gallery">Galerie</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>📞 0537 83 41 47</li>
+                        <li>📱 0679 01 04 81 (WhatsApp)</li>
+                        <li>📍 Sala Al Jadida</li>
+                        <li>🕒 Lun-Ven: 9h-18h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Centre Dentaire EL AMRI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Charger l'article spécifique
+        async function loadArticle() {
+            try {
+                // Récupérer le paramètre d'URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleSlug = urlParams.get('article');
+                
+                if (articleSlug) {
+                    // Charger l'article depuis Netlify CMS
+                    const response = await fetch(`/_data/blog/${articleSlug}.json`);
+                    
+                    if (response.ok) {
+                        const article = await response.json();
+                        
+                        // Mettre à jour la page
+                        document.getElementById('article-title').textContent = article.titre;
+                        document.getElementById('article-image').src = article.image || '/img/blog-placeholder.jpg';
+                        document.getElementById('article-image').alt = article.titre;
+                        
+                        const articleDate = new Date(article.date);
+                        document.getElementById('article-date').textContent = articleDate.toLocaleDateString('fr-FR', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        
+                        document.getElementById('article-author').textContent = article.auteur || 'Dr Leila EL AMRI';
+                        
+                        // Convertir le markdown en HTML simple
+                        const content = article.contenu
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '</p><p>');
+                        
+                        document.getElementById('article-body').innerHTML = `<p>${content}</p>`;
+                        
+                        // Mettre à jour le titre de la page
+                        document.title = `${article.titre} - Centre Dentaire EL AMRI`;
+                        
+                        return;
+                    }
+                }
+                
+                // Fallback : article par défaut
+                document.getElementById('article-body').innerHTML = `
+                    <p>La santé bucco-dentaire est un élément essentiel de notre bien-être général. Pourtant, beaucoup de personnes négligent les soins préventifs, attendant souvent l'apparition de douleurs ou de problèmes visibles pour consulter un dentiste.</p>
+                    
+                    <h2>Pourquoi les soins préventifs sont-ils si importants ?</h2>
+                    
+                    <p>Les soins dentaires préventifs permettent de :</p>
+                    
+                    <ul>
+                        <li>Détecter les problèmes à un stade précoce</li>
+                        <li>Éviter les traitements complexes et coûteux</li>
+                        <li>Maintenir une bonne santé générale</li>
+                        <li>Préserver l'éclat naturel de votre sourire</li>
+                    </ul>
+                    
+                    <h2>Les bases d'une bonne hygiène dentaire</h2>
+                    
+                    <p>Une routine quotidienne simple mais efficace comprend :</p>
+                    
+                    <ol>
+                        <li>Brossage des dents 2 fois par jour pendant 2 minutes</li>
+                        <li>Utilisation du fil dentaire ou des brossettes interdentaires</li>
+                        <li>Bain de bouche adapté à vos besoins</li>
+                        <li>Visites régulières chez le dentiste</li>
+                    </ol>
+                    
+                    <div class="conclusion">
+                        <p><strong>En conclusion</strong>, investir dans des soins préventifs réguliers est le meilleur moyen de préserver votre santé bucco-dentaire à long terme. Une visite chez le dentiste tous les 6 mois peut vous éviter bien des soucis !</p>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Erreur chargement article:', error);
+                document.getElementById('article-body').innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h3>Article non trouvé</h3>
+                        <p>Cet article n'est pas disponible pour le moment.</p>
+                        <a href="blog.html" class="btn">Retour au blog</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Gestion du menu mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Charger l'article au démarrage
+        document.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
+</body>
+</html>

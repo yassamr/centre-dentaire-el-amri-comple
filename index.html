@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre Dentaire EL AMRI | Dentiste Sala Al Jadida - Orthodontie, Implantologie</title>
+    <meta name="description" content="Centre Dentaire EL AMRI à Sala Al Jadida : dentiste, orthodontie, implantologie, esthétique dentaire. Prenez rendez-vous pour des soins dentaires de qualité.">
+    <meta name="keywords" content="dentiste sala aljadida, orthodontiste sala jadida, implantologie sala, cabinet dentaire sala, blanchiment dentaire sala, prothèse dentaire sala, chirurgien dentiste sala">
+    <meta name="author" content="Centre Dentaire EL AMRI">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="MA">
+    <meta name="geo.placename" content="Sala Al Jadida">
+    <meta name="geo.position" content="33.987654;-6.812345">
+    <meta name="ICBM" content="33.987654, -6.812345">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.centredentaireelamri.com/">
+    <meta property="og:title" content="Centre Dentaire EL AMRI | Partenaire de votre Sourire">
+    <meta property="og:description" content="Centre Dentaire EL AMRI à Sala Al Jadida : dentiste, orthodontie, implantologie, esthétique dentaire. Prenez rendez-vous pour des soins dentaires de qualité.">
+    <meta property="og:image" content="https://www.centredentaireelamri.com/img/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.centredentaireelamri.com/">
+    <meta property="twitter:title" content="Centre Dentaire EL AMRI | Partenaire de votre Sourire">
+    <meta property="twitter:description" content="Centre Dentaire EL AMRI à Sala Al Jadida : dentiste, orthodontie, implantologie, esthétique dentaire. Prenez rendez-vous pour des soins dentaires de qualité.">
+    <meta property="twitter:image" content="https://www.centredentaireelamri.com/img/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-light: #fce4ec;
+            --secondary: #212121;
+            --accent: #ffffff;
+            --light: #f8f9fa;
+            --gray: #757575;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            padding: 10rem 0 5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #000;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            margin-left: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20bd5c;
+        }
+
+        .btn-call {
+            background-color: var(--primary);
+            margin-left: 10px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .carousel-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-control.prev {
+            left: 20px;
+        }
+
+        .carousel-control.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .service-card p {
+            color: var(--gray);
+        }
+
+        /* Doctor Section */
+        .doctor {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .doctor-profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .doctor-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .doctor-info {
+            flex: 1;
+        }
+
+        .doctor-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .doctor-info h4 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .doctor-info p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .qualifications {
+            margin-top: 2rem;
+        }
+
+        .qualifications h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .qualifications ul {
+            list-style: none;
+        }
+
+        .qualifications ul li {
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .qualifications ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Blog Preview Section */
+        .blog-preview {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .blog-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .contact-details p {
+            color: var(--gray);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20bd5c;
+            transform: scale(1.1);
+        }
+
+        /* Floating Call Button */
+        .call-float {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .call-float:hover {
+            background-color: #d81b60;
+            transform: scale(1.1);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-button {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Admin Link */
+        .admin-link {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .admin-link:hover {
+            background-color: #000;
+        }
+
+        /* États vides */
+        .no-articles, .error-message {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            grid-column: 1 / -1;
+        }
+
+        .no-articles p, .error-message p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .doctor-profile, .contact-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .doctor-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                margin: 0;
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 8rem 0 3rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-item {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tooth logo-icon"></i>
+                <h1>Centre <span>Dentaire</span> EL AMRI</h1>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#docteur">Docteur</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-carousel">
+            <div class="hero-slide active" style="background-image: url('img/cabinet1.jpeg');"></div>
+            <div class="hero-slide" style="background-image: url('img/cabinet2.jpeg');"></div>
+            <div class="hero-slide" style="background-image: url('img/cabinet3.jpeg');"></div>
+            <div class="hero-slide" style="background-image: url('img/cabinet4.jpeg');"></div>
+        </div>
+        <div class="container">
+            <h2 id="hero-titre">Partenaire de votre Sourire</h2>
+            <p id="hero-sous-titre">Des soins dentaires de qualité avec une approche personnalisée pour votre santé bucco-dentaire et votre bien-être.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Prendre Rendez-vous</a>
+                <a href="https://wa.me/212679010481" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="tel:0537834147" class="btn btn-call">
+                    <i class="fas fa-phone"></i> Appeler
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="apropos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Centre Dentaire</h2>
+                <p>Un environnement moderne et confortable pour des soins dentaires de qualité</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Votre santé bucco-dentaire est notre priorité</h3>
+                    <p>Le Centre Dentaire EL AMRI vous propose des soins dentaires complets dans un cadre moderne et accueillant. Notre équipe met à votre disposition son expertise et son savoir-faire pour vous offrir des traitements adaptés à vos besoins.</p>
+                    <p>Nous utilisons des technologies de pointe et des matériaux de haute qualité pour garantir des résultats optimaux et durables. Votre confort et votre satisfaction sont au cœur de notre pratique.</p>
+                    <a href="#services" class="btn">Nos Services</a>
+                </div>
+                <div class="about-image">
+                    <img src="img/cabinet3.jpeg" alt="Cabinet dentaire" 
+                         style="width:100%; height:350px; object-fit:cover; border-radius:10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+                <p>Des soins dentaires complets pour toute la famille</p>
+            </div>
+            <div class="services-grid" id="services-container">
+                <!-- Les services seront chargés dynamiquement -->
+                <div class="service-card">
+                    <i class="fas fa-crown service-icon"></i>
+                    <h3>Réhabilitation Prothétique</h3>
+                    <p>Couronnes, bridges et prothèses dentaires pour restaurer fonction et esthétique.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-smile service-icon"></i>
+                    <h3>Esthétique Dentaire</h3>
+                    <p>Blanchiment, facettes et soins esthétiques pour un sourire éclatant.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-teeth service-icon"></i>
+                    <h3>Orthodontie</h3>
+                    <p>Correction de l'alignement dentaire pour adultes et enfants.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tooth service-icon"></i>
+                    <h3>Implantologie</h3>
+                    <p>Solutions fixes pour remplacer les dents manquantes avec des implants.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tooth service-icon"></i>
+                    <h3>Endodontie</h3>
+                    <p>Traitements de canal pour préserver vos dents naturelles.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-stethoscope service-icon"></i>
+                    <h3>Soins Dentaires</h3>
+                    <p>Consultations, détartrage, soins conservateurs et préventifs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Galerie</h2>
+                <p>Découvrez notre centre et nos réalisations</p>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item" style="background-image: url('img/cabinet4.jpeg');">
+                        <div style="background-color: rgba(0,0,0,0.6); padding: 2rem; border-radius: 10px;">
+                            <h3 style="color: white;">Cabinet Moderne</h3>
+                            <p style="color: white;">Équipements de dernière génération</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('img/cabinet3.jpeg');">
+                        <div style="background-color: rgba(0,0,0,0.6); padding: 2rem; border-radius: 10px;">
+                            <h3 style="color: white;">Salle de Traitement</h3>
+                            <p style="color: white;">Confort et technologie avancée</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('img/cabinet1.jpeg');">
+                        <div style="background-color: rgba(0,0,0,0.6); padding: 2rem; border-radius: 10px;">
+                            <h3 style="color: white;">Salle d'attente</h3>
+                            <p style="color: white;">Environnement convivial et professionnel</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('img/cabinet5.jpeg');">
+                        <div style="background-color: rgba(0,0,0,0.6); padding: 2rem; border-radius: 10px;">
+                            <h3 style="color: white;">Accueil Chaleureux</h3>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active"></div>
+                    <div class="carousel-indicator"></div>
+                    <div class="carousel-indicator"></div>
+                    <div class="carousel-indicator"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Section -->
+    <section class="doctor" id="docteur">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Docteur</h2>
+                <p>Une expertise reconnue au service de votre santé</p>
+            </div>
+            <div class="doctor-profile">
+                <div class="doctor-image">
+                    <!-- Placeholder for doctor image -->
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        <i class="fas fa-user-md" style="font-size: 4rem; opacity: 0.7;"></i>
+                    </div>
+                </div>
+                <div class="doctor-info">
+                    <h3>Dr Leila EL AMRI</h3>
+                    <h4>Chirurgien Dentiste</h4>
+                    <p>Le Dr Leila EL AMRI est une chirurgien-dentiste passionnée par son métier et dévouée à la santé bucco-dentaire de ses patients. Avec plusieurs années d'expérience, elle allie expertise technique et approche humaine pour des soins de qualité.</p>
+                    <div class="qualifications">
+                        <h4>Qualifications et Formations</h4>
+                        <ul>
+                            <li>Diplômée de la faculté de médecine dentaire de Rabat</li>
+                            <li>Diplôme Universitaire dentisterie esthétique et adhésive UCAM Espagne</li>
+                            <li>Formation continue en implantologie et orthodontie</li>
+                            <li>Membre actif de sociétés savantes dentaires</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="blog-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Derniers Articles</h2>
+                <p>Découvrez nos conseils sur la santé bucco-dentaire</p>
+            </div>
+            <div class="blog-grid" id="blog-preview-container">
+                <!-- Les 3 derniers articles seront chargés ici -->
+            </div>
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="blog.html" class="btn">Voir tous les articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Localisation</h2>
+                <p>Facilement accessible à Sala Al Jadida</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.123456789012!2d-6.812345678901234!3d33.98765432109876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDU5JzE1LjYiTiA2wrA0OCc0NC40Ilc!5e0!3m2!1sfr!2sma!4v1234567890123!5m2!1sfr!2sma" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-button">
+                <a href="https://maps.app.goo.gl/mw9TTATh8XntVm3a6?g_st=aw" target="_blank" class="btn">Ouvrir dans Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-nous</h2>
+                <p>Prenez rendez-vous pour une consultation personnalisée</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Nos Coordonnées</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <div class="contact-details">
+                                <h4>Adresse</h4>
+                                <p id="contact-adresse">Résidence Touahri 12, Imm 2, 1er Etage, Avril 6, Lot Maamoura, Sala Al Jadida</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt contact-icon"></i>
+                            <div class="contact-details">
+                                <h4>Téléphones</h4>
+                                <p><a href="tel:0537834147" id="contact-telephone" style="color: var(--primary); text-decoration: none;">0537 83 41 47</a></p>
+                                <p><a href="https://wa.me/212679010481" id="contact-whatsapp" style="color: var(--primary); text-decoration: none;">0679 01 04 81 (WhatsApp)</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock contact-icon"></i>
+                            <div class="contact-details">
+                                <h4>Horaires d'ouverture</h4>
+                                <p id="contact-horaires">Lundi - Jeudi - Vendredi: 9h00 - 18h00<br>Mardi: 9h00 - 12h00 / 15h00 - 19h00<br>Samedi: 9h00 - 13h00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Réseaux Sociaux</h3>
+                        <div class="social-links">
+                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Demande de Rendez-vous</h3>
+                    <form id="appointment-form">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service souhaité</label>
+                            <select id="service" class="form-control">
+                                <option value="">Sélectionnez un service</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="detartrage">Détartrage</option>
+                                <option value="orthodontie">Orthodontie</option>
+                                <option value="implant">Implantologie</option>
+                                <option value="prothese">Prothèse</option>
+                                <option value="esthetique">Esthétique</option>
+                                <option value="urgence">Urgence</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message (optionnel)</label>
+                            <textarea id="message" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer la demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centre Dentaire EL AMRI</h3>
+                    <p>Partenaire de votre sourire depuis de nombreuses années, nous nous engageons à vous offrir des soins dentaires de qualité dans un environnement chaleureux et professionnel.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Nos Services</a></li>
+                        <li><a href="#docteur">Notre Docteur</a></li>
+                        <li><a href="#gallery">Galerie</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li><a href="#">Réhabilitation Prothétique</a></li>
+                        <li><a href="#">Esthétique Dentaire</a></li>
+                        <li><a href="#">Orthodontie</a></li>
+                        <li><a href="#">Implantologie</a></li>
+                        <li><a href="#">Endodontie</a></li>
+                        <li><a href="#">Soins Dentaires</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Centre Dentaire EL AMRI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/212679010481" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Floating Call Button -->
+    <a href="tel:0537834147" class="call-float">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- Admin Link (visible seulement en développement) -->
+    <a href="/admin" class="admin-link" style="display: none;">
+        <i class="fas fa-cog"></i> Admin
+    </a>
+
+    <script>
+        // Fonctions pour charger le contenu dynamique
+        async function loadBlogPreview() {
+            try {
+                const blogContainer = document.getElementById('blog-preview-container');
+                
+                // Essayer de charger depuis Netlify CMS
+                const response = await fetch('/_data/blog/');
+                
+                if (response.ok) {
+                    const files = await response.json();
+                    
+                    if (files && files.length > 0) {
+                        let articlesHTML = '';
+                        const articlesToShow = files.slice(0, 3); // 3 derniers articles
+                        
+                        for (const file of articlesToShow) {
+                            try {
+                                const articleResponse = await fetch(`/_data/blog/${file}`);
+                                const article = await articleResponse.json();
+                                
+                                articlesHTML += `
+                                    <div class="blog-card">
+                                        <div class="blog-image">
+                                            <img src="${article.image || '/img/blog-placeholder.jpg'}" alt="${article.titre}">
+                                        </div>
+                                        <div class="blog-content">
+                                            <h3>${article.titre}</h3>
+                                            <p>${article.resume}</p>
+                                            <div class="blog-meta">
+                                                <small>Publié le ${new Date(article.date).toLocaleDateString('fr-FR')}</small>
+                                            </div>
+                                            <a href="blog.html#${file.replace('.json', '')}" class="btn">Lire la suite</a>
+                                        </div>
+                                    </div>
+                                `;
+                            } catch (error) {
+                                console.log('Erreur avec l\'article:', file, error);
+                            }
+                        }
+                        
+                        blogContainer.innerHTML = articlesHTML;
+                        return;
+                    }
+                }
+                
+                // Fallback : articles par défaut
+                blogContainer.innerHTML = `
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog1.jpg" alt="Soins dentaires préventifs">
+                        </div>
+                        <div class="blog-content">
+                            <h3>L'importance des soins dentaires préventifs</h3>
+                            <p>Découvrez pourquoi les visites régulières chez le dentiste sont essentielles pour maintenir une bonne santé bucco-dentaire.</p>
+                            <div class="blog-meta">
+                                <small>Publié le 15 janvier 2025</small>
+                            </div>
+                            <a href="blog.html" class="btn">Lire la suite</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog2.jpg" alt="Implantologie moderne">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Implantologie moderne : solutions et avantages</h3>
+                            <p>Les implants dentaires représentent la solution la plus avancée pour remplacer les dents manquantes.</p>
+                            <div class="blog-meta">
+                                <small>Publié le 10 janvier 2025</small>
+                            </div>
+                            <a href="blog.html" class="btn">Lire la suite</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog3.jpg" alt="Orthodontie adulte">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Orthodontie adulte : est-ce trop tard ?</h3>
+                            <p>Il n'est jamais trop tard pour corriger l'alignement de vos dents. Découvrez les options disponibles.</p>
+                            <div class="blog-meta">
+                                <small>Publié le 5 janvier 2025</small>
+                            </div>
+                            <a href="blog.html" class="btn">Lire la suite</a>
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Erreur chargement blog preview:', error);
+            }
+        }
+
+        async function loadServices() {
+            try {
+                const response = await fetch('/_data/services/');
+                
+                if (response.ok) {
+                    const files = await response.json();
+                    const servicesContainer = document.getElementById('services-container');
+                    
+                    if (files && files.length > 0) {
+                        let servicesHTML = '';
+                        
+                        for (const file of files) {
+                            const serviceResponse = await fetch(`/_data/services/${file}`);
+                            const service = await serviceResponse.json();
+                            
+                            servicesHTML += `
+                                <div class="service-card">
+                                    <i class="${service.icone} service-icon"></i>
+                                    <h3>${service.titre}</h3>
+                                    <p>${service.description}</p>
+                                </div>
+                            `;
+                        }
+                        
+                        servicesContainer.innerHTML = servicesHTML;
+                    }
+                }
+            } catch (error) {
+                console.log('Services par défaut conservés');
+            }
+        }
+
+        // Charger les coordonnées
+        async function loadCoordonnees() {
+            try {
+                const response = await fetch('/_data/coordonnees.json');
+                const data = await response.json();
+                
+                // Mettre à jour les numéros de téléphone
+                document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                    link.href = `tel:${data.telephone}`;
+                });
+                document.querySelectorAll('a[href^="https://wa.me/"]').forEach(link => {
+                    link.href = `https://wa.me/${data.whatsapp}`;
+                });
+                
+                // Mettre à jour l'adresse
+                const adresseElement = document.getElementById('contact-adresse');
+                if (adresseElement) {
+                    adresseElement.textContent = data.adresse;
+                }
+                
+                // Mettre à jour les numéros affichés
+                const telephoneElement = document.getElementById('contact-telephone');
+                if (telephoneElement) {
+                    telephoneElement.textContent = data.telephone;
+                    telephoneElement.href = `tel:${data.telephone}`;
+                }
+                
+                const whatsappElement = document.getElementById('contact-whatsapp');
+                if (whatsappElement) {
+                    whatsappElement.textContent = `${data.whatsapp} (WhatsApp)`;
+                    whatsappElement.href = `https://wa.me/${data.whatsapp}`;
+                }
+                
+                // Mettre à jour les horaires
+                const horairesElement = document.getElementById('contact-horaires');
+                if (horairesElement) {
+                    horairesElement.innerHTML = data.horaires.replace(/\n/g, '<br>');
+                }
+            } catch (error) {
+                console.log('Coordonnées par défaut conservées');
+            }
+        }
+
+        // Charger le contenu au démarrage
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBlogPreview();
+            loadServices();
+            loadCoordonnees();
+        });
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('show');
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            
+            // Simple validation
+            if(name && phone) {
+                // In a real application, you would send this data to a server
+                alert(`Merci ${name}! Votre demande de rendez-vous pour ${service || 'une consultation'} a été envoyée. Nous vous contacterons au ${phone} pour confirmer.`);
+                
+                // Reset form
+                this.reset();
+            } else {
+                alert('Veuillez remplir les champs obligatoires (Nom et Téléphone).');
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Hero Carousel functionality
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        let heroCurrentIndex = 0;
+
+        function showHeroSlide(index) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroSlides[index].classList.add('active');
+        }
+
+        function nextHeroSlide() {
+            heroCurrentIndex = (heroCurrentIndex + 1) % heroSlides.length;
+            showHeroSlide(heroCurrentIndex);
+        }
+
+        // Auto-advance hero carousel
+        setInterval(nextHeroSlide, 4000);
+
+        // Gallery Carousel functionality
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const prevBtn = document.querySelector('.carousel-control.prev');
+        const nextBtn = document.querySelector('.carousel-control.next');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if(index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        });
+
+        // Auto-advance gallery carousel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }, 5000);
+
+        // Indicator click events
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        // Netlify Identity Redirect
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+
+        // Afficher le lien admin en développement
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.querySelector('.admin-link').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

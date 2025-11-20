@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+collections:
+  - name: "coordonnees"
+    label: "Coordonnées"
+    editor:
+      preview: false
+    files:
+      - name: "coordonnees"
+        label: "Informations de Contact"
+        file: "_data/coordonnees.json"
+        fields:
+          - { label: "Téléphone", name: "telephone", widget: "string" }
+          - { label: "WhatsApp", name: "whatsapp", widget: "string" }
+          - { label: "Adresse", name: "adresse", widget: "text" }
+          - { label: "Horaires", name: "horaires", widget: "text" }
+
+  - name: "services"
+    label: "Services"
+    folder: "_data/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "titre", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Icône FontAwesome", name: "icone", widget: "string", hint: "Ex: fas fa-tooth" }
+
+  - name: "blog"
+    label: "Articles de Blog"
+    folder: "_data/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "titre", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Auteur", name: "auteur", widget: "string", default: "Dr Leila EL AMRI" }
+      - { label: "Résumé", name: "resume", widget: "text" }
+      - { label: "Contenu", name: "contenu", widget: "markdown" }
+      - { label: "Image", name: "image", widget: "image" }
