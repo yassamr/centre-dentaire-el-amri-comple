@@ -17,8 +17,10 @@ collections:
         fields:
           - { label: "Téléphone", name: "telephone", widget: "string" }
           - { label: "WhatsApp", name: "whatsapp", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
           - { label: "Adresse", name: "adresse", widget: "text" }
           - { label: "Horaires", name: "horaires", widget: "text" }
+          - { label: "Lien Google Maps", name: "google_maps", widget: "string" }
 
   - name: "services"
     label: "Services"
