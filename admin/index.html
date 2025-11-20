@@ -3,78 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Centre Dentaire EL AMRI</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-    }
-    
-    .admin-header {
-      text-align: center;
-      color: white;
-      margin-bottom: 2rem;
-    }
-    
-    .admin-header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    
-    .admin-header p {
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-    
-    .loading {
-      text-align: center;
-      color: white;
-      font-size: 1.2rem;
-    }
-    
-    .error {
-      background: #ff4757;
-      color: white;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      margin: 2rem auto;
-      max-width: 500px;
-    }
-  </style>
+  <title>Content Manager - Centre Dentaire EL AMRI</title>
+  
+  <!-- IMPORTANT: Charger Netlify Identity en PREMIER -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div class="admin-header">
-    <h1>🏥 Centre Dentaire EL AMRI</h1>
-    <p>Interface d'administration du site web</p>
-  </div>
-  
-  <!-- Le CMS se chargera ici -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- IMPORTANT: Script Netlify CMS en DERNIER -->
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
   
   <script>
-    // Vérification du chargement
-    setTimeout(function() {
-      const cmsLoaded = document.querySelector('.nc-root');
-      if (!cmsLoaded) {
-        document.body.innerHTML += `
-          <div class="error">
-            <h3>⚠️ Erreur de chargement</h3>
-            <p>Le CMS ne s'est pas chargé correctement.</p>
-            <p>Vérifiez que :</p>
-            <ul style="text-align: left;">
-              <li>Git Gateway est activé dans Netlify</li>
-              <li>Identity est configuré</li>
-              <li>Le fichier config.yml existe</li>
-            </ul>
-          </div>
-        `;
-      }
-    }, 3000);
+    // Redirection après login
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>
