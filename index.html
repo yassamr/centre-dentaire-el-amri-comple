@@ -1726,6 +1726,49 @@
     </style>
 </head>
 <body>
+    <!-- PROTECTION CONTRE L'INSPECTION -->
+    <script>
+        // Protection contre le clic droit
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Protection contre les raccourcis clavier
+        document.addEventListener('keydown', function(e) {
+            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.key === 'u') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Protection contre la copie
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            alert('La copie du contenu est interdite.');
+        });
+
+        // Protection contre le drag and drop
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Désactiver la sélection de texte
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Empêcher l'affichage du code source via l'URL
+        if (window.location.href.indexOf('view-source:') > -1) {
+            window.location.href = window.location.href.replace('view-source:', '');
+        }
+    </script>
+
     <!-- Language Switcher -->
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="fr">FR</button>
@@ -2349,6 +2392,7 @@
         </div>
     </div>
 
+    <!-- CHARGEMENT DU JAVASCRIPT PRINCIPAL -->
     <script>
         // ===============================
         // GESTION DE LA GALERIE
@@ -3119,19 +3163,6 @@
                 }
             }, 250);
         });
-
-        // ===============================
-        // SERVICE WORKER POUR PWA (OPTIONNEL)
-        // ===============================
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
-                }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
     </script>
 </body>
 </html>
