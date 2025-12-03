@@ -137,35 +137,41 @@ class BlogManager {
     }
     
     createArticleCard(article) {
-        const date = new Date(article.date);
-        const formattedDate = date.toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        
-        return `
-            <article class="article-card">
-                <div class="article-image">
-                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+    const date = new Date(article.date);
+    const formattedDate = date.toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    
+    // URL simple pour la démo
+    const articleUrl = `article.html?id=${article.id}&title=${encodeURIComponent(article.title)}`;
+    
+    return `
+        <article class="article-card">
+            <div class="article-image">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
+                          display: flex; align-items: center; justify-content: center; color: white;">
+                    <i class="fas fa-tooth" style="font-size: 2rem;"></i>
                 </div>
-                <div class="article-content">
-                    <div class="article-meta">
-                        <span class="article-category">${article.category}</span>
-                        <time datetime="${article.date}">${formattedDate}</time>
-                    </div>
-                    <h2 class="article-title">
-                        <a href="article.html?slug=${article.slug}">${article.title}</a>
-                    </h2>
-                    <p class="article-excerpt">${article.excerpt}</p>
-                    <a href="article.html?slug=${article.slug}" class="article-read-more">
-                        Lire l'article
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <span class="article-category">${article.category}</span>
+                    <time datetime="${article.date}">${formattedDate}</time>
                 </div>
-            </article>
-        `;
-    }
+                <h2 class="article-title">
+                    <a href="${articleUrl}">${article.title}</a>
+                </h2>
+                <p class="article-excerpt">${article.excerpt}</p>
+                <a href="${articleUrl}" class="article-read-more">
+                    Lire l'article
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+    `;
+}
     
     renderPagination() {
         const pagination = document.getElementById('pagination');
@@ -270,4 +276,5 @@ class BlogManager {
 // Initialiser le blog
 document.addEventListener('DOMContentLoaded', () => {
     new BlogManager();
+
 });
