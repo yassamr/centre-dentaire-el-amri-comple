@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titre de l'article | Blog Centre Dentaire EL AMRI</title>
-    <meta name="description" content="Description de l'article pour le SEO">
-    <meta property="og:title" content="Titre de l'article">
-    <meta property="og:description" content="Description de l'article">
-    <meta property="og:image" content="/img/article-featured.jpg">
-    <meta property="og:url" content="https://centredentaireelamri.com/article.html">
-    <meta name="twitter:card" content="summary_large_image">
+    <title>Article | Blog Centre Dentaire EL AMRI</title>
+    <meta name="description" content="Découvrez nos articles sur la santé bucco-dentaire, conseils et actualités. Centre Dentaire EL AMRI à Sala Al Jadida.">
+    <meta name="keywords" content="article dentaire, conseils dentaires, santé buccale, prévention dentaire">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -35,7 +31,7 @@
                     <li><a href="index.html#gallery">Galerie</a></li>
                     <li><a href="index.html#services">Services</a></li>
                     <li><a href="index.html#about">À Propos</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -57,22 +53,30 @@
 
     <!-- Article Content -->
     <main class="article-main">
-        <article class="container">
+        <div class="container">
             <!-- Breadcrumb -->
             <nav class="breadcrumb">
                 <a href="index.html">Accueil</a> &gt;
                 <a href="blog.html">Blog</a> &gt;
-                <span id="article-title-breadcrumb">Article</span>
+                <span id="article-title-breadcrumb">Chargement...</span>
             </nav>
 
             <!-- Article Header -->
             <header class="article-header" id="article-header">
                 <!-- Chargé dynamiquement -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Chargement de l'article...</p>
+                </div>
             </header>
 
             <!-- Article Content -->
             <div class="article-content" id="article-content">
                 <!-- Chargé dynamiquement -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Chargement du contenu...</p>
+                </div>
             </div>
 
             <!-- Share Buttons -->
@@ -110,6 +114,10 @@
                 <h2>Articles similaires</h2>
                 <div class="related-grid">
                     <!-- Chargé dynamiquement -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Chargement des articles similaires...</p>
+                    </div>
                 </div>
             </div>
 
@@ -118,7 +126,7 @@
                 <h2>Commentaires</h2>
                 <div id="disqus_thread"></div>
             </div>
-        </article>
+        </div>
     </main>
 
     <!-- CTA Consultation -->
@@ -141,7 +149,50 @@
 
     <!-- Footer -->
     <footer>
-        <!-- Identique au footer de blog.html -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centre Dentaire EL AMRI</h3>
+                    <p>Partenaire de votre sourire depuis plus de 10 ans. Soins dentaires de qualité dans un environnement professionnel.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#gallery">Galerie</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">À Propos</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horaires</h3>
+                    <ul class="footer-links">
+                        <li><strong>Lundi</strong>, <strong>Mardi</strong>, <strong>Mercredi</strong>, <strong>Jeudi</strong>: 9h-18h</li>
+                        <li><strong>Vendredi</strong>: 9h-12h / 15h-19h</li>
+                        <li><strong>Samedi</strong>: 9h-13h</li>
+                        <li><strong>Dimanche</strong>: Fermé</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Résidence Touahri 12, Imm 2, 1er Etage, Avril 6, Lot Maamoura, Sala Al Jadida</li>
+                        <li><i class="fas fa-phone"></i> 05 37 83 41 47</li>
+                        <li><i class="fab fa-whatsapp"></i> 06 79 01 04 81</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Centre Dentaire EL AMRI. Tous droits réservés.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Floating Buttons -->
@@ -156,7 +207,8 @@
 
     <script src="js/utils.js"></script>
     <script src="js/article.js"></script>
-    <!-- Disqus Comments -->
+    <!-- Disqus Comments (optionnel) -->
+    <!--
     <script>
         var disqus_config = function () {
             this.page.url = window.location.href;
@@ -168,6 +220,32 @@
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
+    </script>
+    -->
+    <script>
+        // Fonctions de partage
+        function shareFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank');
+        }
+
+        function shareTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+
+        function shareLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        }
+
+        function shareWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`${document.title} ${url}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
     </script>
 </body>
 </html>
