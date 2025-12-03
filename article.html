@@ -223,29 +223,100 @@
     </script>
     -->
     <script>
-        // Fonctions de partage
-        function shareFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank');
+        // Charger l'article spécifique
+        async function loadArticle() {
+            try {
+                // Récupérer le paramètre d'URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleSlug = urlParams.get('article');
+                
+                if (articleSlug) {
+                    // Charger l'article depuis Netlify CMS
+                    const response = await fetch(`/_data/blog/${articleSlug}.json`);
+                    
+                    if (response.ok) {
+                        const article = await response.json();
+                        
+                        // Mettre à jour la page
+                        document.getElementById('article-title').textContent = article.titre;
+                        document.getElementById('article-image').src = article.image || '/img/blog-placeholder.jpg';
+                        document.getElementById('article-image').alt = article.titre;
+                        
+                        const articleDate = new Date(article.date);
+                        document.getElementById('article-date').textContent = articleDate.toLocaleDateString('fr-FR', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        
+                        document.getElementById('article-author').textContent = article.auteur || 'Dr Leila EL AMRI';
+                        
+                        // Convertir le markdown en HTML simple
+                        const content = article.contenu
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                            .replace(/\n/g, '</p><p>');
+                        
+                        document.getElementById('article-body').innerHTML = `<p>${content}</p>`;
+                        
+                        // Mettre à jour le titre de la page
+                        document.title = `${article.titre} - Centre Dentaire EL AMRI`;
+                        
+                        return;
+                    }
+                }
+                
+                // Fallback : article par défaut
+                document.getElementById('article-body').innerHTML = `
+                    <p>La santé bucco-dentaire est un élément essentiel de notre bien-être général. Pourtant, beaucoup de personnes négligent les soins préventifs, attendant souvent l'apparition de douleurs ou de problèmes visibles pour consulter un dentiste.</p>
+                    
+                    <h2>Pourquoi les soins préventifs sont-ils si importants ?</h2>
+                    
+                    <p>Les soins dentaires préventifs permettent de :</p>
+                    
+                    <ul>
+                        <li>Détecter les problèmes à un stade précoce</li>
+                        <li>Éviter les traitements complexes et coûteux</li>
+                        <li>Maintenir une bonne santé générale</li>
+                        <li>Préserver l'éclat naturel de votre sourire</li>
+                    </ul>
+                    
+                    <h2>Les bases d'une bonne hygiène dentaire</h2>
+                    
+                    <p>Une routine quotidienne simple mais efficace comprend :</p>
+                    
+                    <ol>
+                        <li>Brossage des dents 2 fois par jour pendant 2 minutes</li>
+                        <li>Utilisation du fil dentaire ou des brossettes interdentaires</li>
+                        <li>Bain de bouche adapté à vos besoins</li>
+                        <li>Visites régulières chez le dentiste</li>
+                    </ol>
+                    
+                    <div class="conclusion">
+                        <p><strong>En conclusion</strong>, investir dans des soins préventifs réguliers est le meilleur moyen de préserver votre santé bucco-dentaire à long terme. Une visite chez le dentiste tous les 6 mois peut vous éviter bien des soucis !</p>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Erreur chargement article:', error);
+                document.getElementById('article-body').innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h3>Article non trouvé</h3>
+                        <p>Cet article n'est pas disponible pour le moment.</p>
+                        <a href="blog.html" class="btn">Retour au blog</a>
+                    </div>
+                `;
+            }
         }
 
-        function shareTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(document.title);
-            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-        }
+        // Gestion du menu mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
 
-        function shareLinkedIn() {
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-        }
-
-        function shareWhatsApp() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(`${document.title} ${url}`);
-            window.open(`https://wa.me/?text=${text}`, '_blank');
-        }
+        // Charger l'article au démarrage
+        document.addEventListener('DOMContentLoaded', loadArticle);
     </script>
 </body>
 </html>
+
