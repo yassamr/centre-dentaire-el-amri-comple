@@ -1,4 +1,4 @@
-// js/article.js - Version corrigée
+// js/article.js - Version simplifiée sans npm
 
 class ArticleManager {
     constructor() {
@@ -11,7 +11,7 @@ class ArticleManager {
     
     getIdFromURL() {
         const params = new URLSearchParams(window.location.search);
-        return params.get('id') || '1'; // Par défaut ID 1
+        return params.get('id') || '1';
     }
     
     async init() {
@@ -22,16 +22,14 @@ class ArticleManager {
     
     async loadArticle() {
         try {
-            // Charger tous les articles
-            const response = await fetch('/content/articles.json');
-            let articles = [];
+            // Charger les articles depuis le fichier JSON
+            const response = await fetch('content/articles.json');
             
-            if (response.ok) {
-                articles = await response.json();
-            } else {
-                // Fallback aux articles de test
-                articles = this.getSampleArticles();
+            if (!response.ok) {
+                throw new Error('Fichier articles.json non trouvé');
             }
+            
+            const articles = await response.json();
             
             // Trouver l'article par ID
             this.article = articles.find(article => article.id == this.articleId);
@@ -45,15 +43,16 @@ class ArticleManager {
             this.loadRelatedArticles(articles);
             
         } catch (error) {
-            console.error('Erreur de chargement:', error);
-            this.article = this.getSampleArticle();
+            console.error('Erreur:', error);
+            // Utiliser les articles de démo intégrés
+            this.article = this.getDemoArticle(this.articleId);
             this.renderArticle();
         }
     }
     
-    getSampleArticles() {
-        return [
-            {
+    getDemoArticle(id) {
+        const demoArticles = {
+            1: {
                 id: 1,
                 title: "L'importance du détartrage régulier",
                 subtitle: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
@@ -62,130 +61,79 @@ class ArticleManager {
                 category: "Prévention",
                 content: `
                     <h2>Pourquoi le détartrage est-il si important ?</h2>
-                    <p>Le détartrage régulier est l'un des soins préventifs les plus importants en dentisterie. Malgré une bonne hygiène bucco-dentaire, le tartre finit par s'accumuler sur les dents.</p>
+                    <p>Le détartrage régulier est l'un des soins préventifs les plus importants en dentisterie.</p>
                     
                     <h3>Les risques du tartre non traité</h3>
                     <ul>
-                        <li><strong>Inflammation des gencives (gingivite)</strong> : Le tartre irrite les gencives et provoque des saignements</li>
-                        <li><strong>Maladies parodontales</strong> : L'inflammation peut atteindre l'os qui soutient les dents</li>
-                        <li><strong>Carie dentaire</strong> : Les bactéries du tartre produisent des acides qui attaquent l'émail</li>
-                        <li><strong>Halitose (mauvaise haleine)</strong> : Les bactéries produisent des composés sulfurés malodorants</li>
+                        <li>Inflammation des gencives (gingivite)</li>
+                        <li>Maladies parodontales</li>
+                        <li>Carie dentaire</li>
+                        <li>Halitose (mauvaise haleine)</li>
                     </ul>
-                    
-                    <h2>À quelle fréquence faut-il faire un détartrage ?</h2>
-                    <p>Il est recommandé de faire un détartrage tous les 6 à 12 mois, selon votre situation individuelle. Votre dentiste évaluera la fréquence idéale lors de votre consultation.</p>
-                    
-                    <h3>Le processus de détartrage</h3>
-                    <p>Le détartrage se fait en plusieurs étapes :</p>
-                    <ol>
-                        <li><strong>Examen initial</strong> : Vérification de l'état des dents et des gencives</li>
-                        <li><strong>Détartrage ultrasonique</strong> : Élimination du tartre avec des vibrations à haute fréquence</li>
-                        <li><strong>Polissage</strong> : Lissage des surfaces dentaires pour retarder la réapparition du tartre</li>
-                        <li><strong>Fluoruration</strong> : Application de fluor pour renforcer l'émail (si nécessaire)</li>
-                    </ol>
-                    
-                    <div class="info-box">
-                        <h4>💡 Conseils pratiques</h4>
-                        <ul>
-                            <li>Brossez-vous les dents 2 fois par jour pendant 2 minutes</li>
-                            <li>Utilisez du fil dentaire ou des brossettes interdentaires quotidiennement</li>
-                            <li>Consultez votre dentiste dès l'apparition de saignements gingivaux</li>
-                            <li>Évitez le tabac qui favorise l'accumulation de tartre</li>
-                        </ul>
-                    </div>
                 `,
-                image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop",
-                excerpt: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
-                meta_description: "Découvrez pourquoi un détartrage régulier est essentiel pour prévenir les problèmes dentaires et maintenir une bonne santé bucco-dentaire."
+                image: "img/detartrage.jpg",
+                excerpt: "Pourquoi ce soin préventif est essentiel",
+                meta_description: "Découvrez l'importance du détartrage régulier"
             },
-            {
+            2: {
                 id: 2,
                 title: "Les nouvelles technologies en implantologie",
-                subtitle: "Comment les avancées technologiques révolutionnent les traitements d'implants",
+                subtitle: "Comment les avancées technologiques révolutionnent les traitements",
                 date: "2025-01-10",
                 author: "Dr Leila EL AMRI",
                 category: "Implantologie",
                 content: `
                     <h2>L'évolution de l'implantologie dentaire</h2>
-                    <p>L'implantologie dentaire a connu des avancées spectaculaires ces dernières années, rendant les traitements plus précis, plus rapides et plus confortables.</p>
+                    <p>Des avancées spectaculaires rendent les traitements plus précis et confortables.</p>
                     
-                    <h3>Nouvelles technologies disponibles</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <h4>📱 Scanner 3D intra-oral</h4>
-                            <p>Prise d'empreinte numérique sans pâte, plus confortable pour le patient</p>
-                        </div>
-                        <div class="tech-item">
-                            <h4>🎯 Chirurgie guidée</h4>
-                            <p>Placement d'implants assisté par ordinateur pour une précision maximale</p>
-                        </div>
-                        <div class="tech-item">
-                            <h4>🖨️ Impression 3D</h4>
-                            <p>Fabrication de guides chirurgicaux et de prothèses sur mesure</p>
-                        </div>
-                        <div class="tech-item">
-                            <h4>⚪ Implants en zircone</h4>
-                            <p>Alternative au titane pour les patients allergiques, plus esthétique</p>
-                        </div>
-                    </div>
-                    
-                    <h2>Avantages pour les patients</h2>
-                    <p>Ces innovations offrent de nombreux bénéfices :</p>
+                    <h3>Nouvelles technologies</h3>
                     <ul>
-                        <li><strong>Durée de traitement réduite</strong> : De quelques mois à quelques semaines</li>
-                        <li><strong>Précision accrue</strong> : Placement optimal des implants</li>
-                        <li><strong>Confort amélioré</strong> : Moins d'inconfort post-opératoire</li>
-                        <li><strong>Résultats prévisibles</strong> : Simulation 3D du résultat final</li>
-                        <li><strong>Cicatrisation plus rapide</strong> : Techniques mini-invasives</li>
+                        <li>Scanner 3D intra-oral</li>
+                        <li>Chirurgie guidée par ordinateur</li>
+                        <li>Impression 3D</li>
+                        <li>Implants en zircone</li>
                     </ul>
-                    
-                    <h3>Processus de traitement moderne</h3>
-                    <ol>
-                        <li>Scanner 3D et planification numérique</li>
-                        <li>Fabrication du guide chirurgical sur mesure</li>
-                        <li>Chirurgie guidée peu invasive</li>
-                        <li>Pose immédiate de la prothèse temporaire (dans certains cas)</li>
-                        <li>Suivi numérique de la cicatrisation</li>
-                        <li>Pose de la prothèse définitive</li>
-                    </ol>
                 `,
-                image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop",
-                excerpt: "Comment les avancées technologiques révolutionnent les traitements d'implants",
-                meta_description: "Découvrez comment les nouvelles technologies révolutionnent les traitements d'implants dentaires pour plus de précision, de confort et de rapidité."
+                image: "img/implantologie.jpg",
+                excerpt: "Les avancées technologiques en implantologie",
+                meta_description: "Découvrez les nouvelles technologies en implantologie"
             },
-            // ... autres articles
-        ];
-    }
-    
-    getSampleArticle() {
-        return {
-            id: 1,
-            title: "L'importance du détartrage régulier",
-            subtitle: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
-            date: "2025-01-15",
-            author: "Dr Leila EL AMRI",
-            category: "Prévention",
-            content: `
-                <h2>Article en cours de chargement</h2>
-                <p>Le contenu complet de cet article sera bientôt disponible.</p>
-                <p>Pour plus d'informations, n'hésitez pas à nous contacter pour une consultation.</p>
-            `,
-            image: "",
-            excerpt: "Article sur la santé dentaire",
-            meta_description: "Article sur la santé dentaire - Centre Dentaire EL AMRI"
+            3: {
+                id: 3,
+                title: "Blanchiment dentaire : ce qu'il faut savoir",
+                subtitle: "Tout sur les techniques de blanchiment sécuritaires",
+                date: "2025-01-05",
+                author: "Dr Leila EL AMRI",
+                category: "Esthétique",
+                content: `
+                    <h2>Les méthodes de blanchiment</h2>
+                    <p>Plusieurs techniques existent selon vos besoins.</p>
+                    
+                    <h3>Blanchiment au fauteuil</h3>
+                    <p>Résultats immédiats en une séance au cabinet.</p>
+                    
+                    <h3>Blanchiment à domicile</h3>
+                    <p>Traitement progressif avec des gouttières sur mesure.</p>
+                `,
+                image: "img/blanchiment.jpg",
+                excerpt: "Techniques de blanchiment dentaire",
+                meta_description: "Tout savoir sur le blanchiment dentaire"
+            }
         };
+        
+        return demoArticles[id] || demoArticles[1];
     }
     
     renderArticle() {
         if (!this.article) return;
         
-        // Mettre à jour le breadcrumb
+        // 1. Mettre à jour le breadcrumb
         const breadcrumb = document.getElementById('article-title-breadcrumb');
         if (breadcrumb) {
             breadcrumb.textContent = this.article.title;
         }
         
-        // Rendre l'en-tête
+        // 2. Rendre l'en-tête
         const header = document.getElementById('article-header');
         if (header) {
             const date = new Date(this.article.date);
@@ -207,29 +155,26 @@ class ArticleManager {
                         <i class="fas fa-user-md"></i>
                         <span>${this.article.author}</span>
                     </div>
-                    ${this.article.category ? `
-                        <div class="article-category-header">
-                            ${this.article.category}
-                        </div>
-                    ` : ''}
-                </div>
-                ${this.article.image ? `
-                    <div class="article-featured-image">
-                        <img src="${this.article.image}" alt="${this.article.title}" loading="lazy">
+                    <div class="article-category-header">
+                        ${this.article.category}
                     </div>
-                ` : ''}
+                </div>
+                <div class="article-featured-image">
+                    <img src="${this.article.image}" alt="${this.article.title}" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNFOEYwRkYiLz48cGF0aCBkPSJNNDAwIDMwMEM0NDguMiAzMDAgNDg4IDI2MC4yIDQ4OCAyMTJjMC00OC4yLTM5LjgtODgtODgtODhzLTg4IDM5LjgtODggODhjMCA0OC4yIDM5LjggODggODggODh6IiBmaWxsPSIjMmM1YWEwIi8+PC9zdmc+'; this.onerror=null;">
+                </div>
             `;
         }
         
-        // Rendre le contenu
+        // 3. Rendre le contenu
         const content = document.getElementById('article-content');
         if (content) {
-            content.innerHTML = this.article.content || '<p>Article en cours de chargement...</p>';
+            content.innerHTML = this.article.content || '<p>Contenu non disponible.</p>';
         }
         
-        // Mettre à jour l'auteur
+        // 4. Mettre à jour l'auteur
         const authorElement = document.getElementById('article-author');
-        if (authorElement && this.article.author) {
+        if (authorElement) {
             authorElement.textContent = this.article.author;
         }
     }
@@ -237,12 +182,9 @@ class ArticleManager {
     loadRelatedArticles(allArticles) {
         if (!this.article || !allArticles) return;
         
-        // Filtrer les articles de la même catégorie, exclure l'article actuel
+        // Prendre 3 articles aléatoires (sauf l'actuel)
         this.relatedArticles = allArticles
-            .filter(article => 
-                article.id != this.article.id && 
-                article.category === this.article.category
-            )
+            .filter(article => article.id != this.article.id)
             .slice(0, 3);
         
         this.renderRelatedArticles();
@@ -257,8 +199,8 @@ class ArticleManager {
         
         if (this.relatedArticles.length === 0) {
             relatedGrid.innerHTML = `
-                <p style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 2rem;">
-                    Aucun article similaire pour le moment.
+                <p style="text-align: center; color: var(--gray); padding: 2rem;">
+                    Aucun autre article pour le moment.
                 </p>
             `;
             return;
@@ -267,27 +209,22 @@ class ArticleManager {
         relatedGrid.innerHTML = this.relatedArticles.map(article => `
             <div class="related-article">
                 <div class="related-image">
-                    ${article.image ? `
-                        <img src="${article.image}" alt="${article.title}" loading="lazy">
-                    ` : `
-                        <div style="background: var(--primary-light); height: 100%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-tooth" style="font-size: 2rem; color: var(--primary);"></i>
-                        </div>
-                    `}
+                    <img src="${article.image}" alt="${article.title}" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNFOEYwRkYiLz48cGF0aCBkPSJNNDAwIDMwMEM0NDguMiAzMDAgNDg4IDI2MC4yIDQ4OCAyMTJjMC00OC4yLTM5LjgtODgtODgtODhzLTg4IDM5LjgtODggODhjMCA0OC4yIDM5LjggODggODggODh6IiBmaWxsPSIjMmM1YWEwIi8+PC9zdmc+'; this.onerror=null;">
                 </div>
                 <div class="related-article-content">
                     <div class="related-category">${article.category}</div>
                     <h3 class="related-article-title">
                         <a href="article.html?id=${article.id}">${article.title}</a>
                     </h3>
-                    <p class="related-excerpt">${article.excerpt || ''}</p>
+                    <p class="related-excerpt">${article.excerpt}</p>
                 </div>
             </div>
         `).join('');
     }
     
     setupEventListeners() {
-        // Fonctions de partage intégrées
+        // Fonctions de partage
         window.shareFacebook = () => {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent(this.article?.title || '');
@@ -315,48 +252,22 @@ class ArticleManager {
     updateSEO() {
         if (!this.article) return;
         
-        // Mettre à jour le titre de la page
-        document.title = `${this.article.title} | Blog Centre Dentaire EL AMRI`;
+        // Mettre à jour le titre
+        document.title = `${this.article.title} | Centre Dentaire EL AMRI`;
         
-        // Mettre à jour la meta description
-        let metaDescription = document.querySelector('meta[name="description"]');
-        if (!metaDescription) {
-            metaDescription = document.createElement('meta');
-            metaDescription.name = 'description';
-            document.head.appendChild(metaDescription);
+        // Mettre à jour la description
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.content = this.article.meta_description || this.article.excerpt;
         }
-        metaDescription.content = this.article.meta_description || this.article.excerpt || '';
-        
-        // Mettre à jour Open Graph
-        this.updateMeta('og:title', this.article.title);
-        this.updateMeta('og:description', this.article.meta_description || this.article.excerpt || '');
-        this.updateMeta('og:image', this.article.image || '');
-        this.updateMeta('og:url', window.location.href);
-        this.updateMeta('og:type', 'article');
-        
-        // Mettre à jour Twitter Cards
-        this.updateMeta('twitter:title', this.article.title);
-        this.updateMeta('twitter:description', this.article.meta_description || this.article.excerpt || '');
-        this.updateMeta('twitter:image', this.article.image || '');
-        this.updateMeta('twitter:card', 'summary_large_image');
-    }
-    
-    updateMeta(property, content) {
-        let element = document.querySelector(`meta[property="${property}"]`);
-        if (!element) {
-            element = document.createElement('meta');
-            element.setAttribute('property', property);
-            document.head.appendChild(element);
-        }
-        element.content = content;
     }
 }
 
-// Initialiser l'article
+// Initialiser
 document.addEventListener('DOMContentLoaded', () => {
     new ArticleManager();
     
-    // Initialiser le menu mobile
+    // Menu mobile
     const mobileMenu = document.getElementById('mobile-menu');
     const mainNav = document.getElementById('main-nav');
     
