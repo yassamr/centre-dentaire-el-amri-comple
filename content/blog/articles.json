@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title": "L'importance du détartrage régulier",
+    "subtitle": "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
+    "date": "2025-01-15",
+    "author": "Dr Leila EL AMRI",
+    "category": "Prévention",
+    "content": "<h2>Pourquoi le détartrage est-il si important ?</h2><p>Le détartrage régulier est essentiel pour maintenir une bonne santé bucco-dentaire...</p>",
+    "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop",
+    "excerpt": "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
+    "slug": "importance-detartrage-regulier",
+    "meta_description": "Découvrez pourquoi un détartrage régulier est essentiel pour prévenir les problèmes dentaires"
+  },
+  {
+    "id": 2,
+    "title": "Les nouvelles technologies en implantologie",
+    "subtitle": "Comment les avancées technologiques révolutionnent les traitements d'implants",
+    "date": "2025-01-10",
+    "author": "Dr Leila EL AMRI",
+    "category": "Implantologie",
+    "content": "<h2>L'évolution de l'implantologie dentaire</h2><p>L'implantologie a connu des avancées spectaculaires ces dernières années...</p>",
+    "image": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop",
+    "excerpt": "Comment les avancées technologiques révolutionnent les traitements d'implants",
+    "slug": "nouvelles-technologies-implantologie",
+    "meta_description": "Découvrez comment les nouvelles technologies révolutionnent les traitements d'implants dentaires"
+  }
+]
