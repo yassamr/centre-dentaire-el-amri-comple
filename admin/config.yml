@@ -6,41 +6,27 @@ media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
 collections:
-  - name: "coordonnees"
-    label: "Coordonnées"
-    editor:
-      preview: false
-    files:
-      - name: "coordonnees"
-        label: "Informations de Contact"
-        file: "_data/coordonnees.json"
-        fields:
-          - { label: "Téléphone", name: "telephone", widget: "string" }
-          - { label: "WhatsApp", name: "whatsapp", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Adresse", name: "adresse", widget: "text" }
-          - { label: "Horaires", name: "horaires", widget: "text" }
-          - { label: "Lien Google Maps", name: "google_maps", widget: "string" }
-
-  - name: "services"
-    label: "Services"
-    folder: "_data/services"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Titre", name: "titre", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Icône FontAwesome", name: "icone", widget: "string", hint: "Ex: fas fa-tooth" }
-
   - name: "blog"
-    label: "Articles de Blog"
-    folder: "_data/blog"
+    label: "Blog"
+    folder: "content/blog"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Titre", name: "titre", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Auteur", name: "auteur", widget: "string", default: "Dr Leila EL AMRI" }
-      - { label: "Résumé", name: "resume", widget: "text" }
-      - { label: "Contenu", name: "contenu", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Sous-titre", name: "subtitle", widget: "string" }
+      - { label: "Image principale", name: "featured_image", widget: "image" }
+      - { label: "Image alt", name: "image_alt", widget: "string" }
+      - { label: "Auteur", name: "author", widget: "string", default: "Dr Leila EL AMRI" }
+      - { label: "Date de publication", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["Soins dentaires", "Esthétique", "Prévention", "Implantologie", "Orthodontie", "Conseils"] }
+      - { label: "Tags", name: "tags", widget: "list", default: ["dentaire"] }
+      - { label: "Résumé", name: "excerpt", widget: "text" }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Meta Description", name: "meta_description", widget: "text" }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false }
