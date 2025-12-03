@@ -1,34 +1,36 @@
 class ArticleManager {
     constructor() {
-        this.articleSlug = this.getSlugFromURL();
+        this.articleId = this.getIdFromURL();
         this.article = null;
         this.relatedArticles = [];
         
         this.init();
     }
     
-    getSlugFromURL() {
+    getIdFromURL() {
         const params = new URLSearchParams(window.location.search);
-        return params.get('slug') || 'sample-article';
+        return params.get('id') || '1';
+    }
+    
+    getTitleFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('title') || 'Titre de l\'article';
     }
     
     async init() {
         await this.loadArticle();
-        this.loadRelatedArticles();
         this.setupEventListeners();
         this.updateSEO();
     }
     
     async loadArticle() {
         try {
-            // En production, charger depuis l'API Netlify CMS
-            const response = await fetch(`/content/blog/${this.articleSlug}.json`);
+            // Récupérer les paramètres de l'URL
+            const articleId = this.getIdFromURL();
+            const articleTitle = this.getTitleFromURL();
             
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            this.article = await response.json();
+            // Données de démonstration basées sur l'ID
+            this.article = this.getArticleById(articleId, articleTitle);
             
         } catch (error) {
             console.error('Error loading article:', error);
@@ -38,30 +40,128 @@ class ArticleManager {
         this.renderArticle();
     }
     
-    getSampleArticle() {
+    getArticleById(id, title) {
+        // Articles de démonstration
+        const articles = {
+            '1': {
+                title: decodeURIComponent(title),
+                subtitle: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
+                date: "2025-01-15",
+                author: "Dr Leila EL AMRI",
+                category: "Prévention",
+                content: `
+                    <h2>Pourquoi le détartrage est-il si important ?</h2>
+                    <p>Le détartrage régulier est l'un des soins préventifs les plus importants en dentisterie. Malgré une bonne hygiène bucco-dentaire, le tartre finit par s'accumuler sur les dents.</p>
+                    
+                    <h3>Les risques du tartre non traité</h3>
+                    <ul>
+                        <li>Inflammation des gencives (gingivite)</li>
+                        <li>Maladies parodontales</li>
+                        <li>Carie dentaire</li>
+                        <li>Halitose (mauvaise haleine)</li>
+                    </ul>
+                    
+                    <h2>À quelle fréquence faut-il faire un détartrage ?</h2>
+                    <p>Il est recommandé de faire un détartrage tous les 6 à 12 mois, selon votre situation individuelle. Votre dentiste évaluera la fréquence idéale lors de votre consultation.</p>
+                    
+                    <h3>Le processus de détartrage</h3>
+                    <p>Le détartrage se fait en plusieurs étapes :</p>
+                    <ol>
+                        <li>Examen initial des dents et des gencives</li>
+                        <li>Élimination du tartre avec des instruments ultrasoniques</li>
+                        <li>Polissage des dents</li>
+                        <li>Application de fluor si nécessaire</li>
+                    </ol>
+                `,
+                image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format",
+                meta_description: "Découvrez pourquoi un détartrage régulier est essentiel pour prévenir les problèmes dentaires et maintenir une bonne santé bucco-dentaire."
+            },
+            '2': {
+                title: decodeURIComponent(title),
+                subtitle: "Comment les avancées technologiques révolutionnent les traitements d'implants",
+                date: "2025-01-10",
+                author: "Dr Leila EL AMRI",
+                category: "Implantologie",
+                content: `
+                    <h2>L'évolution de l'implantologie</h2>
+                    <p>L'implantologie dentaire a connu des avancées spectaculaires ces dernières années, rendant les traitements plus précis, plus rapides et plus confortables.</p>
+                    
+                    <h3>Nouvelles technologies</h3>
+                    <ul>
+                        <li><strong>Scanner 3D intra-oral</strong> : Prise d'empreinte numérique sans pâte</li>
+                        <li><strong>Chirurgie guidée</strong> : Placement d'implants assisté par ordinateur</li>
+                        <li><strong>Impression 3D</strong> : Fabrication de guides chirurgicaux et de prothèses</li>
+                        <li><strong>Implants en zircone</strong> : Alternative au titane pour les patients allergiques</li>
+                    </ul>
+                    
+                    <h2>Avantages pour les patients</h2>
+                    <p>Ces innovations offrent de nombreux bénéfices :</p>
+                    <ul>
+                        <li>Durée de traitement réduite</li>
+                        <li>Précision accrue</li>
+                        <li>Confort amélioré</li>
+                        <li>Meilleurs résultats esthétiques</li>
+                        <li>Cicatrisation plus rapide</li>
+                    </ul>
+                `,
+                image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format",
+                meta_description: "Découvrez comment les nouvelles technologies révolutionnent les traitements d'implants dentaires pour plus de précision, de confort et de rapidité."
+            },
+            '3': {
+                title: decodeURIComponent(title),
+                subtitle: "Tout sur les techniques de blanchiment dentaire sécuritaires et efficaces",
+                date: "2025-01-05",
+                author: "Dr Leila EL AMRI",
+                category: "Esthétique",
+                content: `
+                    <h2>Les différentes méthodes de blanchiment</h2>
+                    <p>Il existe plusieurs techniques de blanchiment dentaire, chacune avec ses avantages et indications spécifiques.</p>
+                    
+                    <h3>Blanchiment au fauteuil</h3>
+                    <p>Réalisé au cabinet dentaire, cette méthode offre des résultats immédiats en une seule séance. Elle utilise des gels blanchissants à forte concentration activés par une lumière LED spéciale.</p>
+                    
+                    <h3>Blanchiment ambulatoire</h3>
+                    <p>Cette méthode se fait à domicile avec des gouttières sur mesure et un gel blanchissant de concentration adaptée. Elle permet un traitement progressif sur 1 à 2 semaines.</p>
+                    
+                    <h2>Ce qu'il faut savoir</h2>
+                    <ul>
+                        <li>Le blanchiment n'est pas permanent</li>
+                        <li>Les résultats varient selon les personnes</li>
+                        <li>Il est important de faire un bilan dentaire préalable</li>
+                        <li>Certaines sensibilités temporaires peuvent survenir</li>
+                    </ul>
+                    
+                    <h3>Contre-indications</h3>
+                    <p>Le blanchiment n'est pas recommandé pour :</p>
+                    <ul>
+                        <li>Les femmes enceintes ou allaitantes</li>
+                        <li>Les personnes avec des dents sensibles non traitées</li>
+                        <li>Les patients avec des restaurations importantes</li>
+                        <li>Les dents dévitalisées très colorées</li>
+                    </ul>
+                `,
+                image: "https://images.unsplash.com/photo-1622902046586-2e57cc6e0b91?w=800&auto=format",
+                meta_description: "Tout ce que vous devez savoir sur le blanchiment dentaire : techniques, avantages, précautions et résultats attendus."
+            }
+        };
+        
+        return articles[id] || this.getSampleArticle(title);
+    }
+    
+    getSampleArticle(title = 'Titre de l\'article') {
         return {
-            title: "L'importance du détartrage régulier",
+            title: decodeURIComponent(title),
             subtitle: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire",
-            date: "2025-01-15",
+            date: new Date().toISOString().split('T')[0],
             author: "Dr Leila EL AMRI",
             category: "Prévention",
             content: `
-                <h2>Pourquoi le détartrage est-il si important ?</h2>
-                <p>Le détartrage régulier est l'un des soins préventifs les plus importants en dentisterie. Malgré une bonne hygiène bucco-dentaire, le tartre finit par s'accumuler sur les dents.</p>
-                
-                <h3>Les risques du tartre non traité</h3>
-                <ul>
-                    <li>Inflammation des gencives (gingivite)</li>
-                    <li>Maladies parodontales</li>
-                    <li>Carie dentaire</li>
-                    <li>Halitose (mauvaise haleine)</li>
-                </ul>
-                
-                <h2>À quelle fréquence faut-il faire un détartrage ?</h2>
-                <p>Il est recommandé de faire un détartrage tous les 6 à 12 mois, selon votre situation individuelle. Votre dentiste évaluera la fréquence idéale lors de votre consultation.</p>
+                <h2>Article en cours de chargement</h2>
+                <p>Le contenu de cet article sera bientôt disponible.</p>
+                <p>En attendant, vous pouvez nous contacter pour plus d'informations.</p>
             `,
-            image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format",
-            meta_description: "Découvrez pourquoi un détartrage régulier est essentiel pour prévenir les problèmes dentaires et maintenir une bonne santé bucco-dentaire."
+            image: "",
+            meta_description: "Article sur la santé dentaire - Centre Dentaire EL AMRI"
         };
     }
     
@@ -104,7 +204,7 @@ class ArticleManager {
                 </div>
                 ${this.article.image ? `
                     <div class="article-featured-image">
-                        <img src="${this.article.image}" alt="${this.article.title}" loading="eager">
+                        <img src="${this.article.image}" alt="${this.article.title}" loading="lazy">
                     </div>
                 ` : ''}
             `;
