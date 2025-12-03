@@ -4,25 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager - Centre Dentaire EL AMRI</title>
-  
-  <!-- IMPORTANT: Charger Netlify Identity en PREMIER -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- IMPORTANT: Script Netlify CMS en DERNIER -->
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  
-  <script>
-    // Redirection après login
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </body>
 </html>
