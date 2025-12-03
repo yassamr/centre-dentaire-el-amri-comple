@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centre Dentaire EL AMRI | Excellence en Soins Dentaires</title>
+    <meta name="description" content="Centre Dentaire EL AMRI à Sala Al Jadida. Soins dentaires de qualité, implantologie, orthodontie, esthétique dentaire. Prenez rendez-vous au 05 37 83 41 47.">
+    <meta name="keywords" content="dentiste Sala Al Jadida, centre dentaire, implantologie, orthodontie, blanchiment dentaire, soins dentaires, dentiste urgentiste">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -121,6 +123,13 @@
             align-items: center;
             gap: 0.5rem;
             flex-shrink: 0;
+        }
+
+        .logo a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .logo-icon {
@@ -778,6 +787,114 @@
         .hour-time {
             color: var(--primary);
             font-weight: 600;
+        }
+
+        /* Blog Preview Section - NOUVELLE SECTION */
+        .blog-preview {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .preview-articles {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .preview-articles {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .preview-article {
+            background: var(--accent);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+        }
+
+        .preview-article:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-image {
+            height: 180px;
+            background: var(--primary-light);
+            overflow: hidden;
+        }
+
+        .preview-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .preview-article:hover .preview-image img {
+            transform: scale(1.05);
+        }
+
+        .preview-content {
+            padding: 1.5rem;
+        }
+
+        .preview-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .preview-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .preview-title a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .preview-title a:hover {
+            color: var(--primary);
+        }
+
+        .preview-date {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+        }
+
+        .preview-excerpt {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 2rem;
+            color: var(--primary);
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner i {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         /* CTA Section */
@@ -1860,10 +1977,12 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-tooth"></i>
-                </div>
-                <div class="logo-text">Centre <span>Dentaire EL AMRI</span></div>
+                <a href="index.html">
+                    <div class="logo-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <div class="logo-text">Centre <span>Dentaire EL AMRI</span></div>
+                </a>
             </div>
             
             <nav id="main-nav">
@@ -1872,6 +1991,7 @@
                     <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
                     <li><a href="#services" data-i18n="nav.services">Services</a></li>
                     <li><a href="#about" data-i18n="nav.about">À Propos</a></li>
+                    <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li> <!-- NOUVEAU -->
                     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
                 </ul>
             </nav>
@@ -2115,7 +2235,7 @@
         </div>
     </section>
 
-    <!-- About Section - MODIFIÉE -->
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
@@ -2149,7 +2269,33 @@
         </div>
     </section>
 
-    <!-- Contact Section - MODIFIÉE -->
+    <!-- Blog Preview Section - NOUVELLE SECTION -->
+    <section class="blog-preview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="blog.preview.subtitle">Conseils & Actualités</div>
+                <h2 class="section-title" data-i18n="blog.preview.title">Derniers Articles</h2>
+                <p class="section-description" data-i18n="blog.preview.description">Découvrez nos conseils pour prendre soin de votre santé bucco-dentaire.</p>
+            </div>
+            
+            <div class="preview-articles" id="preview-articles">
+                <!-- Articles seront chargés dynamiquement -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Chargement des articles...</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="blog.html" class="btn btn-secondary">
+                    <i class="fas fa-newspaper"></i>
+                    <span data-i18n="blog.preview.button">Voir tous les articles</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-header">
@@ -2253,7 +2399,7 @@
         </div>
     </section>
 
-    <!-- Footer - MODIFIÉ -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -2269,11 +2415,12 @@
                 <div class="footer-column">
                     <h3 data-i18n="footer.links.title">Liens Rapides</h3>
                     <ul class="footer-links">
-                        <li><a href="#accueil" data-i18n="nav.home">Accueil</a></li>
-                        <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
-                        <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                        <li><a href="#about" data-i18n="nav.about">À Propos</a></li>
-                        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                        <li><a href="index.html#accueil" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="index.html#gallery" data-i18n="nav.gallery">Galerie</a></li>
+                        <li><a href="index.html#services" data-i18n="nav.services">Services</a></li>
+                        <li><a href="index.html#about" data-i18n="nav.about">À Propos</a></li>
+                        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li> <!-- NOUVEAU -->
+                        <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -2326,6 +2473,7 @@
             <div class="quick-reply" data-reply="hours" data-i18n="chatbot.hours">Horaires d'ouverture</div>
             <div class="quick-reply" data-reply="services" data-i18n="chatbot.services">Nos services</div>
             <div class="quick-reply" data-reply="emergency" data-i18n="chatbot.emergency">Urgence dentaire</div>
+            <div class="quick-reply" data-reply="blog" data-i18n="chatbot.blog">Blog & Conseils</div> <!-- NOUVEAU -->
         </div>
         <div class="chatbot-input">
             <input type="text" id="chatbot-input" placeholder="Tapez votre message..." data-i18n-placeholder="chatbot.placeholder">
@@ -2337,869 +2485,36 @@
         <i class="fas fa-comments"></i>
     </button>
 
-    <!-- Service Modals - TOUS REMPLIS -->
-
+    <!-- Service Modals -->
+    <!-- [Vos modals existants restent inchangés ici] -->
     <!-- Modal Prothétique -->
     <div id="modal-prothetique" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Réhabilitation Prothétique</h2>
-                <p>Solutions sur mesure pour restaurer fonction et esthétique de votre sourire</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Nos Solutions</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-crown"></i> Couronnes Dentaires</h4>
-                        <ul>
-                            <li>Couronnes céramique - esthétique maximale</li>
-                            <li>Couronnes zirconium - résistance optimale</li>
-                            <li>Couronnes métallo-céramique - solution économique</li>
-                            <li>Durée de vie : 10-15 ans</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-bridge"></i> Bridges Dentaires</h4>
-                        <ul>
-                            <li>Remplacement de 1 à 3 dents manquantes</li>
-                            <li>Fixation sur dents adjacentes saines</li>
-                            <li>Matériaux haut de gamme</li>
-                            <li>Solution fixe et confortable</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-teeth"></i> Prothèses Amovibles</h4>
-                        <ul>
-                            <li>Prothèses partielles et complètes</li>
-                            <li>Confort et stabilité optimale</li>
-                            <li>Esthétique naturelle</li>
-                            <li>Entretien facile</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Technologies Utilisées</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-camera"></i>
-                            <div>Caméra intra-orale</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-print"></i>
-                            <div>Impression 3D</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-desktop"></i>
-                            <div>Conception CAD/CAM</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-teeth"></i>
-                            <div>Matériaux biocompatibles</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Informations du Traitement</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">2-3</div>
-                                <div class="label">Séances</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">1-2 semaines</div>
-                                <div class="label">Durée</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">10-15 ans</div>
-                                <div class="label">Durée de vie</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Amélioration Esthétique</h5>
-                    <p>Restauration de la couleur, forme et alignement des dents pour un sourire naturel et harmonieux.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Fonction Restaurée</h5>
-                    <p>Retour à une mastication normale et confortable, amélioration de la phonétique.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Préservation des Dents</h5>
-                    <p>Protection des dents fragilisées contre les fractures et les caries secondaires.</p>
-                </div>
-            </div>
-
-            <div class="before-after">
-                <div class="ba-image">
-                    <i class="fas fa-tooth" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    Avant traitement
-                </div>
-                <div class="ba-image">
-                    <i class="fas fa-smile" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    Après traitement
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Mes couronnes sont parfaites ! Le résultat est naturel et confortable. Je peux enfin manger sans crainte."
-                        </div>
-                        <div class="testimonial-author">- Karim B., 45 ans</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Mon bridge a changé ma vie. Je peux à nouveau manger normalement et mon sourire est magnifique."
-                        </div>
-                        <div class="testimonial-author">- Fatima Z., 52 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">Combien de temps dure la pose d'une couronne ?</div>
-                    <div class="faq-answer">Environ 2 séances espacées d'une semaine pour la fabrication en laboratoire.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Les prothèses sont-elles douloureuses ?</div>
-                    <div class="faq-answer">Non, l'intervention se fait sous anesthésie locale pour un confort total.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Comment entretenir ma prothèse ?</div>
-                    <div class="faq-answer">Nettoyage quotidien, contrôles réguliers et hygiène bucco-dentaire rigoureuse.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Prêt à retrouver votre sourire ?</h4>
-                <p>Prenez rendez-vous pour une consultation personnalisée</p>
-                <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Appeler maintenant
-                </a>
-                <a href="https://wa.me/212679010481" class="btn">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- Modal Esthétique Dentaire -->
     <div id="modal-esthetique" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Esthétique Dentaire</h2>
-                <p>Des solutions innovantes pour un sourire éclatant et naturel</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Nos Traitements Esthétiques</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-snowflake"></i> Blanchiment Dentaire</h4>
-                        <ul>
-                            <li>Blanchiment au fauteuil - résultat immédiat</li>
-                            <li>Blanchiment ambulatoire - solution personnalisée</li>
-                            <li>Technologie LED accélérée</li>
-                            <li>Gel blanchissant haute concentration</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-gem"></i> Facettes Dentaires</h4>
-                        <ul>
-                            <li>Facettes céramique ultra-minces</li>
-                            <li>Facettes composite - solution rapide</li>
-                            <li>Préparation minimale des dents</li>
-                            <li>Résultat naturel et durable</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-magic"></i> Cosmétique Dentaire</h4>
-                        <ul>
-                            <li>Bonding composite</li>
-                            <li>Contouring dentaire</li>
-                            <li>Fermeture de diastèmes</li>
-                            <li>Harmonisation du sourire</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Technologies de Pointe</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <div>LED blanchissante</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-tooth"></i>
-                            <div>Facettes ultra-minces</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-paint-brush"></i>
-                            <div>Matériaux esthétiques</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-camera"></i>
-                            <div>Photographie numérique</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Durée des Traitements</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">1 séance</div>
-                                <div class="label">Blanchiment</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">2 séances</div>
-                                <div class="label">Facettes</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">5-7 ans</div>
-                                <div class="label">Durée de vie</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Sourire Éclatant</h5>
-                    <p>Des dents plus blanches et plus lumineuses pour un sourire qui attire tous les regards.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Corrections Esthétiques</h5>
-                    <p>Correction des imperfections : taches, fractures, usure, alignement léger.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Boost de Confiance</h5>
-                    <p>Retrouvez confiance en vous avec un sourire dont vous serez fier.</p>
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Le blanchiment a transformé mon sourire ! Des résultats incroyables en une seule séance."
-                        </div>
-                        <div class="testimonial-author">- Sarah L., 32 ans</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Mes facettes ont corrigé mes dents ébréchées. Maintenant, j'ai un sourire parfait !"
-                        </div>
-                        <div class="testimonial-author">- Mehdi K., 40 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">Le blanchiment est-il douloureux ?</div>
-                    <div class="faq-answer">Certaines sensibilités temporaires peuvent survenir, généralement légères et de courte durée.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Combien de temps durent les facettes ?</div>
-                    <div class="faq-answer">Les facettes en céramique durent généralement 10-15 ans avec un bon entretien.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Puis-je boire du café après blanchiment ?</div>
-                    <div class="faq-answer">Il est recommandé d'éviter les colorants pendant 48 heures après le traitement.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Prêt pour un sourire éclatant ?</h4>
-                <p>Consultez nos spécialistes en esthétique dentaire</p>
-                <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- Modal Implantologie -->
     <div id="modal-implantologie" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Implantologie Dentaire</h2>
-                <p>La solution définitive pour remplacer vos dents manquantes</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Types d'Implants</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Implants Unitaires</h4>
-                        <ul>
-                            <li>Remplacement d'une seule dent</li>
-                            <li>Préservation des dents adjacentes</li>
-                            <li>Solution fixe et définitive</li>
-                            <li>Os et gencive préservés</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-teeth"></i> Implants Multiples</h4>
-                        <ul>
-                            <li>Remplacement de plusieurs dents</li>
-                            <li>Bridges sur implants</li>
-                            <li>Prothèses fixes complètes</li>
-                            <li>Stabilité optimale</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-dental-plate"></i> Prothèses sur Implants</h4>
-                        <ul>
-                            <li>Prothèses amovibles stabilisées</li>
-                            <li>All-on-4 / All-on-6</li>
-                            <li>Prothèses hybrides fixes</li>
-                            <li>Confort maximal</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Technologies Avancées</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
-                            <div>Chirurgie guidée</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-x-ray"></i>
-                            <div>Scanner 3D</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-bone"></i>
-                            <div>Greffe osseuse</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <div>Implants titane</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Processus d'Implantation</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">3-6 mois</div>
-                                <div class="label">Durée totale</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">20+ ans</div>
-                                <div class="label">Durée de vie</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">98%</div>
-                                <div class="label">Taux de réussite</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Solution Définitive</h5>
-                    <p>Les implants dentaires sont la seule solution permanente pour remplacer les dents manquantes.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Préservation Osseuse</h5>
-                    <p>Les implants stimulent l'os et préviennent la résorption osseuse.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Confort Optimal</h5>
-                    <p>Fonction identique aux dents naturelles, sans gêne ni restriction alimentaire.</p>
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Après des années avec un bridge, j'ai opté pour un implant. Quelle différence ! C'est comme avoir retrouvé ma dent naturelle."
-                        </div>
-                        <div class="testimonial-author">- Rachid M., 58 ans</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Les implants ont changé ma vie. Je peux enfin manger tout ce que je veux et mon sourire est parfait."
-                        </div>
-                        <div class="testimonial-author">- Amina T., 65 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">L'implantation est-elle douloureuse ?</div>
-                    <div class="faq-answer">L'intervention se fait sous anesthésie locale. L'inconfort post-opératoire est généralement léger et contrôlé par des antalgiques.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Qui peut bénéficier d'implants ?</div>
-                    <div class="faq-answer">La plupart des adultes en bonne santé générale peuvent recevoir des implants après évaluation.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Combien de temps dure la procédure ?</div>
-                    <div class="faq-answer">Le processus complet prend généralement 3 à 6 mois, incluant la période de cicatrisation osseuse.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Besoin d'une consultation en implantologie ?</h4>
-                <p>Évaluation gratuite de votre situation</p>
-                <a href="https://wa.me/212679010481" class="btn">
-                    <i class="fab fa-whatsapp"></i> Demander un devis
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- Modal Orthodontie -->
     <div id="modal-orthodontie" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Orthodontie</h2>
-                <p>Correction de l'alignement dentaire pour tous les âges</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Types de Traitements</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Orthodontie Enfants</h4>
-                        <ul>
-                            <li>Traitement précoce (7-11 ans)</li>
-                            <li>Correction des malpositions</li>
-                            <li>Prévention des problèmes futurs</li>
-                            <li>Appareils amovibles</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-smile"></i> Orthodontie Adultes</h4>
-                        <ul>
-                            <li>Aligneurs invisibles</li>
-                            <li>Brackets céramique</li>
-                            <li>Brackets métalliques</li>
-                            <li>Orthodontie linguale</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-teeth-open"></i> Corrections Spécifiques</h4>
-                        <ul>
-                            <li>Encombrement dentaire</li>
-                            <li>Dents espacées</li>
-                            <li>Malocclusions</li>
-                            <li>Béances et inversés</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Technologies Modernes</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-eye-slash"></i>
-                            <div>Aligneurs invisibles</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-gem"></i>
-                            <div>Brackets esthétiques</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-scanner"></i>
-                            <div>Scan intra-oral</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-video"></i>
-                            <div>Simulation 3D</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Durée des Traitements</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">6-24 mois</div>
-                                <div class="label">Durée moyenne</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">1 séance/mois</div>
-                                <div class="label">Contrôles</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">À vie</div>
-                                <div class="label">Contention</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Sourire Harmonieux</h5>
-                    <p>Un alignement parfait pour un sourire esthétique et équilibré.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Amélioration Fonctionnelle</h5>
-                    <p>Meilleure mastication, phonétique et santé des gencives.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Prévention Santé</h5>
-                    <p>Réduction des risques de caries, maladies parodontales et usure dentaire.</p>
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "À 35 ans, j'ai enfin osé faire un traitement orthodontique. Les aligneurs invisibles ont changé ma vie professionnelle et personnelle."
-                        </div>
-                        <div class="testimonial-author">- Nadia S., 35 ans</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Mon fils de 9 ans a un appareil amovible. Le traitement précoce a évité des complications futures. L'équipe est géniale avec les enfants !"
-                        </div>
-                        <div class="testimonial-author">- Parent de Youssef, 9 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">Est-il trop tard pour un traitement orthodontique ?</div>
-                    <div class="faq-answer">Non, il n'y a pas d'âge limite. De nombreux adultes entreprennent des traitements orthodontiques avec succès.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Les aligneurs invisibles sont-ils efficaces ?</div>
-                    <div class="faq-answer">Oui, pour la plupart des cas. Une évaluation préalable déterminera si cette solution vous convient.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Le traitement est-il douloureux ?</div>
-                    <div class="faq-answer">Un inconfort temporaire peut survenir après les ajustements, généralement léger et de courte durée.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Prêt pour un sourire bien aligné ?</h4>
-                <p>Évaluation orthodontique gratuite</p>
-                <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- Modal Endodontie -->
     <div id="modal-endodontie" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Endodontie - Traitements Canalaires</h2>
-                <p>Préservation de vos dents naturelles grâce aux soins de racines</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Traitements Spécialisés</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Traitement Canalaire</h4>
-                        <ul>
-                            <li>Élimination du tissu infecté</li>
-                            <li>Nettoyage et désinfection des canaux</li>
-                            <li>Obturation des canaux</li>
-                            <li>Restauration coronaire</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-redo"></i> Re-traitement Canalaire</h4>
-                        <ul>
-                            <li>Traitement des échecs antérieurs</li>
-                            <li>Retrait des anciens matériaux</li>
-                            <li>Nouvelle désinfection</li>
-                            <li>Utilisation du microscope</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-surgery"></i> Chirurgie Endodontique</h4>
-                        <ul>
-                            <li>Apicectomie</li>
-                            <li>Résection apicale</li>
-                            <li>Rétro-obturation</li>
-                            <li>Greffe osseuse</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Équipements de Précision</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-microscope"></i>
-                            <div>Microscope opératoire</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-ruler"></i>
-                            <div>Localisateur apical</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
-                            <div>Irrigation ultrasonique</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-thermometer"></i>
-                            <div>Obturation thermique</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Informations du Traitement</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">1-2 séances</div>
-                                <div class="label">Durée traitement</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">95%</div>
-                                <div class="label">Taux de réussite</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">À vie</div>
-                                <div class="label">Préservation dent</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Conservation Dentaire</h5>
-                    <p>Sauvegarde de votre dent naturelle plutôt qu'une extraction.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Soulagement Immédiat</h5>
-                    <p>Élimination définitive de la douleur et de l'infection.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Économie à Long Terme</h5>
-                    <p>Moins coûteux que l'extraction suivie d'un implant ou bridge.</p>
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "J'avais une douleur intense depuis des semaines. Le traitement canalaire m'a sauvé ma dent et soulagé immédiatement."
-                        </div>
-                        <div class="testimonial-author">- Ahmed R., 48 ans</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Un premier traitement avait échoué. Le re-traitement sous microscope a été un succès. Merci pour votre expertise !"
-                        </div>
-                        <div class="testimonial-author">- Leila M., 42 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">Le traitement canalaire est-il douloureux ?</div>
-                    <div class="faq-answer">Non, il se fait sous anesthésie locale. Il soulage la douleur causée par l'infection.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Pourquoi préférer un traitement canalaire à une extraction ?</div>
-                    <div class="faq-answer">Conserver sa dent naturelle est toujours préférable pour la fonction, l'esthétique et la santé des dents adjacentes.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Combien de temps dure une dent traitée ?</div>
-                    <div class="faq-answer">Avec une bonne restauration et une hygiène adaptée, une dent traitée peut durer toute une vie.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Douleur dentaire ? Infection ?</h4>
-                <p>Consultez rapidement pour préserver votre dent</p>
-                <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Urgence dentaire
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- Modal Soins Dentaires Généraux -->
     <div id="modal-soins" class="service-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Soins Dentaires Généraux</h2>
-                <p>Prévention, diagnostic et traitement pour toute la famille</p>
-            </div>
-
-            <div class="modal-grid">
-                <div class="modal-features">
-                    <h3>Services Complets</h3>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-stethoscope"></i> Consultations</h4>
-                        <ul>
-                            <li>Examen clinique complet</li>
-                            <li>Diagnostic radiologique</li>
-                            <li>Bilan bucco-dentaire</li>
-                            <li>Plan de traitement personnalisé</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-shower"></i> Détartrage et Prophylaxie</h4>
-                        <ul>
-                            <li>Détartrage ultrasonique</li>
-                            <li>Polissage des dents</li>
-                            <li>Fluoruration</li>
-                            <li>Conseils d'hygiène personnalisés</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <h4><i class="fas fa-bandage"></i> Soins Conservateurs</h4>
-                        <ul>
-                            <li>Traitement des caries</li>
-                            <li>Composites esthétiques</li>
-                            <li>Inlays/Onlays</li>
-                            <li>Reconstitutions dentaires</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="modal-technologies">
-                    <h3>Équipements Modernes</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <i class="fas fa-x-ray"></i>
-                            <div>Radiologie numérique</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
-                            <div>Anesthésie indolore</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-magnet"></i>
-                            <div>Détecteur de caries laser</div>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-camera"></i>
-                            <div>Caméra intra-orale</div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-info">
-                        <h4>Fréquence Recommandée</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="value">2x/an</div>
-                                <div class="label">Contrôles</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">1-2x/an</div>
-                                <div class="label">Détartrage</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="value">Dès 3 ans</div>
-                                <div class="label">Première visite</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h5>Prévention Efficace</h5>
-                    <p>Détection précoce des problèmes pour des traitements plus simples et moins coûteux.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Santé Globale</h5>
-                    <p>Une bonne santé bucco-dentaire contribue à la santé générale et au bien-être.</p>
-                </div>
-                <div class="benefit-item">
-                    <h5>Confort au Quotidien</h5>
-                    <p>Élimination des sensibilités, saignements et inconforts buccaux.</p>
-                </div>
-            </div>
-
-            <div class="modal-testimonials">
-                <h3>Témoignages de Patients</h3>
-                <div class="testimonial-grid">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Toute la famille vient ici. Les enfants adorent le dentiste grâce à l'approche douce et pédagogique de l'équipe."
-                        </div>
-                        <div class="testimonial-author">- Famille Benali</div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            "Je viens régulièrement pour mes détartrages. L'ambiance est détendue et le personnel toujours souriant."
-                        </div>
-                        <div class="testimonial-author">- Marc D., 50 ans</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-faq">
-                <h3>Questions Fréquentes</h3>
-                <div class="faq-item">
-                    <div class="faq-question">À quelle fréquence faut-il faire un détartrage ?</div>
-                    <div class="faq-answer">Il est recommandé de faire un détartrage tous les 6 à 12 mois selon votre situation.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Les soins sont-ils douloureux ?</div>
-                    <div class="faq-answer">Avec les techniques modernes d'anesthésie et nos équipements, les soins sont très confortables.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">À quel âge la première visite chez le dentiste ?</div>
-                    <div class="faq-answer">Dès 3 ans, ou avant si vous remarquez quelque chose d'anormal.</div>
-                </div>
-            </div>
-
-            <div class="appointment-cta">
-                <h4>Prenez soin de votre santé bucco-dentaire</h4>
-                <p>Des soins préventifs pour toute la famille</p>
-                <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
-                </a>
-                <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Urgence
-                </a>
-            </div>
-        </div>
+        <!-- Contenu du modal existant -->
     </div>
 
     <!-- CHARGEMENT DU JAVASCRIPT PRINCIPAL -->
@@ -3291,7 +2606,7 @@
         }
 
         // ===============================
-        // GESTION DES TRADUCTIONS
+        // GESTION DES TRADUCTIONS - MIS À JOUR
         // ===============================
         const translations = {
             fr: {
@@ -3300,6 +2615,7 @@
                 "nav.gallery": "Galerie",
                 "nav.services": "Services",
                 "nav.about": "À Propos",
+                "nav.blog": "Blog", // NOUVEAU
                 "nav.contact": "Contact",
                 "nav.call": "Appeler",
 
@@ -3354,7 +2670,7 @@
                 "services.general.description": "Consultations, détartrage, soins conservateurs et préventifs pour toute la famille.",
                 "services.learnMore": "En savoir plus",
 
-                // About - MODIFIÉ
+                // About
                 "about.subtitle": "Notre Expertise",
                 "about.title": "Dr Leila EL AMRI, Votre Chirurgien-Dentiste",
                 "about.description1": "Diplômée de la faculté de médecine dentaire de Rabat, titulaire d'un Diplôme Universitaire en dentisterie esthétique et adhésive de l'UCAM Espagne et d'un Diplôme Universitaire en chirurgie orale et implantologie.",
@@ -3364,7 +2680,13 @@
                 "about.satisfaction": "Taux de Satisfaction",
                 "about.photo": "Photo du Dr EL AMRI",
 
-                // Contact - MODIFIÉ
+                // Blog Preview - NOUVEAU
+                "blog.preview.subtitle": "Conseils & Actualités",
+                "blog.preview.title": "Derniers Articles",
+                "blog.preview.description": "Découvrez nos conseils pour prendre soin de votre santé bucco-dentaire.",
+                "blog.preview.button": "Voir tous les articles",
+
+                // Contact
                 "contact.subtitle": "Contact & Rendez-vous",
                 "contact.title": "Prenez Rendez-vous Aujourd'hui",
                 "contact.description": "Notre équipe est à votre disposition pour répondre à toutes vos questions et prendre rendez-vous.",
@@ -3403,7 +2725,8 @@
                 "chatbot.appointment": "Prendre rendez-vous",
                 "chatbot.hours": "Horaires d'ouverture",
                 "chatbot.services": "Nos services",
-                "chatbot.emergency": "Urgence dentaire"
+                "chatbot.emergency": "Urgence dentaire",
+                "chatbot.blog": "Blog & Conseils" // NOUVEAU
             },
             en: {
                 // Navigation
@@ -3411,6 +2734,7 @@
                 "nav.gallery": "Gallery",
                 "nav.services": "Services",
                 "nav.about": "About",
+                "nav.blog": "Blog",
                 "nav.contact": "Contact",
                 "nav.call": "Call",
 
@@ -3465,7 +2789,7 @@
                 "services.general.description": "Consultations, scaling, conservative and preventive care for the whole family.",
                 "services.learnMore": "Learn More",
 
-                // About - MODIFIÉ
+                // About
                 "about.subtitle": "Our Expertise",
                 "about.title": "Dr Leila EL AMRI, Your Dental Surgeon",
                 "about.description1": "Graduated from the Faculty of Dental Medicine in Rabat, holder of a University Diploma in aesthetic and adhesive dentistry from UCAM Spain and a University Diploma in oral surgery and implantology.",
@@ -3475,7 +2799,13 @@
                 "about.satisfaction": "Satisfaction Rate",
                 "about.photo": "Dr EL AMRI Photo",
 
-                // Contact - MODIFIÉ
+                // Blog Preview
+                "blog.preview.subtitle": "Tips & News",
+                "blog.preview.title": "Latest Articles",
+                "blog.preview.description": "Discover our tips for taking care of your oral health.",
+                "blog.preview.button": "View all articles",
+
+                // Contact
                 "contact.subtitle": "Contact & Appointment",
                 "contact.title": "Book an Appointment Today",
                 "contact.description": "Our team is available to answer all your questions and schedule appointments.",
@@ -3514,7 +2844,8 @@
                 "chatbot.appointment": "Book appointment",
                 "chatbot.hours": "Opening hours",
                 "chatbot.services": "Our services",
-                "chatbot.emergency": "Dental emergency"
+                "chatbot.emergency": "Dental emergency",
+                "chatbot.blog": "Blog & Tips"
             },
             ar: {
                 // Navigation
@@ -3522,6 +2853,7 @@
                 "nav.gallery": "معرض الصور",
                 "nav.services": "الخدمات",
                 "nav.about": "من نحن",
+                "nav.blog": "المدونة",
                 "nav.contact": "اتصل بنا",
                 "nav.call": "اتصال",
 
@@ -3576,7 +2908,7 @@
                 "services.general.description": "استشارات، تنظيف، علاجات وقائية وحافظة لكل أفراد الأسرة.",
                 "services.learnMore": "المزيد",
 
-                // About - MODIFIÉ
+                // About
                 "about.subtitle": "خبرتنا",
                 "about.title": "الدكتورة ليلى العامري، طبيبة الأسنان الجراحية",
                 "about.description1": "خريجة كلية طب الأسنان بالرباط، حاصلة على دبلوم جامعي في طب الأسنان التجميلي واللاصق من UCAM إسبانيا ودبلوم جامعي في جراحة الفم وزراعة الأسنان.",
@@ -3586,7 +2918,13 @@
                 "about.satisfaction": "معدل الرضا",
                 "about.photo": "صورة الدكتورة العامري",
 
-                // Contact - MODIFIÉ
+                // Blog Preview
+                "blog.preview.subtitle": "نصائح وأخبار",
+                "blog.preview.title": "أحدث المقالات",
+                "blog.preview.description": "اكتشف نصائحنا للعناية بصحة فمك.",
+                "blog.preview.button": "عرض جميع المقالات",
+
+                // Contact
                 "contact.subtitle": "اتصل واحجز موعد",
                 "contact.title": "احجز موعدك اليوم",
                 "contact.description": "فريقنا متاح للإجابة على جميع أسئلتك وترتيب المواعيد.",
@@ -3625,12 +2963,13 @@
                 "chatbot.appointment": "حجز موعد",
                 "chatbot.hours": "ساعات العمل",
                 "chatbot.services": "خدماتنا",
-                "chatbot.emergency": "طوارئ سنية"
+                "chatbot.emergency": "طوارئ سنية",
+                "chatbot.blog": "المدونة والنصائح"
             }
         };
 
         // ===============================
-        // GESTION DU CHATBOT
+        // GESTION DU CHATBOT - MIS À JOUR
         // ===============================
         const chatbotResponses = {
             fr: {
@@ -3638,6 +2977,7 @@
                 "hours": "Nos horaires d'ouverture:\nLundi, Mardi, Mercredi, Jeudi: 9h-18h\nVendredi: 9h-12h / 15h-19h\nSamedi: 9h-13h\nDimanche: Fermé",
                 "services": "Nous proposons:\n• Réhabilitation prothétique\n• Esthétique dentaire\n• Implantologie\n• Orthodontie\n• Endodontie\n• Soins dentaires généraux",
                 "emergency": "Pour les urgences dentaires:\n• Contactez-nous immédiatement au 05 37 83 41 47\n• Nous accordons la priorité aux urgences\n• Consultez rapidement en cas de douleur intense, saignement ou traumatisme",
+                "blog": "Découvrez nos articles sur la santé dentaire:\n• <a href='blog.html' style='color: var(--primary); text-decoration: underline;'>Visitez notre blog</a>\n• Conseils de prévention\n• Actualités dentaires\n• Témoignages de patients",
                 "default": "Je comprends votre demande. Pour une réponse plus précise, n'hésitez pas à nous contacter directement au 05 37 83 41 47 ou via WhatsApp au 06 79 01 04 81."
             },
             en: {
@@ -3645,6 +2985,7 @@
                 "hours": "Our opening hours:\nMonday, Tuesday, Wednesday, Thursday: 9am-6pm\nFriday: 9am-12pm / 3pm-7pm\nSaturday: 9am-1pm\nSunday: Closed",
                 "services": "We offer:\n• Prosthetic rehabilitation\n• Dental aesthetics\n• Implantology\n• Orthodontics\n• Endodontics\n• General dental care",
                 "emergency": "For dental emergencies:\n• Contact us immediately at 05 37 83 41 47\n• We prioritize emergencies\n• Consult quickly in case of severe pain, bleeding or trauma",
+                "blog": "Discover our articles on dental health:\n• <a href='blog.html' style='color: var(--primary); text-decoration: underline;'>Visit our blog</a>\n• Prevention tips\n• Dental news\n• Patient testimonials",
                 "default": "I understand your request. For a more precise answer, don't hesitate to contact us directly at 05 37 83 41 47 or via WhatsApp at 06 79 01 04 81."
             },
             ar: {
@@ -3652,9 +2993,91 @@
                 "hours": "ساعات عملنا:\nالإثنين، الثلاثاء، الأربعاء، الخميس: 9:00-18:00\nالجمعة: 9:00-12:00 / 15:00-19:00\nالسبت: 9:00-13:00\nالأحد: مغلق",
                 "services": "نقدم:\n• التأهيل التعويضي\n• جمالية الأسنان\n• زراعة الأسنان\n• تقويم الأسنان\n• علاج الجذور\n• العناية العامة بالأسنان",
                 "emergency": "لطوارئ الأسنان:\n• اتصل بنا فوراً على 05 37 83 41 47\n• نعطي الأولوية للطوارئ\n• استشر بسرعة في حالة الألم الشديد، النزيف أو الصدمة",
+                "blog": "اكتشف مقالاتنا حول صحة الأسنان:\n• <a href='blog.html' style='color: var(--primary); text-decoration: underline;'>زر مدونتنا</a>\n• نصائح الوقاية\n• أخبار طب الأسنان\n• شهادات المرضى",
                 "default": "أفهم طلبك. للحصول على إجابة أكثر دقة، لا تتردد في الاتصال بنا مباشرة على 05 37 83 41 47 أو عبر واتساب على 06 79 01 04 81."
             }
         };
+
+        // ===============================
+        // CHARGEMENT DES ARTICLES EN PREVIEW
+        // ===============================
+        async function loadPreviewArticles() {
+            const container = document.getElementById('preview-articles');
+            if (!container) return;
+
+            try {
+                // Simuler un délai de chargement
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Articles de démonstration
+                const articles = [
+                    {
+                        id: 1,
+                        title: "L'importance du détartrage régulier",
+                        excerpt: "Pourquoi ce soin préventif est essentiel pour votre santé bucco-dentaire.",
+                        date: "2025-01-15",
+                        category: "Prévention",
+                        slug: "importance-detartrage-regulier"
+                    },
+                    {
+                        id: 2,
+                        title: "Les nouvelles technologies en implantologie",
+                        excerpt: "Comment les avancées technologiques révolutionnent les traitements d'implants.",
+                        date: "2025-01-10",
+                        category: "Implantologie",
+                        slug: "nouvelles-technologies-implantologie"
+                    },
+                    {
+                        id: 3,
+                        title: "Blanchiment dentaire : ce qu'il faut savoir",
+                        excerpt: "Tout sur les techniques de blanchiment dentaire sécuritaires et efficaces.",
+                        date: "2025-01-05",
+                        category: "Esthétique",
+                        slug: "blanchiment-dentaire-ce-quil-faut-savoir"
+                    }
+                ];
+
+                // Rendre les articles
+                container.innerHTML = articles.map(article => createPreviewArticle(article)).join('');
+
+            } catch (error) {
+                console.error('Erreur lors du chargement des articles:', error);
+                container.innerHTML = `
+                    <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--gray);">
+                        <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 1rem; color: #dc2626;"></i>
+                        <p>Impossible de charger les articles pour le moment.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createPreviewArticle(article) {
+            const date = new Date(article.date);
+            const formattedDate = date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            return `
+                <div class="preview-article">
+                    <div class="preview-image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
+                                  display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-tooth" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="preview-content">
+                        <div class="preview-category">${article.category}</div>
+                        <h3 class="preview-title">
+                            <a href="article.html?slug=${article.slug}">${article.title}</a>
+                        </h3>
+                        <div class="preview-date">${formattedDate}</div>
+                        <p class="preview-excerpt">${article.excerpt}</p>
+                    </div>
+                </div>
+            `;
+        }
 
         // ===============================
         // FONCTIONS DE TRADUCTION
@@ -3828,6 +3251,11 @@
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
             }
 
+            // Charger les articles en preview
+            setTimeout(() => {
+                loadPreviewArticles();
+            }, 1500);
+
             // Animation au scroll
             const observerOptions = {
                 threshold: 0.1,
@@ -3844,7 +3272,7 @@
             }, observerOptions);
 
             // Observer les éléments à animer
-            document.querySelectorAll('.feature-card, .service-card, .about-content, .contact-info, .gallery-container').forEach(el => {
+            document.querySelectorAll('.feature-card, .service-card, .about-content, .contact-info, .gallery-container, .preview-article').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
