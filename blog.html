@@ -3,729 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Centre Dentaire EL AMRI | Conseils Santé Dentaire</title>
-    <meta name="description" content="Conseils et actualités du Centre Dentaire EL AMRI. Découvrez nos articles sur la santé bucco-dentaire, l'orthodontie, l'implantologie et les soins préventifs.">
-    <meta name="keywords" content="conseils dentaires, santé bucco-dentaire, soins dentaires préventifs, orthodontie adulte, implantologie, blanchiment dentaire">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Blog Dentaire | Centre Dentaire EL AMRI - Conseils & Actualités</title>
+    <meta name="description" content="Découvrez nos articles sur la santé bucco-dentaire, conseils préventifs, nouveautés en dentisterie et témoignages de patients. Centre Dentaire EL AMRI à Sala Al Jadida.">
+    <meta name="keywords" content="blog dentaire, conseils dentaires, santé buccale, prévention, soins dentaires, Sala Al Jadida">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #e91e63;
-            --primary-light: #fce4ec;
-            --secondary: #212121;
-            --accent: #ffffff;
-            --light: #f8f9fa;
-            --gray: #757575;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--secondary);
-            background-color: #fff;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-left: 10px;
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Blog */
-        .hero-blog {
-            background: linear-gradient(135deg, var(--primary), #ad1457);
-            padding: 8rem 0 4rem;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-blog h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-blog p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Blog Content */
-        .blog-page {
-            padding: 4rem 0;
-            background-color: var(--light);
-        }
-
-        .blog-articles {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-        }
-
-        .articles-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .article-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-image {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .article-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .article-card:hover .article-image img {
-            transform: scale(1.05);
-        }
-
-        .article-content {
-            padding: 2rem;
-        }
-
-        .article-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .article-content h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        .article-content p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #d81b60;
-            transform: translateY(-2px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            height: fit-content;
-        }
-
-        .sidebar-widget {
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-widget h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary-light);
-        }
-
-        .categories-list {
-            list-style: none;
-        }
-
-        .categories-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .categories-list a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-            display: block;
-            padding: 0.5rem 0;
-        }
-
-        .categories-list a:hover {
-            color: var(--primary);
-            padding-left: 0.5rem;
-        }
-
-        .popular-articles {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .popular-article {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .popular-article img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .popular-article h4 {
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .pagination a {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-decoration: none;
-            color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        .pagination a:hover,
-        .pagination a.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column {
-            flex: 1;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-column ul li a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: #d81b60;
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        /* États vides */
-        .no-articles {
-            text-align: center;
-            padding: 3rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            grid-column: 1 / -1;
-        }
-
-        .no-articles p {
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .blog-articles {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: var(--shadow);
-            }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                text-align: center;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero-blog h1 {
-                font-size: 2.5rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (identique à l'index) -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-tooth logo-icon"></i>
-                <h1>Centre <span>Dentaire</span> EL AMRI</h1>
+                <a href="index.html">
+                    <div class="logo-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <div class="logo-text">Centre <span>Dentaire EL AMRI</span></div>
+                </a>
             </div>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav>
+            
+            <nav id="main-nav">
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="index.html#services">Services</a></li>
-                    <li><a href="index.html#docteur">Docteur</a></li>
+                    <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
                     <li><a href="index.html#gallery">Galerie</a></li>
-                    <li><a href="blog.html" style="color: var(--primary);">Blog</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">À Propos</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </nav>
+            
+            <div class="header-actions">
+                <a href="tel:0537834147" class="btn-appointment">
+                    <i class="fas fa-phone"></i>
+                    <span>Appeler</span>
+                </a>
+            </div>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Blog -->
-    <section class="hero-blog">
+    <!-- Hero Section Blog -->
+    <section class="blog-hero">
         <div class="container">
-            <h1>Notre Blog Dentaire</h1>
-            <p>Conseils, actualités et informations sur la santé bucco-dentaire</p>
-        </div>
-    </section>
-
-    <!-- Blog Content -->
-    <section class="blog-page">
-        <div class="container">
-            <div class="blog-articles">
-                <div class="articles-list" id="articles-container">
-                    <!-- Les articles seront chargés ici -->
+            <div class="blog-hero-content">
+                <h1 data-i18n="blog.hero.title">Blog Santé Dentaire</h1>
+                <p data-i18n="blog.hero.description">Conseils, actualités et informations pour prendre soin de votre santé bucco-dentaire</p>
+                <div class="blog-categories">
+                    <a href="#all" class="category-btn active" data-category="all">Tous</a>
+                    <a href="#prevention" class="category-btn" data-category="prévention">Prévention</a>
+                    <a href="#soins" class="category-btn" data-category="soins">Soins</a>
+                    <a href="#esthetique" class="category-btn" data-category="esthetique">Esthétique</a>
+                    <a href="#pediatrie" class="category-btn" data-category="pediatrie">Pédiatrie</a>
                 </div>
-
-                <div class="sidebar">
-                    <div class="sidebar-widget">
-                        <h3>Catégories</h3>
-                        <ul class="categories-list">
-                            <li><a href="#">Soins Préventifs</a></li>
-                            <li><a href="#">Orthodontie</a></li>
-                            <li><a href="#">Implantologie</a></li>
-                            <li><a href="#">Esthétique Dentaire</a></li>
-                            <li><a href="#">Soins Enfants</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget">
-                        <h3>Articles Populaires</h3>
-                        <div class="popular-articles" id="popular-articles">
-                            <!-- Articles populaires chargés dynamiquement -->
-                        </div>
-                    </div>
-
-                    <div class="sidebar-widget">
-                        <h3>Prendre Rendez-vous</h3>
-                        <p>Besoin de conseils personnalisés ?</p>
-                        <a href="index.html#contact" class="btn" style="margin-top: 1rem; display: inline-block;">Contactez-nous</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pagination">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">Suivant</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Articles Section -->
+    <section class="blog-articles">
+        <div class="container">
+            <div class="articles-grid" id="articles-grid">
+                <!-- Les articles seront chargés dynamiquement -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Chargement des articles...</p>
+                </div>
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- La pagination sera générée dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 data-i18n="newsletter.title">Restez informé</h2>
+                <p data-i18n="newsletter.description">Recevez nos conseils dentaires et nos dernières actualités directement dans votre boîte mail.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span data-i18n="newsletter.subscribe">S'abonner</span>
+                    </button>
+                </form>
+                <p class="newsletter-note" data-i18n="newsletter.note">Nous respectons votre vie privée. Désabonnez-vous à tout moment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (identique à l'index) -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Centre Dentaire EL AMRI</h3>
-                    <p>Partenaire de votre sourire depuis de nombreuses années, nous nous engageons à vous offrir des soins dentaires de qualité.</p>
+                    <p>Partenaire de votre sourire depuis plus de 10 ans. Soins dentaires de qualité dans un environnement professionnel.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Liens Rapides</h3>
-                    <ul>
+                    <ul class="footer-links">
                         <li><a href="index.html">Accueil</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#docteur">Docteur</a></li>
                         <li><a href="index.html#gallery">Galerie</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">À Propos</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
+                    <h3>Horaires</h3>
+                    <ul class="footer-links">
+                        <li><strong>Lundi</strong>, <strong>Mardi</strong>, <strong>Mercredi</strong>, <strong>Jeudi</strong>: 9h-18h</li>
+                        <li><strong>Vendredi</strong>: 9h-12h / 15h-19h</li>
+                        <li><strong>Samedi</strong>: 9h-13h</li>
+                        <li><strong>Dimanche</strong>: Fermé</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
                     <h3>Contact</h3>
-                    <ul>
-                        <li>📞 0537 83 41 47</li>
-                        <li>📱 0679 01 04 81 (WhatsApp)</li>
-                        <li>📍 Sala Al Jadida</li>
-                        <li>🕒 Lun-Ven: 9h-18h</li>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Résidence Touahri 12, Imm 2, 1er Etage, Avril 6, Lot Maamoura, Sala Al Jadida</li>
+                        <li><i class="fas fa-phone"></i> 05 37 83 41 47</li>
+                        <li><i class="fab fa-whatsapp"></i> 06 79 01 04 81</li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
+            <div class="footer-bottom">
                 <p>&copy; 2025 Centre Dentaire EL AMRI. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Charger les articles du blog
-        async function loadBlogArticles() {
-            try {
-                const articlesContainer = document.getElementById('articles-container');
-                const popularContainer = document.getElementById('popular-articles');
-                
-                // Essayer de charger depuis Netlify CMS
-                const response = await fetch('/_data/blog/');
-                
-                if (response.ok) {
-                    const files = await response.json();
-                    
-                    if (files && files.length > 0) {
-                        let articlesHTML = '';
-                        let popularHTML = '';
-                        
-                        // Trier par date (du plus récent au plus ancien)
-                        const sortedFiles = files.sort((a, b) => {
-                            // Simple tri alphabétique inverse pour l'exemple
-                            return b.localeCompare(a);
-                        });
-                        
-                        // Articles principaux
-                        for (const file of sortedFiles) {
-                            try {
-                                const articleResponse = await fetch(`/_data/blog/${file}`);
-                                const article = await articleResponse.json();
-                                
-                                const articleDate = new Date(article.date);
-                                const formattedDate = articleDate.toLocaleDateString('fr-FR', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                });
-                                
-                                articlesHTML += `
-                                    <article class="article-card" id="${file.replace('.json', '')}">
-                                        <div class="article-image">
-                                            <img src="${article.image || '/img/blog-placeholder.jpg'}" alt="${article.titre}">
-                                        </div>
-                                        <div class="article-content">
-                                            <div class="article-meta">
-                                                <span><i class="far fa-calendar"></i> ${formattedDate}</span>
-                                                <span><i class="far fa-user"></i> ${article.auteur || 'Dr Leila EL AMRI'}</span>
-                                            </div>
-                                            <h2>${article.titre}</h2>
-                                            <p>${article.resume}</p>
-                                            <a href="article.html?article=${file.replace('.json', '')}" class="btn">Lire l'article complet</a>
-                                        </div>
-                                    </article>
-                                `;
-                                
-                                // Articles populaires (3 premiers)
-                                if (popularHTML.split('</div>').length < 4) {
-                                    popularHTML += `
-                                        <div class="popular-article">
-                                            <img src="${article.image || '/img/blog-placeholder.jpg'}" alt="${article.titre}">
-                                            <div>
-                                                <h4>${article.titre}</h4>
-                                                <small>${formattedDate}</small>
-                                            </div>
-                                        </div>
-                                    `;
-                                }
-                                
-                            } catch (error) {
-                                console.log('Erreur avec l\'article:', file, error);
-                            }
-                        }
-                        
-                        articlesContainer.innerHTML = articlesHTML;
-                        popularContainer.innerHTML = popularHTML || '<p>Aucun article populaire</p>';
-                        return;
-                    }
-                }
-                
-                // Fallback : articles par défaut
-                articlesContainer.innerHTML = `
-                    <article class="article-card">
-                        <div class="article-image">
-                            <img src="/img/blog1.jpg" alt="Soins dentaires préventifs">
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span><i class="far fa-calendar"></i> 15 janvier 2025</span>
-                                <span><i class="far fa-user"></i> Dr Leila EL AMRI</span>
-                            </div>
-                            <h2>L'importance des soins dentaires préventifs</h2>
-                            <p>Découvrez pourquoi les visites régulières chez le dentiste sont essentielles pour maintenir une bonne santé bucco-dentaire et prévenir les problèmes dentaires.</p>
-                            <a href="article.html" class="btn">Lire l'article complet</a>
-                        </div>
-                    </article>
-                    <article class="article-card">
-                        <div class="article-image">
-                            <img src="/img/blog2.jpg" alt="Implantologie moderne">
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span><i class="far fa-calendar"></i> 10 janvier 2025</span>
-                                <span><i class="far fa-user"></i> Dr Leila EL AMRI</span>
-                            </div>
-                            <h2>Implantologie moderne : solutions et avantages</h2>
-                            <p>Les implants dentaires représentent la solution la plus avancée pour remplacer les dents manquantes. Découvrez les techniques modernes et leurs bénéfices.</p>
-                            <a href="article.html" class="btn">Lire l'article complet</a>
-                        </div>
-                    </article>
-                    <article class="article-card">
-                        <div class="article-image">
-                            <img src="/img/blog3.jpg" alt="Orthodontie adulte">
-                        </div>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span><i class="far fa-calendar"></i> 5 janvier 2025</span>
-                                <span><i class="far fa-user"></i> Dr Leila EL AMRI</span>
-                            </div>
-                            <h2>Orthodontie adulte : est-ce trop tard ?</h2>
-                            <p>Il n'est jamais trop tard pour corriger l'alignement de vos dents. Découvrez les options disponibles pour les adultes et leurs avantages.</p>
-                            <a href="article.html" class="btn">Lire l'article complet</a>
-                        </div>
-                    </article>
-                `;
-                
-                popularContainer.innerHTML = `
-                    <div class="popular-article">
-                        <img src="/img/blog1.jpg" alt="Soins dentaires préventifs">
-                        <div>
-                            <h4>Soins dentaires préventifs</h4>
-                            <small>15 janvier 2025</small>
-                        </div>
-                    </div>
-                    <div class="popular-article">
-                        <img src="/img/blog2.jpg" alt="Implantologie moderne">
-                        <div>
-                            <h4>Implantologie moderne</h4>
-                            <small>10 janvier 2025</small>
-                        </div>
-                    </div>
-                    <div class="popular-article">
-                        <img src="/img/blog3.jpg" alt="Orthodontie adulte">
-                        <div>
-                            <h4>Orthodontie adulte</h4>
-                            <small>5 janvier 2025</small>
-                        </div>
-                    </div>
-                `;
-                
-            } catch (error) {
-                console.error('Erreur chargement blog:', error);
-                const articlesContainer = document.getElementById('articles-container');
-                articlesContainer.innerHTML = `
-                    <div class="no-articles">
-                        <h3>Articles en préparation</h3>
-                        <p>Notre blog sera bientôt disponible avec des conseils dentaires.</p>
-                        <p>Revenez très vite !</p>
-                    </div>
-                `;
-            }
-        }
+    <!-- Floating Buttons (identique) -->
+    <div class="floating-actions">
+        <a href="https://wa.me/212679010481" class="floating-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:0537834147" class="floating-btn phone">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
 
-        // Gestion du menu mobile
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('show');
-        });
-
-        // Scroll vers l'article spécifique si hash dans l'URL
-        document.addEventListener('DOMContentLoaded', function() {
-            loadBlogArticles();
-            
-            // Gestion des ancres
-            if (window.location.hash) {
-                const targetElement = document.querySelector(window.location.hash);
-                if (targetElement) {
-                    setTimeout(() => {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                }
-            }
-        });
-    </script>
+    <script src="js/utils.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
