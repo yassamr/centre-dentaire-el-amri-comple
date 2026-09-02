@@ -253,6 +253,7 @@
             cursor: pointer;
             transition: var(--transition);
             z-index: 1002;
+            border: none;
         }
 
         .mobile-menu span {
@@ -635,6 +636,10 @@
             gap: 0.5rem;
             transition: var(--transition);
             cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
         }
 
         .service-link:hover {
@@ -845,6 +850,95 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
+        }
+
+        /* Appointment Form */
+        .appointment-form-wrap {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .appointment-form-wrap h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .appointment-form-wrap > p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+
+        .form-success {
+            display: none;
+            background: #e6f4ea;
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .form-success.active {
+            display: block;
         }
 
         /* CTA Section */
@@ -1628,6 +1722,10 @@
             .map-container {
                 height: 400px;
             }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1790,6 +1888,16 @@
             right: auto;
         }
 
+        /* Focus visible pour l'accessibilité clavier */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         /* Media query spécifique pour mobile */
         @media (max-width: 767px) {
             /* Assurer que tous les éléments restent dans l'écran */
@@ -1889,54 +1997,11 @@
     </style>
 </head>
 <body>
-    <!-- PROTECTION CONTRE L'INSPECTION -->
-    <script>
-        // Protection contre le clic droit
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Protection contre les raccourcis clavier
-        document.addEventListener('keydown', function(e) {
-            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.key === 'u') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'C')) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Protection contre la copie
-        document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            alert('La copie du contenu est interdite.');
-        });
-
-        // Protection contre le drag and drop
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-        });
-
-        // Désactiver la sélection de texte
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-
-        // Empêcher l'affichage du code source via l'URL
-        if (window.location.href.indexOf('view-source:') > -1) {
-            window.location.href = window.location.href.replace('view-source:', '');
-        }
-    </script>
-
     <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="ar">العربية</button>
+    <div class="language-switcher" role="group" aria-label="Sélecteur de langue / Language switcher">
+        <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        <button class="lang-btn" data-lang="ar" aria-pressed="false">العربية</button>
     </div>
 
     <!-- Header -->
@@ -1944,12 +2009,12 @@
         <div class="container header-container">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-tooth"></i>
+                    <i class="fas fa-tooth" aria-hidden="true"></i>
                 </div>
                 <div class="logo-text">Centre <span>Dentaire EL AMRI</span></div>
             </div>
             
-            <nav id="main-nav">
+            <nav id="main-nav" aria-label="Navigation principale">
                 <ul>
                     <li><a href="#accueil" data-i18n="nav.home">Accueil</a></li>
                     <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
@@ -1961,16 +2026,16 @@
             
             <div class="header-actions">
                 <a href="tel:0537834147" class="btn-appointment">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                     <span data-i18n="nav.call">Appeler</span>
                 </a>
             </div>
             
-            <div class="mobile-menu" id="mobile-menu">
+            <button class="mobile-menu" id="mobile-menu" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="main-nav">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -1979,17 +2044,17 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge" data-i18n="hero.badge">
-                    <i class="fas fa-star"></i> Excellence Dentaire
+                    <i class="fas fa-star" aria-hidden="true"></i> Excellence Dentaire
                 </div>
                 <h1 data-i18n="hero.title">Votre Sourire, Notre Priorité</h1>
                 <p data-i18n="hero.description">Des soins dentaires de haute qualité dans un environnement moderne et confortable. Notre équipe dévouée s'engage à vous offrir une expérience exceptionnelle.</p>
                 <div class="hero-actions">
                     <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
                         <span data-i18n="hero.appointment">Prendre Rendez-vous</span>
                     </a>
                     <a href="#gallery" class="btn btn-secondary">
-                        <i class="fas fa-images"></i>
+                        <i class="fas fa-images" aria-hidden="true"></i>
                         <span data-i18n="hero.gallery">Voir la Galerie</span>
                     </a>
                 </div>
@@ -2010,35 +2075,35 @@
                 <div class="gallery-slider">
                     <div class="gallery-track" id="gallery-track">
                         <div class="gallery-slide">
-                            <img src="img/cabinet1.jpeg" alt="Cabinet dentaire - Salle d'attente" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHBhdGggZD0iTTM1MiAzODRIMzY4VjQ2NEgzNTJWMzg0Wk00MzIgMzg0SDQ0OFY0NjRINDMyVjM4NFoiIGZpbGw9IiMyYzVhYTAiLz4KPC9zdmc+'">
+                            <img src="img/cabinet1.jpeg" width="800" height="600" loading="lazy" alt="Salle d'attente du Centre Dentaire EL AMRI" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHBhdGggZD0iTTM1MiAzODRIMzY4VjQ2NEgzNTJWMzg0Wk00MzIgMzg0SDQ0OFY0NjRINDMyVjM4NFoiIGZpbGw9IiMyYzVhYTAiLz4KPC9zdmc+'">
                             <div class="slide-overlay">
                                 <h3 data-i18n="gallery.slide1.title">Salle d'Attente Confortable</h3>
                                 <p data-i18n="gallery.slide1.description">Un espace accueillant pour vous détendre avant votre consultation</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="img/cabinet2.jpeg" alt="Cabinet dentaire - Salle de soins" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHJlY3QgeD0iMzQwIiB5PSIzNjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIHJ4PSI4IiBmaWxsPSIjMmM1YWEwIi8+Cjwvc3ZnPg=='">
+                            <img src="img/cabinet2.jpeg" width="800" height="600" loading="lazy" alt="Salle de soins du Centre Dentaire EL AMRI" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHJlY3QgeD0iMzQwIiB5PSIzNjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIHJ4PSI4IiBmaWxsPSIjMmM1YWEwIi8+Cjwvc3ZnPg=='">
                             <div class="slide-overlay">
                                 <h3 data-i18n="gallery.slide2.title">Salle de Soins Moderne</h3>
                                 <p data-i18n="gallery.slide2.description">Équipements de dernière génération pour des soins de qualité</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="img/cabinet3.jpeg" alt="Cabinet dentaire - Équipement" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iNDAwIiByPSI2MCIgZmlsbD0iIzJjNWFhMCIvPgo8L3N2Zz4='">
+                            <img src="img/cabinet3.jpeg" width="800" height="600" loading="lazy" alt="Équipement de technologie avancée du Centre Dentaire EL AMRI" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iNDAwIiByPSI2MCIgZmlsbD0iIzJjNWFhMCIvPgo8L3N2Zz4='">
                             <div class="slide-overlay">
                                 <h3 data-i18n="gallery.slide3.title">Technologie Avancée</h3>
                                 <p data-i18n="gallery.slide3.description">Des instruments de précision pour des résultats optimaux</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="img/cabinet4.jpeg" alt="Cabinet dentaire - Espace stérilisation" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHBhdGggZD0iTTM0MCAzNjBINDYwVjQ0MEgzNDBWMzYwWiIgZmlsbD0iIzJjNWFhMCIvPgo8L3N2Zz4='">
+                            <img src="img/cabinet4.jpeg" width="800" height="600" loading="lazy" alt="Espace de stérilisation du Centre Dentaire EL AMRI" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHBhdGggZD0iTTM0MCAzNjBINDYwVjQ0MEgzNDBWMzYwWiIgZmlsbD0iIzJjNWFhMCIvPgo8L3N2Zz4='">
                             <div class="slide-overlay">
                                 <h3 data-i18n="gallery.slide4.title">Hygiène et Stérilisation</h3>
                                 <p data-i18n="gallery.slide4.description">Un protocole rigoureux pour votre sécurité</p>
                             </div>
                         </div>
                         <div class="gallery-slide">
-                            <img src="img/cabinet5.jpeg" alt="Cabinet dentaire - Accueil" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHJlY3QgeD0iMzQwIiB5PSIzNjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI0IiBmaWxsPSIjMmM1YWEwIi8+Cjwvc3ZnPg=='">
+                            <img src="img/cabinet5.jpeg" width="800" height="600" loading="lazy" alt="Accueil du Centre Dentaire EL AMRI" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRThGMEZGIi8+CjxwYXRoIGQ9Ik00MDAgMzAwQzQ0OC4yIDMwMCA0ODggMjYwLjIgNDg4IDIxMkM0ODggMTYzLjggNDQ4LjIgMTI0IDQwMCAxMjRDMzUxLjggMTI0IDMxMiAxNjMuOCAzMTIgMjEyQzMxMiAyNjAuMiAzNTEuOCAzMDAgNDAwIDMwMFoiIGZpbGw9IiMyYzVhYTAiLz4KPHJlY3QgeD0iMzQwIiB5PSIzNjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI0IiBmaWxsPSIjMmM1YWEwIi8+Cjwvc3ZnPg=='">
                             <div class="slide-overlay">
                                 <h3 data-i18n="gallery.slide5.title">Accueil Personnalisé</h3>
                                 <p data-i18n="gallery.slide5.description">Notre équipe vous accompagne avec professionnalisme</p>
@@ -2048,14 +2113,14 @@
                 </div>
                 
                 <div class="gallery-nav">
-                    <button class="gallery-prev" id="gallery-prev">
-                        <i class="fas fa-chevron-left"></i>
+                    <button class="gallery-prev" id="gallery-prev" aria-label="Image précédente">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <div class="gallery-dots" id="gallery-dots">
+                    <div class="gallery-dots" id="gallery-dots" role="tablist" aria-label="Sélection d'image">
                         <!-- Les points seront générés par JavaScript -->
                     </div>
-                    <button class="gallery-next" id="gallery-next">
-                        <i class="fas fa-chevron-right"></i>
+                    <button class="gallery-next" id="gallery-next" aria-label="Image suivante">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -2073,21 +2138,21 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-user-md" aria-hidden="true"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="features.experts.title">Experts Qualifiés</h3>
                     <p class="feature-description" data-i18n="features.experts.description">Notre équipe de dentistes expérimentés suit une formation continue pour offrir les traitements les plus avancés.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-teeth"></i>
+                        <i class="fas fa-teeth" aria-hidden="true"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="features.technology.title">Technologie de Pointe</h3>
                     <p class="feature-description" data-i18n="features.technology.description">Nous utilisons des équipements modernes pour des diagnostics précis et des traitements efficaces.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart" aria-hidden="true"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="features.personalized.title">Approche Personnalisée</h3>
                     <p class="feature-description" data-i18n="features.personalized.description">Chaque patient est unique. Nous créons des plans de traitement sur mesure pour vos besoins spécifiques.</p>
@@ -2108,97 +2173,97 @@
                 <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-crown"></i>
+                        <i class="fas fa-crown" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.prosthetic.title">Réhabilitation Prothétique</h3>
                         <p class="service-description" data-i18n="services.prosthetic.description">Couronnes, bridges et prothèses sur mesure pour restaurer fonction et esthétique.</p>
-                        <div class="service-link" data-service="prothetique">
+                        <button type="button" class="service-link" data-service="prothetique" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-smile"></i>
+                        <i class="fas fa-smile" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.aesthetic.title">Esthétique Dentaire</h3>
                         <p class="service-description" data-i18n="services.aesthetic.description">Blanchiment, facettes et traitements esthétiques pour un sourire éclatant.</p>
-                        <div class="service-link" data-service="esthetique">
+                        <button type="button" class="service-link" data-service="esthetique" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-tooth"></i>
+                        <i class="fas fa-tooth" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.implantology.title">Implantologie</h3>
                         <p class="service-description" data-i18n="services.implantology.description">Solutions fixes et durables pour remplacer les dents manquantes.</p>
-                        <div class="service-link" data-service="implantologie">
+                        <button type="button" class="service-link" data-service="implantologie" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Service 4 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-teeth-open"></i>
+                        <i class="fas fa-teeth-open" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.orthodontics.title">Orthodontie</h3>
                         <p class="service-description" data-i18n="services.orthodontics.description">Correction de l'alignement dentaire pour adultes et enfants avec des techniques modernes.</p>
-                        <div class="service-link" data-service="orthodontie">
+                        <button type="button" class="service-link" data-service="orthodontie" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Service 5 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fas fa-stethoscope" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.endodontics.title">Endodontie</h3>
                         <p class="service-description" data-i18n="services.endodontics.description">Traitements canalaires de précision pour préserver vos dents naturelles et soulager les douleurs.</p>
-                        <div class="service-link" data-service="endodontie">
+                        <button type="button" class="service-link" data-service="endodontie" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Service 6 -->
                 <div class="service-card">
                     <div class="service-image">
-                        <i class="fas fa-teeth"></i>
+                        <i class="fas fa-teeth" aria-hidden="true"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title" data-i18n="services.general.title">Soins Dentaires</h3>
                         <p class="service-description" data-i18n="services.general.description">Consultations, détartrage, soins conservateurs et préventifs pour toute la famille.</p>
-                        <div class="service-link" data-service="soins">
+                        <button type="button" class="service-link" data-service="soins" aria-haspopup="dialog">
                             <span data-i18n="services.learnMore">En savoir plus</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section - MODIFIÉE -->
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
@@ -2224,7 +2289,7 @@
                 </div>
                 <div class="about-image">
                     <div class="about-image-placeholder">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-user-md" aria-hidden="true"></i>
                         <span data-i18n="about.photo">Photo du Dr EL AMRI</span>
                     </div>
                 </div>
@@ -2232,7 +2297,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - MODIFIÉE AVEC GOOGLE MAPS -->
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-header">
@@ -2245,7 +2310,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </div>
                         <div class="contact-details">
                             <h3 data-i18n="contact.address.title">Notre Adresse</h3>
@@ -2255,7 +2320,7 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
+                            <i class="fas fa-phone-alt" aria-hidden="true"></i>
                         </div>
                         <div class="contact-details">
                             <h3 data-i18n="contact.phones.title">Téléphones</h3>
@@ -2268,7 +2333,7 @@
                     
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
+                            <i class="fas fa-clock" aria-hidden="true"></i>
                         </div>
                         <div class="contact-details">
                             <h3 data-i18n="contact.hours.title">Horaires d'Ouverture</h3>
@@ -2309,6 +2374,7 @@
                     <div class="map-container">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.2481765544146!2d-6.807580423688977!3d34.01898087315972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76d465d65bb5b%3A0x9e5b10d356156a8f!2sR%C3%A9sidence%20Touahri%2012%2C%20Imm%202%2C%201er%20Etage%2C%20Avril%206%2C%20Lot%20Maamoura%2C%20Sala%20Al%20Jadida!5e0!3m2!1sfr!2sma!4v1700000000000!5m2!1sfr!2sma" 
+                            title="Localisation du Centre Dentaire EL AMRI sur Google Maps"
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -2317,8 +2383,8 @@
 
                     <!-- Bouton pour ouvrir dans Google Maps -->
                     <div class="map-actions">
-                        <a href="https://maps.app.goo.gl/mw9TTATh8XntVm3a6?g_st=aw" target="_blank" class="btn-map">
-                            <i class="fas fa-map-marked-alt"></i>
+                        <a href="https://maps.app.goo.gl/mw9TTATh8XntVm3a6?g_st=aw" target="_blank" rel="noopener" class="btn-map">
+                            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                             <span data-i18n="contact.openMaps">Ouvrir dans Google Maps</span>
                         </a>
                     </div>
@@ -2327,15 +2393,61 @@
                 <div class="contact-actions">
                     <div class="contact-buttons">
                         <!-- WhatsApp en premier et vert -->
-                        <a href="https://wa.me/212679010481" class="btn btn-whatsapp" style="margin-bottom: 1rem;">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/212679010481" target="_blank" rel="noopener" class="btn btn-whatsapp" style="margin-bottom: 1rem;">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
                             <span data-i18n="contact.whatsappNow">WhatsApp</span>
                         </a>
                         <!-- Appeler maintenant en deuxième -->
                         <a href="tel:0537834147" class="btn btn-primary">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
                             <span data-i18n="contact.callNow">Appeler Maintenant</span>
                         </a>
+                    </div>
+
+                    <!-- Formulaire de prise de rendez-vous -->
+                    <div class="appointment-form-wrap">
+                        <h3 data-i18n="form.title">Demande de Rendez-vous</h3>
+                        <p data-i18n="form.subtitle">Remplissez ce formulaire, il s'ouvrira dans WhatsApp prêt à envoyer.</p>
+                        <form id="appointment-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="form-name" data-i18n="form.name">Nom complet</label>
+                                    <input type="text" id="form-name" name="name" required autocomplete="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-phone" data-i18n="form.phone">Téléphone</label>
+                                    <input type="tel" id="form-phone" name="phone" required autocomplete="tel" placeholder="06 XX XX XX XX">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="form-service" data-i18n="form.service">Service souhaité</label>
+                                    <select id="form-service" name="service">
+                                        <option value="" data-i18n="form.serviceOptions.general">Consultation générale</option>
+                                        <option value="prothetique" data-i18n="form.serviceOptions.prosthetic">Réhabilitation Prothétique</option>
+                                        <option value="esthetique" data-i18n="form.serviceOptions.aesthetic">Esthétique Dentaire</option>
+                                        <option value="implantologie" data-i18n="form.serviceOptions.implantology">Implantologie</option>
+                                        <option value="orthodontie" data-i18n="form.serviceOptions.orthodontics">Orthodontie</option>
+                                        <option value="endodontie" data-i18n="form.serviceOptions.endodontics">Endodontie</option>
+                                        <option value="urgence" data-i18n="form.serviceOptions.emergency">Urgence dentaire</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-date" data-i18n="form.date">Créneau souhaité</label>
+                                    <input type="text" id="form-date" name="preferred" placeholder="Ex: Lundi matin">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message" data-i18n="form.message">Message (optionnel)</label>
+                                <textarea id="form-message" name="message" data-i18n-placeholder="form.messagePlaceholder" placeholder="Précisez votre demande..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-whatsapp" style="width:100%; max-width:none;">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                <span data-i18n="form.submit">Envoyer via WhatsApp</span>
+                            </button>
+                            <p class="form-note" data-i18n="form.note">Vos informations sont uniquement utilisées pour traiter votre demande de rendez-vous.</p>
+                        </form>
+                        <div class="form-success" id="form-success" role="status" data-i18n="form.success">Votre demande a été préparée dans WhatsApp. Merci de l'envoyer pour confirmer.</div>
                     </div>
                 </div>
             </div>
@@ -2348,15 +2460,15 @@
             <div class="cta-content">
                 <h2 data-i18n="cta.title">Prêt à Transformer Votre Sourire?</h2>
                 <p data-i18n="cta.description">Prenez rendez-vous dès aujourd'hui pour une consultation personnalisée. Notre équipe est à votre écoute.</p>
-                <a href="https://wa.me/212679010481" class="btn btn-cta">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/212679010481" target="_blank" rel="noopener" class="btn btn-cta">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     <span data-i18n="cta.button">Rendez-vous WhatsApp</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer - MODIFIÉ -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -2364,9 +2476,9 @@
                     <h3 data-i18n="footer.about.title">Centre Dentaire EL AMRI</h3>
                     <p data-i18n="footer.about.description">Partenaire de votre sourire depuis plus de 10 ans. Soins dentaires de qualité dans un environnement professionnel.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -2391,10 +2503,10 @@
                 <div class="footer-column">
                     <h3 data-i18n="footer.contact.title">Contact</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="contact.address.details">Résidence Touahri 12, Imm 2, 1er Etage, Avril 6, Lot Maamoura, Sala Al Jadida</span></li>
-                        <li><i class="fas fa-phone"></i> 05 37 83 41 47</li>
-                        <li><i class="fab fa-whatsapp"></i> 06 79 01 04 81</li>
-                        <li><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/mw9TTATh8XntVm3a6?g_st=aw" target="_blank" style="color: #94a3b8;">Voir sur Google Maps</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span data-i18n="contact.address.details">Résidence Touahri 12, Imm 2, 1er Etage, Avril 6, Lot Maamoura, Sala Al Jadida</span></li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i> 05 37 83 41 47</li>
+                        <li><i class="fab fa-whatsapp" aria-hidden="true"></i> 06 79 01 04 81</li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="https://maps.app.goo.gl/mw9TTATh8XntVm3a6?g_st=aw" target="_blank" rel="noopener" style="color: #94a3b8;">Voir sur Google Maps</a></li>
                     </ul>
                 </div>
             </div>
@@ -2406,49 +2518,50 @@
 
     <!-- Floating Action Buttons -->
     <div class="floating-actions">
-        <a href="https://wa.me/212679010481" class="floating-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
+        <a href="https://wa.me/212679010481" target="_blank" rel="noopener" class="floating-btn whatsapp" aria-label="Contacter par WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
         </a>
-        <a href="tel:0537834147" class="floating-btn phone">
-            <i class="fas fa-phone"></i>
+        <a href="tel:0537834147" class="floating-btn phone" aria-label="Appeler le cabinet">
+            <i class="fas fa-phone" aria-hidden="true"></i>
         </a>
     </div>
 
     <!-- Chatbot -->
-    <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-container" id="chatbot" role="dialog" aria-label="Assistant dentaire" aria-hidden="true">
         <div class="chatbot-header">
             <h3 data-i18n="chatbot.title">Assistant Dentaire</h3>
-            <button class="chatbot-close" id="chatbot-close">&times;</button>
+            <button class="chatbot-close" id="chatbot-close" aria-label="Fermer l'assistant">&times;</button>
         </div>
-        <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chatbot-messages" id="chatbot-messages" aria-live="polite">
             <div class="message bot" data-i18n="chatbot.welcome">
                 Bonjour ! Je suis votre assistant dentaire. Comment puis-je vous aider aujourd'hui ?
             </div>
         </div>
         <div class="quick-replies" id="quick-replies">
-            <div class="quick-reply" data-reply="appointment" data-i18n="chatbot.appointment">Prendre rendez-vous</div>
-            <div class="quick-reply" data-reply="hours" data-i18n="chatbot.hours">Horaires d'ouverture</div>
-            <div class="quick-reply" data-reply="services" data-i18n="chatbot.services">Nos services</div>
-            <div class="quick-reply" data-reply="emergency" data-i18n="chatbot.emergency">Urgence dentaire</div>
+            <button type="button" class="quick-reply" data-reply="appointment" data-i18n="chatbot.appointment">Prendre rendez-vous</button>
+            <button type="button" class="quick-reply" data-reply="hours" data-i18n="chatbot.hours">Horaires d'ouverture</button>
+            <button type="button" class="quick-reply" data-reply="services" data-i18n="chatbot.services">Nos services</button>
+            <button type="button" class="quick-reply" data-reply="emergency" data-i18n="chatbot.emergency">Urgence dentaire</button>
         </div>
         <div class="chatbot-input">
+            <label for="chatbot-input" class="sr-only" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Message</label>
             <input type="text" id="chatbot-input" placeholder="Tapez votre message..." data-i18n-placeholder="chatbot.placeholder">
-            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+            <button id="chatbot-send" aria-label="Envoyer le message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
         </div>
     </div>
 
-    <button class="chatbot-toggle" id="chatbot-toggle">
-        <i class="fas fa-comments"></i>
+    <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Ouvrir l'assistant dentaire" aria-expanded="false" aria-controls="chatbot">
+        <i class="fas fa-comments" aria-hidden="true"></i>
     </button>
 
-    <!-- Service Modals - TOUS REMPLIS -->
+    <!-- Service Modals -->
 
     <!-- Modal Prothétique -->
-    <div id="modal-prothetique" class="service-modal">
+    <div id="modal-prothetique" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-prothetique-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Réhabilitation Prothétique</h2>
+                <h2 id="modal-prothetique-title">Réhabilitation Prothétique</h2>
                 <p>Solutions sur mesure pour restaurer fonction et esthétique de votre sourire</p>
             </div>
 
@@ -2456,7 +2569,7 @@
                 <div class="modal-features">
                     <h3>Nos Solutions</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-crown"></i> Couronnes Dentaires</h4>
+                        <h4><i class="fas fa-crown" aria-hidden="true"></i> Couronnes Dentaires</h4>
                         <ul>
                             <li>Couronnes céramique - esthétique maximale</li>
                             <li>Couronnes zirconium - résistance optimale</li>
@@ -2465,7 +2578,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-bridge"></i> Bridges Dentaires</h4>
+                        <h4><i class="fas fa-bridge" aria-hidden="true"></i> Bridges Dentaires</h4>
                         <ul>
                             <li>Remplacement de 1 à 3 dents manquantes</li>
                             <li>Fixation sur dents adjacentes saines</li>
@@ -2474,7 +2587,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-teeth"></i> Prothèses Amovibles</h4>
+                        <h4><i class="fas fa-teeth" aria-hidden="true"></i> Prothèses Amovibles</h4>
                         <ul>
                             <li>Prothèses partielles et complètes</li>
                             <li>Confort et stabilité optimale</li>
@@ -2488,19 +2601,19 @@
                     <h3>Technologies Utilisées</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-camera"></i>
+                            <i class="fas fa-camera" aria-hidden="true"></i>
                             <div>Caméra intra-orale</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-print"></i>
+                            <i class="fas fa-print" aria-hidden="true"></i>
                             <div>Impression 3D</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-desktop"></i>
+                            <i class="fas fa-desktop" aria-hidden="true"></i>
                             <div>Conception CAD/CAM</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-teeth"></i>
+                            <i class="fas fa-teeth" aria-hidden="true"></i>
                             <div>Matériaux biocompatibles</div>
                         </div>
                     </div>
@@ -2542,11 +2655,11 @@
 
             <div class="before-after">
                 <div class="ba-image">
-                    <i class="fas fa-tooth" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-tooth" style="font-size: 2rem; margin-bottom: 0.5rem;" aria-hidden="true"></i>
                     Avant traitement
                 </div>
                 <div class="ba-image">
-                    <i class="fas fa-smile" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-smile" style="font-size: 2rem; margin-bottom: 0.5rem;" aria-hidden="true"></i>
                     Après traitement
                 </div>
             </div>
@@ -2589,21 +2702,21 @@
                 <h4>Prêt à retrouver votre sourire ?</h4>
                 <p>Prenez rendez-vous pour une consultation personnalisée</p>
                 <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Appeler maintenant
+                    <i class="fas fa-phone" aria-hidden="true"></i> Appeler maintenant
                 </a>
-                <a href="https://wa.me/212679010481" class="btn">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+                <a href="https://wa.me/212679010481" target="_blank" rel="noopener" class="btn">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Modal Esthétique Dentaire -->
-    <div id="modal-esthetique" class="service-modal">
+    <div id="modal-esthetique" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-esthetique-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Esthétique Dentaire</h2>
+                <h2 id="modal-esthetique-title">Esthétique Dentaire</h2>
                 <p>Des solutions innovantes pour un sourire éclatant et naturel</p>
             </div>
 
@@ -2611,7 +2724,7 @@
                 <div class="modal-features">
                     <h3>Nos Traitements Esthétiques</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-snowflake"></i> Blanchiment Dentaire</h4>
+                        <h4><i class="fas fa-snowflake" aria-hidden="true"></i> Blanchiment Dentaire</h4>
                         <ul>
                             <li>Blanchiment au fauteuil - résultat immédiat</li>
                             <li>Blanchiment ambulatoire - solution personnalisée</li>
@@ -2620,7 +2733,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-gem"></i> Facettes Dentaires</h4>
+                        <h4><i class="fas fa-gem" aria-hidden="true"></i> Facettes Dentaires</h4>
                         <ul>
                             <li>Facettes céramique ultra-minces</li>
                             <li>Facettes composite - solution rapide</li>
@@ -2629,7 +2742,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-magic"></i> Cosmétique Dentaire</h4>
+                        <h4><i class="fas fa-magic" aria-hidden="true"></i> Cosmétique Dentaire</h4>
                         <ul>
                             <li>Bonding composite</li>
                             <li>Contouring dentaire</li>
@@ -2643,19 +2756,19 @@
                     <h3>Technologies de Pointe</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-lightbulb"></i>
+                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
                             <div>LED blanchissante</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-tooth" aria-hidden="true"></i>
                             <div>Facettes ultra-minces</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-paint-brush"></i>
+                            <i class="fas fa-paint-brush" aria-hidden="true"></i>
                             <div>Matériaux esthétiques</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-camera"></i>
+                            <i class="fas fa-camera" aria-hidden="true"></i>
                             <div>Photographie numérique</div>
                         </div>
                     </div>
@@ -2733,18 +2846,18 @@
                 <h4>Prêt pour un sourire éclatant ?</h4>
                 <p>Consultez nos spécialistes en esthétique dentaire</p>
                 <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i> Prendre rendez-vous
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Modal Implantologie -->
-    <div id="modal-implantologie" class="service-modal">
+    <div id="modal-implantologie" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-implantologie-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Implantologie Dentaire</h2>
+                <h2 id="modal-implantologie-title">Implantologie Dentaire</h2>
                 <p>La solution définitive pour remplacer vos dents manquantes</p>
             </div>
 
@@ -2752,7 +2865,7 @@
                 <div class="modal-features">
                     <h3>Types d'Implants</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Implants Unitaires</h4>
+                        <h4><i class="fas fa-tooth" aria-hidden="true"></i> Implants Unitaires</h4>
                         <ul>
                             <li>Remplacement d'une seule dent</li>
                             <li>Préservation des dents adjacentes</li>
@@ -2761,7 +2874,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-teeth"></i> Implants Multiples</h4>
+                        <h4><i class="fas fa-teeth" aria-hidden="true"></i> Implants Multiples</h4>
                         <ul>
                             <li>Remplacement de plusieurs dents</li>
                             <li>Bridges sur implants</li>
@@ -2770,7 +2883,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-dental-plate"></i> Prothèses sur Implants</h4>
+                        <h4><i class="fas fa-dental-plate" aria-hidden="true"></i> Prothèses sur Implants</h4>
                         <ul>
                             <li>Prothèses amovibles stabilisées</li>
                             <li>All-on-4 / All-on-6</li>
@@ -2784,19 +2897,19 @@
                     <h3>Technologies Avancées</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
+                            <i class="fas fa-syringe" aria-hidden="true"></i>
                             <div>Chirurgie guidée</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-x-ray"></i>
+                            <i class="fas fa-x-ray" aria-hidden="true"></i>
                             <div>Scanner 3D</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-bone"></i>
+                            <i class="fas fa-bone" aria-hidden="true"></i>
                             <div>Greffe osseuse</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
                             <div>Implants titane</div>
                         </div>
                     </div>
@@ -2873,19 +2986,19 @@
             <div class="appointment-cta">
                 <h4>Besoin d'une consultation en implantologie ?</h4>
                 <p>Évaluation gratuite de votre situation</p>
-                <a href="https://wa.me/212679010481" class="btn">
-                    <i class="fab fa-whatsapp"></i> Demander un devis
+                <a href="https://wa.me/212679010481" target="_blank" rel="noopener" class="btn">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> Demander un devis
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Modal Orthodontie -->
-    <div id="modal-orthodontie" class="service-modal">
+    <div id="modal-orthodontie" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-orthodontie-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Orthodontie</h2>
+                <h2 id="modal-orthodontie-title">Orthodontie</h2>
                 <p>Correction de l'alignement dentaire pour tous les âges</p>
             </div>
 
@@ -2893,7 +3006,7 @@
                 <div class="modal-features">
                     <h3>Types de Traitements</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Orthodontie Enfants</h4>
+                        <h4><i class="fas fa-tooth" aria-hidden="true"></i> Orthodontie Enfants</h4>
                         <ul>
                             <li>Traitement précoce (7-11 ans)</li>
                             <li>Correction des malpositions</li>
@@ -2902,7 +3015,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-smile"></i> Orthodontie Adultes</h4>
+                        <h4><i class="fas fa-smile" aria-hidden="true"></i> Orthodontie Adultes</h4>
                         <ul>
                             <li>Aligneurs invisibles</li>
                             <li>Brackets céramique</li>
@@ -2911,7 +3024,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-teeth-open"></i> Corrections Spécifiques</h4>
+                        <h4><i class="fas fa-teeth-open" aria-hidden="true"></i> Corrections Spécifiques</h4>
                         <ul>
                             <li>Encombrement dentaire</li>
                             <li>Dents espacées</li>
@@ -2925,19 +3038,19 @@
                     <h3>Technologies Modernes</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-eye-slash"></i>
+                            <i class="fas fa-eye-slash" aria-hidden="true"></i>
                             <div>Aligneurs invisibles</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-gem"></i>
+                            <i class="fas fa-gem" aria-hidden="true"></i>
                             <div>Brackets esthétiques</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-scanner"></i>
+                            <i class="fas fa-scanner" aria-hidden="true"></i>
                             <div>Scan intra-oral</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-video"></i>
+                            <i class="fas fa-video" aria-hidden="true"></i>
                             <div>Simulation 3D</div>
                         </div>
                     </div>
@@ -3015,18 +3128,18 @@
                 <h4>Prêt pour un sourire bien aligné ?</h4>
                 <p>Évaluation orthodontique gratuite</p>
                 <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i> Prendre rendez-vous
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Modal Endodontie -->
-    <div id="modal-endodontie" class="service-modal">
+    <div id="modal-endodontie" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-endodontie-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Endodontie - Traitements Canalaires</h2>
+                <h2 id="modal-endodontie-title">Endodontie - Traitements Canalaires</h2>
                 <p>Préservation de vos dents naturelles grâce aux soins de racines</p>
             </div>
 
@@ -3034,7 +3147,7 @@
                 <div class="modal-features">
                     <h3>Traitements Spécialisés</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-tooth"></i> Traitement Canalaire</h4>
+                        <h4><i class="fas fa-tooth" aria-hidden="true"></i> Traitement Canalaire</h4>
                         <ul>
                             <li>Élimination du tissu infecté</li>
                             <li>Nettoyage et désinfection des canaux</li>
@@ -3043,7 +3156,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-redo"></i> Re-traitement Canalaire</h4>
+                        <h4><i class="fas fa-redo" aria-hidden="true"></i> Re-traitement Canalaire</h4>
                         <ul>
                             <li>Traitement des échecs antérieurs</li>
                             <li>Retrait des anciens matériaux</li>
@@ -3052,7 +3165,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-surgery"></i> Chirurgie Endodontique</h4>
+                        <h4><i class="fas fa-surgery" aria-hidden="true"></i> Chirurgie Endodontique</h4>
                         <ul>
                             <li>Apicectomie</li>
                             <li>Résection apicale</li>
@@ -3066,19 +3179,19 @@
                     <h3>Équipements de Précision</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-microscope"></i>
+                            <i class="fas fa-microscope" aria-hidden="true"></i>
                             <div>Microscope opératoire</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-ruler"></i>
+                            <i class="fas fa-ruler" aria-hidden="true"></i>
                             <div>Localisateur apical</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
+                            <i class="fas fa-syringe" aria-hidden="true"></i>
                             <div>Irrigation ultrasonique</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-thermometer"></i>
+                            <i class="fas fa-thermometer" aria-hidden="true"></i>
                             <div>Obturation thermique</div>
                         </div>
                     </div>
@@ -3156,18 +3269,18 @@
                 <h4>Douleur dentaire ? Infection ?</h4>
                 <p>Consultez rapidement pour préserver votre dent</p>
                 <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Urgence dentaire
+                    <i class="fas fa-phone" aria-hidden="true"></i> Urgence dentaire
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Modal Soins Dentaires Généraux -->
-    <div id="modal-soins" class="service-modal">
+    <div id="modal-soins" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-soins-title">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" role="button" tabindex="0" aria-label="Fermer">&times;</span>
             <div class="modal-header">
-                <h2>Soins Dentaires Généraux</h2>
+                <h2 id="modal-soins-title">Soins Dentaires Généraux</h2>
                 <p>Prévention, diagnostic et traitement pour toute la famille</p>
             </div>
 
@@ -3175,7 +3288,7 @@
                 <div class="modal-features">
                     <h3>Services Complets</h3>
                     <div class="feature-item">
-                        <h4><i class="fas fa-stethoscope"></i> Consultations</h4>
+                        <h4><i class="fas fa-stethoscope" aria-hidden="true"></i> Consultations</h4>
                         <ul>
                             <li>Examen clinique complet</li>
                             <li>Diagnostic radiologique</li>
@@ -3184,7 +3297,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-shower"></i> Détartrage et Prophylaxie</h4>
+                        <h4><i class="fas fa-shower" aria-hidden="true"></i> Détartrage et Prophylaxie</h4>
                         <ul>
                             <li>Détartrage ultrasonique</li>
                             <li>Polissage des dents</li>
@@ -3193,7 +3306,7 @@
                         </ul>
                     </div>
                     <div class="feature-item">
-                        <h4><i class="fas fa-bandage"></i> Soins Conservateurs</h4>
+                        <h4><i class="fas fa-bandage" aria-hidden="true"></i> Soins Conservateurs</h4>
                         <ul>
                             <li>Traitement des caries</li>
                             <li>Composites esthétiques</li>
@@ -3207,19 +3320,19 @@
                     <h3>Équipements Modernes</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <i class="fas fa-x-ray"></i>
+                            <i class="fas fa-x-ray" aria-hidden="true"></i>
                             <div>Radiologie numérique</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-syringe"></i>
+                            <i class="fas fa-syringe" aria-hidden="true"></i>
                             <div>Anesthésie indolore</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-magnet"></i>
+                            <i class="fas fa-magnet" aria-hidden="true"></i>
                             <div>Détecteur de caries laser</div>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-camera"></i>
+                            <i class="fas fa-camera" aria-hidden="true"></i>
                             <div>Caméra intra-orale</div>
                         </div>
                     </div>
@@ -3297,10 +3410,10 @@
                 <h4>Prenez soin de votre santé bucco-dentaire</h4>
                 <p>Des soins préventifs pour toute la famille</p>
                 <a href="#contact" class="btn">
-                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i> Prendre rendez-vous
                 </a>
                 <a href="tel:0537834147" class="btn">
-                    <i class="fas fa-phone"></i> Urgence
+                    <i class="fas fa-phone" aria-hidden="true"></i> Urgence
                 </a>
             </div>
         </div>
@@ -3327,21 +3440,12 @@
             }
             
             init() {
-                // Créer les points de navigation
                 this.createDots();
-                
-                // Événements des boutons
                 this.prevBtn.addEventListener('click', () => this.prev());
                 this.nextBtn.addEventListener('click', () => this.next());
-                
-                // Défilement automatique
                 this.startAutoSlide();
-                
-                // Pause au survol
                 this.track.addEventListener('mouseenter', () => this.stopAutoSlide());
                 this.track.addEventListener('mouseleave', () => this.startAutoSlide());
-                
-                // Navigation par clavier
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'ArrowLeft') this.prev();
                     if (e.key === 'ArrowRight') this.next();
@@ -3352,6 +3456,8 @@
                 for (let i = 0; i < this.slideCount; i++) {
                     const dot = document.createElement('button');
                     dot.className = 'gallery-dot';
+                    dot.setAttribute('role', 'tab');
+                    dot.setAttribute('aria-label', `Aller à l'image ${i + 1}`);
                     if (i === 0) dot.classList.add('active');
                     dot.addEventListener('click', () => this.goToSlide(i));
                     this.dotsContainer.appendChild(dot);
@@ -3362,6 +3468,7 @@
                 const dots = document.querySelectorAll('.gallery-dot');
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === this.currentSlide);
+                    dot.setAttribute('aria-selected', index === this.currentSlide ? 'true' : 'false');
                 });
             }
             
@@ -3399,343 +3506,163 @@
         // ===============================
         const translations = {
             fr: {
-                // Navigation
-                "nav.home": "Accueil",
-                "nav.gallery": "Galerie",
-                "nav.services": "Services",
-                "nav.about": "À Propos",
-                "nav.contact": "Contact",
-                "nav.call": "Appeler",
-
-                // Hero
-                "hero.badge": "Excellence Dentaire",
-                "hero.title": "Votre Sourire, Notre Priorité",
+                "nav.home": "Accueil", "nav.gallery": "Galerie", "nav.services": "Services", "nav.about": "À Propos", "nav.contact": "Contact", "nav.call": "Appeler",
+                "hero.badge": "Excellence Dentaire", "hero.title": "Votre Sourire, Notre Priorité",
                 "hero.description": "Des soins dentaires de haute qualité dans un environnement moderne et confortable. Notre équipe dévouée s'engage à vous offrir une expérience exceptionnelle.",
-                "hero.appointment": "Prendre Rendez-vous",
-                "hero.gallery": "Voir la Galerie",
-
-                // Gallery
-                "gallery.subtitle": "Notre Cabinet",
-                "gallery.title": "Découvrez Notre Environnement",
+                "hero.appointment": "Prendre Rendez-vous", "hero.gallery": "Voir la Galerie",
+                "gallery.subtitle": "Notre Cabinet", "gallery.title": "Découvrez Notre Environnement",
                 "gallery.description": "Un cadre moderne et confortable conçu pour votre bien-être et votre santé dentaire.",
-                "gallery.slide1.title": "Salle d'Attente Confortable",
-                "gallery.slide1.description": "Un espace accueillant pour vous détendre avant votre consultation",
-                "gallery.slide2.title": "Salle de Soins Moderne",
-                "gallery.slide2.description": "Équipements de dernière génération pour des soins de qualité",
-                "gallery.slide3.title": "Technologie Avancée",
-                "gallery.slide3.description": "Des instruments de précision pour des résultats optimaux",
-                "gallery.slide4.title": "Hygiène et Stérilisation",
-                "gallery.slide4.description": "Un protocole rigoureux pour votre sécurité",
-                "gallery.slide5.title": "Accueil Personnalisé",
-                "gallery.slide5.description": "Notre équipe vous accompagne avec professionnalisme",
-
-                // Features
-                "features.subtitle": "Pourquoi Nous Choisir",
-                "features.title": "Excellence en Soins Dentaires",
+                "gallery.slide1.title": "Salle d'Attente Confortable", "gallery.slide1.description": "Un espace accueillant pour vous détendre avant votre consultation",
+                "gallery.slide2.title": "Salle de Soins Moderne", "gallery.slide2.description": "Équipements de dernière génération pour des soins de qualité",
+                "gallery.slide3.title": "Technologie Avancée", "gallery.slide3.description": "Des instruments de précision pour des résultats optimaux",
+                "gallery.slide4.title": "Hygiène et Stérilisation", "gallery.slide4.description": "Un protocole rigoureux pour votre sécurité",
+                "gallery.slide5.title": "Accueil Personnalisé", "gallery.slide5.description": "Notre équipe vous accompagne avec professionnalisme",
+                "features.subtitle": "Pourquoi Nous Choisir", "features.title": "Excellence en Soins Dentaires",
                 "features.description": "Nous combinons expertise médicale, technologie de pointe et approche humaine pour des résultats exceptionnels.",
-                "features.experts.title": "Experts Qualifiés",
-                "features.experts.description": "Notre équipe de dentistes expérimentés suit une formation continue pour offrir les traitements les plus avancés.",
-                "features.technology.title": "Technologie de Pointe",
-                "features.technology.description": "Nous utilisons des équipements modernes pour des diagnostics précis et des traitements efficaces.",
-                "features.personalized.title": "Approche Personnalisée",
-                "features.personalized.description": "Chaque patient est unique. Nous créons des plans de traitement sur mesure pour vos besoins spécifiques.",
-
-                // Services
-                "services.subtitle": "Nos Services",
-                "services.title": "Soins Dentaires Complets",
+                "features.experts.title": "Experts Qualifiés", "features.experts.description": "Notre équipe de dentistes expérimentés suit une formation continue pour offrir les traitements les plus avancés.",
+                "features.technology.title": "Technologie de Pointe", "features.technology.description": "Nous utilisons des équipements modernes pour des diagnostics précis et des traitements efficaces.",
+                "features.personalized.title": "Approche Personnalisée", "features.personalized.description": "Chaque patient est unique. Nous créons des plans de traitement sur mesure pour vos besoins spécifiques.",
+                "services.subtitle": "Nos Services", "services.title": "Soins Dentaires Complets",
                 "services.description": "De la prévention aux traitements complexes, nous proposons une gamme complète de services dentaires.",
-                "services.prosthetic.title": "Réhabilitation Prothétique",
-                "services.prosthetic.description": "Couronnes, bridges et prothèses sur mesure pour restaurer fonction et esthétique.",
-                "services.aesthetic.title": "Esthétique Dentaire",
-                "services.aesthetic.description": "Blanchiment, facettes et traitements esthétiques pour un sourire éclatant.",
-                "services.implantology.title": "Implantologie",
-                "services.implantology.description": "Solutions fixes et durables pour remplacer les dents manquantes.",
-                "services.orthodontics.title": "Orthodontie",
-                "services.orthodontics.description": "Correction de l'alignement dentaire pour adultes et enfants avec des techniques modernes.",
-                "services.endodontics.title": "Endodontie",
-                "services.endodontics.description": "Traitements canalaires de précision pour préserver vos dents naturelles et soulager les douleurs.",
-                "services.general.title": "Soins Dentaires",
-                "services.general.description": "Consultations, détartrage, soins conservateurs et préventifs pour toute la famille.",
+                "services.prosthetic.title": "Réhabilitation Prothétique", "services.prosthetic.description": "Couronnes, bridges et prothèses sur mesure pour restaurer fonction et esthétique.",
+                "services.aesthetic.title": "Esthétique Dentaire", "services.aesthetic.description": "Blanchiment, facettes et traitements esthétiques pour un sourire éclatant.",
+                "services.implantology.title": "Implantologie", "services.implantology.description": "Solutions fixes et durables pour remplacer les dents manquantes.",
+                "services.orthodontics.title": "Orthodontie", "services.orthodontics.description": "Correction de l'alignement dentaire pour adultes et enfants avec des techniques modernes.",
+                "services.endodontics.title": "Endodontie", "services.endodontics.description": "Traitements canalaires de précision pour préserver vos dents naturelles et soulager les douleurs.",
+                "services.general.title": "Soins Dentaires", "services.general.description": "Consultations, détartrage, soins conservateurs et préventifs pour toute la famille.",
                 "services.learnMore": "En savoir plus",
-
-                // About - MODIFIÉ
-                "about.subtitle": "Notre Expertise",
-                "about.title": "Dr Leila EL AMRI, Votre Chirurgien-Dentiste",
+                "about.subtitle": "Notre Expertise", "about.title": "Dr Leila EL AMRI, Votre Chirurgien-Dentiste",
                 "about.description1": "Diplômée de la faculté de médecine dentaire de Rabat, titulaire d'un Diplôme Universitaire en dentisterie esthétique et adhésive de l'UCAM Espagne et d'un Diplôme Universitaire en chirurgie orale et implantologie.",
                 "about.description2": "Avec plusieurs années d'expérience, elle s'engage à offrir des soins dentaires de qualité supérieure dans un environnement chaleureux et professionnel.",
-                "about.experience": "Années d'Expérience",
-                "about.patients": "Patients Satisfaits",
-                "about.satisfaction": "Taux de Satisfaction",
-                "about.photo": "Photo du Dr EL AMRI",
-
-                // Contact - MODIFIÉ AVEC NOUVELLES TRADUCTIONS
-                "contact.subtitle": "Contact & Rendez-vous",
-                "contact.title": "Prenez Rendez-vous Aujourd'hui",
+                "about.experience": "Années d'Expérience", "about.patients": "Patients Satisfaits", "about.satisfaction": "Taux de Satisfaction", "about.photo": "Photo du Dr EL AMRI",
+                "contact.subtitle": "Contact & Rendez-vous", "contact.title": "Prenez Rendez-vous Aujourd'hui",
                 "contact.description": "Notre équipe est à votre disposition pour répondre à toutes vos questions et prendre rendez-vous.",
-                "contact.address.title": "Notre Adresse",
-                "contact.address.details": "Résidence Touahri 12, Imm 2, 1er Etage\nAvril 6, Lot Maamoura\nSala Al Jadida",
-                "contact.phones.title": "Téléphones",
-                "contact.phones.whatsapp": "(WhatsApp)",
-                "contact.hours.title": "Horaires d'Ouverture",
-                "contact.hours.monday": "Lundi",
-                "contact.hours.tuesday": "Mardi",
-                "contact.hours.wednesday": "Mercredi",
-                "contact.hours.thursday": "Jeudi",
-                "contact.hours.friday": "Vendredi",
-                "contact.hours.saturday": "Samedi",
-                "contact.hours.sunday": "Dimanche",
-                "contact.hours.closed": "Fermé",
-                "contact.callNow": "Appeler Maintenant",
-                "contact.whatsappNow": "WhatsApp", // NOUVEAU
-                "contact.openMaps": "Ouvrir dans Google Maps", // NOUVEAU
-
-                // CTA
-                "cta.title": "Prêt à Transformer Votre Sourire?",
-                "cta.description": "Prenez rendez-vous dès aujourd'hui pour une consultation personnalisée. Notre équipe est à votre écoute.",
+                "contact.address.title": "Notre Adresse", "contact.address.details": "Résidence Touahri 12, Imm 2, 1er Etage\nAvril 6, Lot Maamoura\nSala Al Jadida",
+                "contact.phones.title": "Téléphones", "contact.phones.whatsapp": "(WhatsApp)",
+                "contact.hours.title": "Horaires d'Ouverture", "contact.hours.monday": "Lundi", "contact.hours.tuesday": "Mardi", "contact.hours.wednesday": "Mercredi",
+                "contact.hours.thursday": "Jeudi", "contact.hours.friday": "Vendredi", "contact.hours.saturday": "Samedi", "contact.hours.sunday": "Dimanche", "contact.hours.closed": "Fermé",
+                "contact.callNow": "Appeler Maintenant", "contact.whatsappNow": "WhatsApp", "contact.openMaps": "Ouvrir dans Google Maps",
+                "form.title": "Demande de Rendez-vous", "form.subtitle": "Remplissez ce formulaire, il s'ouvrira dans WhatsApp prêt à envoyer.",
+                "form.name": "Nom complet", "form.phone": "Téléphone", "form.service": "Service souhaité", "form.date": "Créneau souhaité",
+                "form.message": "Message (optionnel)", "form.messagePlaceholder": "Précisez votre demande...", "form.submit": "Envoyer via WhatsApp",
+                "form.note": "Vos informations sont uniquement utilisées pour traiter votre demande de rendez-vous.",
+                "form.success": "Votre demande a été préparée dans WhatsApp. Merci de l'envoyer pour confirmer.",
+                "form.serviceOptions.general": "Consultation générale", "form.serviceOptions.prosthetic": "Réhabilitation Prothétique",
+                "form.serviceOptions.aesthetic": "Esthétique Dentaire", "form.serviceOptions.implantology": "Implantologie",
+                "form.serviceOptions.orthodontics": "Orthodontie", "form.serviceOptions.endodontics": "Endodontie", "form.serviceOptions.emergency": "Urgence dentaire",
+                "cta.title": "Prêt à Transformer Votre Sourire?", "cta.description": "Prenez rendez-vous dès aujourd'hui pour une consultation personnalisée. Notre équipe est à votre écoute.",
                 "cta.button": "Rendez-vous WhatsApp",
-
-                // Footer
-                "footer.about.title": "Centre Dentaire EL AMRI",
-                "footer.about.description": "Partenaire de votre sourire depuis plus de 10 ans. Soins dentaires de qualité dans un environnement professionnel.",
-                "footer.links.title": "Liens Rapides",
-                "footer.hours.title": "Horaires",
-                "footer.contact.title": "Contact",
-                "footer.rights": "Tous droits réservés.",
-
-                // Chatbot
-                "chatbot.title": "Assistant Dentaire",
-                "chatbot.welcome": "Bonjour ! Je suis votre assistant dentaire. Comment puis-je vous aider aujourd'hui ?",
-                "chatbot.placeholder": "Tapez votre message...",
-                "chatbot.appointment": "Prendre rendez-vous",
-                "chatbot.hours": "Horaires d'ouverture",
-                "chatbot.services": "Nos services",
-                "chatbot.emergency": "Urgence dentaire"
+                "footer.about.title": "Centre Dentaire EL AMRI", "footer.about.description": "Partenaire de votre sourire depuis plus de 10 ans. Soins dentaires de qualité dans un environnement professionnel.",
+                "footer.links.title": "Liens Rapides", "footer.hours.title": "Horaires", "footer.contact.title": "Contact", "footer.rights": "Tous droits réservés.",
+                "chatbot.title": "Assistant Dentaire", "chatbot.welcome": "Bonjour ! Je suis votre assistant dentaire. Comment puis-je vous aider aujourd'hui ?",
+                "chatbot.placeholder": "Tapez votre message...", "chatbot.appointment": "Prendre rendez-vous", "chatbot.hours": "Horaires d'ouverture",
+                "chatbot.services": "Nos services", "chatbot.emergency": "Urgence dentaire"
             },
             en: {
-                // Navigation
-                "nav.home": "Home",
-                "nav.gallery": "Gallery",
-                "nav.services": "Services",
-                "nav.about": "About",
-                "nav.contact": "Contact",
-                "nav.call": "Call",
-
-                // Hero
-                "hero.badge": "Dental Excellence",
-                "hero.title": "Your Smile, Our Priority",
+                "nav.home": "Home", "nav.gallery": "Gallery", "nav.services": "Services", "nav.about": "About", "nav.contact": "Contact", "nav.call": "Call",
+                "hero.badge": "Dental Excellence", "hero.title": "Your Smile, Our Priority",
                 "hero.description": "High-quality dental care in a modern and comfortable environment. Our dedicated team is committed to providing you with an exceptional experience.",
-                "hero.appointment": "Book Appointment",
-                "hero.gallery": "View Gallery",
-
-                // Gallery
-                "gallery.subtitle": "Our Practice",
-                "gallery.title": "Discover Our Environment",
+                "hero.appointment": "Book Appointment", "hero.gallery": "View Gallery",
+                "gallery.subtitle": "Our Practice", "gallery.title": "Discover Our Environment",
                 "gallery.description": "A modern and comfortable setting designed for your well-being and dental health.",
-                "gallery.slide1.title": "Comfortable Waiting Room",
-                "gallery.slide1.description": "A welcoming space to relax before your consultation",
-                "gallery.slide2.title": "Modern Treatment Room",
-                "gallery.slide2.description": "State-of-the-art equipment for quality care",
-                "gallery.slide3.title": "Advanced Technology",
-                "gallery.slide3.description": "Precision instruments for optimal results",
-                "gallery.slide4.title": "Hygiene and Sterilization",
-                "gallery.slide4.description": "Rigorous protocol for your safety",
-                "gallery.slide5.title": "Personalized Welcome",
-                "gallery.slide5.description": "Our team accompanies you with professionalism",
-
-                // Features
-                "features.subtitle": "Why Choose Us",
-                "features.title": "Excellence in Dental Care",
+                "gallery.slide1.title": "Comfortable Waiting Room", "gallery.slide1.description": "A welcoming space to relax before your consultation",
+                "gallery.slide2.title": "Modern Treatment Room", "gallery.slide2.description": "State-of-the-art equipment for quality care",
+                "gallery.slide3.title": "Advanced Technology", "gallery.slide3.description": "Precision instruments for optimal results",
+                "gallery.slide4.title": "Hygiene and Sterilization", "gallery.slide4.description": "Rigorous protocol for your safety",
+                "gallery.slide5.title": "Personalized Welcome", "gallery.slide5.description": "Our team accompanies you with professionalism",
+                "features.subtitle": "Why Choose Us", "features.title": "Excellence in Dental Care",
                 "features.description": "We combine medical expertise, cutting-edge technology and human approach for exceptional results.",
-                "features.experts.title": "Qualified Experts",
-                "features.experts.description": "Our team of experienced dentists undergoes continuous training to offer the most advanced treatments.",
-                "features.technology.title": "Advanced Technology",
-                "features.technology.description": "We use modern equipment for accurate diagnoses and effective treatments.",
-                "features.personalized.title": "Personalized Approach",
-                "features.personalized.description": "Every patient is unique. We create customized treatment plans for your specific needs.",
-
-                // Services
-                "services.subtitle": "Our Services",
-                "services.title": "Complete Dental Care",
+                "features.experts.title": "Qualified Experts", "features.experts.description": "Our team of experienced dentists undergoes continuous training to offer the most advanced treatments.",
+                "features.technology.title": "Advanced Technology", "features.technology.description": "We use modern equipment for accurate diagnoses and effective treatments.",
+                "features.personalized.title": "Personalized Approach", "features.personalized.description": "Every patient is unique. We create customized treatment plans for your specific needs.",
+                "services.subtitle": "Our Services", "services.title": "Complete Dental Care",
                 "services.description": "From prevention to complex treatments, we offer a complete range of dental services.",
-                "services.prosthetic.title": "Prosthetic Rehabilitation",
-                "services.prosthetic.description": "Custom crowns, bridges and prostheses to restore function and aesthetics.",
-                "services.aesthetic.title": "Dental Aesthetics",
-                "services.aesthetic.description": "Whitening, veneers and aesthetic treatments for a radiant smile.",
-                "services.implantology.title": "Implantology",
-                "services.implantology.description": "Fixed and durable solutions to replace missing teeth.",
-                "services.orthodontics.title": "Orthodontics",
-                "services.orthodontics.description": "Teeth alignment correction for adults and children with modern techniques.",
-                "services.endodontics.title": "Endodontics",
-                "services.endodontics.description": "Precision root canal treatments to preserve your natural teeth and relieve pain.",
-                "services.general.title": "Dental Care",
-                "services.general.description": "Consultations, scaling, conservative and preventive care for the whole family.",
+                "services.prosthetic.title": "Prosthetic Rehabilitation", "services.prosthetic.description": "Custom crowns, bridges and prostheses to restore function and aesthetics.",
+                "services.aesthetic.title": "Dental Aesthetics", "services.aesthetic.description": "Whitening, veneers and aesthetic treatments for a radiant smile.",
+                "services.implantology.title": "Implantology", "services.implantology.description": "Fixed and durable solutions to replace missing teeth.",
+                "services.orthodontics.title": "Orthodontics", "services.orthodontics.description": "Teeth alignment correction for adults and children with modern techniques.",
+                "services.endodontics.title": "Endodontics", "services.endodontics.description": "Precision root canal treatments to preserve your natural teeth and relieve pain.",
+                "services.general.title": "Dental Care", "services.general.description": "Consultations, scaling, conservative and preventive care for the whole family.",
                 "services.learnMore": "Learn More",
-
-                // About - MODIFIÉ
-                "about.subtitle": "Our Expertise",
-                "about.title": "Dr Leila EL AMRI, Your Dental Surgeon",
+                "about.subtitle": "Our Expertise", "about.title": "Dr Leila EL AMRI, Your Dental Surgeon",
                 "about.description1": "Graduated from the Faculty of Dental Medicine in Rabat, holder of a University Diploma in aesthetic and adhesive dentistry from UCAM Spain and a University Diploma in oral surgery and implantology.",
                 "about.description2": "With several years of experience, she is committed to providing superior quality dental care in a warm and professional environment.",
-                "about.experience": "Years of Experience",
-                "about.patients": "Satisfied Patients",
-                "about.satisfaction": "Satisfaction Rate",
-                "about.photo": "Dr EL AMRI Photo",
-
-                // Contact - MODIFIÉ AVEC NOUVELLES TRADUCTIONS
-                "contact.subtitle": "Contact & Appointment",
-                "contact.title": "Book an Appointment Today",
+                "about.experience": "Years of Experience", "about.patients": "Satisfied Patients", "about.satisfaction": "Satisfaction Rate", "about.photo": "Dr EL AMRI Photo",
+                "contact.subtitle": "Contact & Appointment", "contact.title": "Book an Appointment Today",
                 "contact.description": "Our team is available to answer all your questions and schedule appointments.",
-                "contact.address.title": "Our Address",
-                "contact.address.details": "Residence Touahri 12, Imm 2, 1st Floor\nApril 6, Lot Maamoura\nSala Al Jadida",
-                "contact.phones.title": "Phones",
-                "contact.phones.whatsapp": "(WhatsApp)",
-                "contact.hours.title": "Opening Hours",
-                "contact.hours.monday": "Monday",
-                "contact.hours.tuesday": "Tuesday",
-                "contact.hours.wednesday": "Wednesday",
-                "contact.hours.thursday": "Thursday",
-                "contact.hours.friday": "Friday",
-                "contact.hours.saturday": "Saturday",
-                "contact.hours.sunday": "Sunday",
-                "contact.hours.closed": "Closed",
-                "contact.callNow": "Call Now",
-                "contact.whatsappNow": "WhatsApp", // NOUVEAU
-                "contact.openMaps": "Open in Google Maps", // NOUVEAU
-
-                // CTA
-                "cta.title": "Ready to Transform Your Smile?",
-                "cta.description": "Book an appointment today for a personalized consultation. Our team is here to listen.",
+                "contact.address.title": "Our Address", "contact.address.details": "Residence Touahri 12, Imm 2, 1st Floor\nApril 6, Lot Maamoura\nSala Al Jadida",
+                "contact.phones.title": "Phones", "contact.phones.whatsapp": "(WhatsApp)",
+                "contact.hours.title": "Opening Hours", "contact.hours.monday": "Monday", "contact.hours.tuesday": "Tuesday", "contact.hours.wednesday": "Wednesday",
+                "contact.hours.thursday": "Thursday", "contact.hours.friday": "Friday", "contact.hours.saturday": "Saturday", "contact.hours.sunday": "Sunday", "contact.hours.closed": "Closed",
+                "contact.callNow": "Call Now", "contact.whatsappNow": "WhatsApp", "contact.openMaps": "Open in Google Maps",
+                "form.title": "Appointment Request", "form.subtitle": "Fill in this form, it will open in WhatsApp ready to send.",
+                "form.name": "Full name", "form.phone": "Phone", "form.service": "Requested service", "form.date": "Preferred slot",
+                "form.message": "Message (optional)", "form.messagePlaceholder": "Specify your request...", "form.submit": "Send via WhatsApp",
+                "form.note": "Your information is only used to process your appointment request.",
+                "form.success": "Your request has been prepared in WhatsApp. Please send it to confirm.",
+                "form.serviceOptions.general": "General consultation", "form.serviceOptions.prosthetic": "Prosthetic Rehabilitation",
+                "form.serviceOptions.aesthetic": "Dental Aesthetics", "form.serviceOptions.implantology": "Implantology",
+                "form.serviceOptions.orthodontics": "Orthodontics", "form.serviceOptions.endodontics": "Endodontics", "form.serviceOptions.emergency": "Dental emergency",
+                "cta.title": "Ready to Transform Your Smile?", "cta.description": "Book an appointment today for a personalized consultation. Our team is here to listen.",
                 "cta.button": "WhatsApp Appointment",
-
-                // Footer
-                "footer.about.title": "EL AMRI Dental Center",
-                "footer.about.description": "Your smile partner for over 10 years. Quality dental care in a professional environment.",
-                "footer.links.title": "Quick Links",
-                "footer.hours.title": "Hours",
-                "footer.contact.title": "Contact",
-                "footer.rights": "All rights reserved.",
-
-                // Chatbot
-                "chatbot.title": "Dental Assistant",
-                "chatbot.welcome": "Hello! I am your dental assistant. How can I help you today?",
-                "chatbot.placeholder": "Type your message...",
-                "chatbot.appointment": "Book appointment",
-                "chatbot.hours": "Opening hours",
-                "chatbot.services": "Our services",
-                "chatbot.emergency": "Dental emergency"
+                "footer.about.title": "EL AMRI Dental Center", "footer.about.description": "Your smile partner for over 10 years. Quality dental care in a professional environment.",
+                "footer.links.title": "Quick Links", "footer.hours.title": "Hours", "footer.contact.title": "Contact", "footer.rights": "All rights reserved.",
+                "chatbot.title": "Dental Assistant", "chatbot.welcome": "Hello! I am your dental assistant. How can I help you today?",
+                "chatbot.placeholder": "Type your message...", "chatbot.appointment": "Book appointment", "chatbot.hours": "Opening hours",
+                "chatbot.services": "Our services", "chatbot.emergency": "Dental emergency"
             },
             ar: {
-                // Navigation
-                "nav.home": "الرئيسية",
-                "nav.gallery": "معرض الصور",
-                "nav.services": "الخدمات",
-                "nav.about": "من نحن",
-                "nav.contact": "اتصل بنا",
-                "nav.call": "اتصال",
-
-                // Hero
-                "hero.badge": "التميز في طب الأسنان",
-                "hero.title": "ابتسامتك هي أولويتنا",
+                "nav.home": "الرئيسية", "nav.gallery": "معرض الصور", "nav.services": "الخدمات", "nav.about": "من نحن", "nav.contact": "اتصل بنا", "nav.call": "اتصال",
+                "hero.badge": "التميز في طب الأسنان", "hero.title": "ابتسامتك هي أولويتنا",
                 "hero.description": "رعاية أسنان عالية الجودة في بيئة عصرية ومريحة. فريقنا المتفاني ملتزم بتقديم تجربة استثنائية لك.",
-                "hero.appointment": "احجز موعد",
-                "hero.gallery": "عرض المعرض",
-
-                // Gallery
-                "gallery.subtitle": "عيادتنا",
-                "gallery.title": "اكتشف بيئتنا",
+                "hero.appointment": "احجز موعد", "hero.gallery": "عرض المعرض",
+                "gallery.subtitle": "عيادتنا", "gallery.title": "اكتشف بيئتنا",
                 "gallery.description": "إطار عصري ومريح مصمم لرفاهيتك وصحة أسنانك.",
-                "gallery.slide1.title": "غرفة انتظار مريحة",
-                "gallery.slide1.description": "مساحة ترحيبية للاسترخاء قبل استشارتك",
-                "gallery.slide2.title": "غرفة علاج عصرية",
-                "gallery.slide2.description": "معدات متطورة للرعاية عالية الجودة",
-                "gallery.slide3.title": "تكنولوجيا متقدمة",
-                "gallery.slide3.description": "أدوات دقيقة لنتائج مثالية",
-                "gallery.slide4.title": "النظافة والتعقيم",
-                "gallery.slide4.description": "بروتوكول صارم لسلامتك",
-                "gallery.slide5.title": "ترحيب شخصي",
-                "gallery.slide5.description": "فريقنا يرافقك باحترافية",
-
-                // Features
-                "features.subtitle": "لماذا تختارنا",
-                "features.title": "التميز في رعاية الأسنان",
+                "gallery.slide1.title": "غرفة انتظار مريحة", "gallery.slide1.description": "مساحة ترحيبية للاسترخاء قبل استشارتك",
+                "gallery.slide2.title": "غرفة علاج عصرية", "gallery.slide2.description": "معدات متطورة للرعاية عالية الجودة",
+                "gallery.slide3.title": "تكنولوجيا متقدمة", "gallery.slide3.description": "أدوات دقيقة لنتائج مثالية",
+                "gallery.slide4.title": "النظافة والتعقيم", "gallery.slide4.description": "بروتوكول صارم لسلامتك",
+                "gallery.slide5.title": "ترحيب شخصي", "gallery.slide5.description": "فريقنا يرافقك باحترافية",
+                "features.subtitle": "لماذا تختارنا", "features.title": "التميز في رعاية الأسنان",
                 "features.description": "نحن نجمع بين الخبرة الطبية والتكنولوجيا المتطورة والنهج الإنساني لتحقيق نتائج استثنائية.",
-                "features.experts.title": "خبراء مؤهلون",
-                "features.experts.description": "يخضع فريقنا من أطباء الأسنان ذوي الخبرة لتدريب مستمر لتقديم أحدث العلاجات.",
-                "features.technology.title": "تكنولوجيا متطورة",
-                "features.technology.description": "نستخدم معدات حديثة للتشخيص الدقيق والعلاجات الفعالة.",
-                "features.personalized.title": "نهج شخصي",
-                "features.personalized.description": "كل مريض فريد. نخلق خطط علاج مخصصة لاحتياجاتك الخاصة.",
-
-                // Services
-                "services.subtitle": "خدماتنا",
-                "services.title": "رعاية أسنان شاملة",
+                "features.experts.title": "خبراء مؤهلون", "features.experts.description": "يخضع فريقنا من أطباء الأسنان ذوي الخبرة لتدريب مستمر لتقديم أحدث العلاجات.",
+                "features.technology.title": "تكنولوجيا متطورة", "features.technology.description": "نستخدم معدات حديثة للتشخيص الدقيق والعلاجات الفعالة.",
+                "features.personalized.title": "نهج شخصي", "features.personalized.description": "كل مريض فريد. نخلق خطط علاج مخصصة لاحتياجاتك الخاصة.",
+                "services.subtitle": "خدماتنا", "services.title": "رعاية أسنان شاملة",
                 "services.description": "من الوقاية إلى العلاجات المعقدة، نقدم مجموعة كاملة من خدمات طب الأسنان.",
-                "services.prosthetic.title": "التأهيل التعويضي",
-                "services.prosthetic.description": "تيجان وجسور وأطقم أسنان مخصصة لاستعادة الوظيفة والجمالية.",
-                "services.aesthetic.title": "جمالية الأسنان",
-                "services.aesthetic.description": "تبييض، قشور خزفية وعلاجات تجميلية لابتسامة مشرقة.",
-                "services.implantology.title": "زراعة الأسنان",
-                "services.implantology.description": "حلول ثابتة ودائمة لاستبدال الأسنان المفقودة.",
-                "services.orthodontics.title": "تقويم الأسنان",
-                "services.orthodontics.description": "تصحيح اصطفاف الأسنان للكبار والأطفال بتقنيات حديثة.",
-                "services.endodontics.title": "علاج الجذور",
-                "services.endodontics.description": "علاجات قنوات الجذر الدقيقة للحفاظ على أسنانك الطبيعية وتخفيف الألم.",
-                "services.general.title": "العناية بالأسنان",
-                "services.general.description": "استشارات، تنظيف، علاجات وقائية وحافظة لكل أفراد الأسرة.",
+                "services.prosthetic.title": "التأهيل التعويضي", "services.prosthetic.description": "تيجان وجسور وأطقم أسنان مخصصة لاستعادة الوظيفة والجمالية.",
+                "services.aesthetic.title": "جمالية الأسنان", "services.aesthetic.description": "تبييض، قشور خزفية وعلاجات تجميلية لابتسامة مشرقة.",
+                "services.implantology.title": "زراعة الأسنان", "services.implantology.description": "حلول ثابتة ودائمة لاستبدال الأسنان المفقودة.",
+                "services.orthodontics.title": "تقويم الأسنان", "services.orthodontics.description": "تصحيح اصطفاف الأسنان للكبار والأطفال بتقنيات حديثة.",
+                "services.endodontics.title": "علاج الجذور", "services.endodontics.description": "علاجات قنوات الجذر الدقيقة للحفاظ على أسنانك الطبيعية وتخفيف الألم.",
+                "services.general.title": "العناية بالأسنان", "services.general.description": "استشارات، تنظيف، علاجات وقائية وحافظة لكل أفراد الأسرة.",
                 "services.learnMore": "المزيد",
-
-                // About - MODIFIÉ
-                "about.subtitle": "خبرتنا",
-                "about.title": "الدكتورة ليلى العامري، طبيبة الأسنان الجراحية",
+                "about.subtitle": "خبرتنا", "about.title": "الدكتورة ليلى العامري، طبيبة الأسنان الجراحية",
                 "about.description1": "خريجة كلية طب الأسنان بالرباط، حاصلة على دبلوم جامعي في طب الأسنان التجميلي واللاصق من UCAM إسبانيا ودبلوم جامعي في جراحة الفم وزراعة الأسنان.",
                 "about.description2": "بعدة سنوات من الخبرة، تلتزم بتقديم رعاية أسنان عالية الجودة في بيئة دافئة ومهنية.",
-                "about.experience": "سنوات الخبرة",
-                "about.patients": "مرضى راضون",
-                "about.satisfaction": "معدل الرضا",
-                "about.photo": "صورة الدكتورة العامري",
-
-                // Contact - MODIFIÉ AVEC NOUVELLES TRADUCTIONS
-                "contact.subtitle": "اتصل واحجز موعد",
-                "contact.title": "احجز موعدك اليوم",
+                "about.experience": "سنوات الخبرة", "about.patients": "مرضى راضون", "about.satisfaction": "معدل الرضا", "about.photo": "صورة الدكتورة العامري",
+                "contact.subtitle": "اتصل واحجز موعد", "contact.title": "احجز موعدك اليوم",
                 "contact.description": "فريقنا متاح للإجابة على جميع أسئلتك وترتيب المواعيد.",
-                "contact.address.title": "عنواننا",
-                "contact.address.details": "إقامة التواحري 12، المبنى 2، الطابق الأول\nأبريل 6، قطعة المعمورة\nسلا الجديدة",
-                "contact.phones.title": "هواتف",
-                "contact.phones.whatsapp": "(واتساب)",
-                "contact.hours.title": "ساعات العمل",
-                "contact.hours.monday": "الإثنين",
-                "contact.hours.tuesday": "الثلاثاء",
-                "contact.hours.wednesday": "الأربعاء",
-                "contact.hours.thursday": "الخميس",
-                "contact.hours.friday": "الجمعة",
-                "contact.hours.saturday": "السبت",
-                "contact.hours.sunday": "الأحد",
-                "contact.hours.closed": "مغلق",
-                "contact.callNow": "اتصل الآن",
-                "contact.whatsappNow": "واتساب", // NOUVEAU
-                "contact.openMaps": "فتح في خرائط جوجل", // NOUVEAU
-
-                // CTA
-                "cta.title": "مستعد لتحويل ابتسامتك؟",
-                "cta.description": "احجز موعد اليوم للحصول على استشارة شخصية. فريقنا هنا ليستمع إليك.",
+                "contact.address.title": "عنواننا", "contact.address.details": "إقامة التواحري 12، المبنى 2، الطابق الأول\nأبريل 6، قطعة المعمورة\nسلا الجديدة",
+                "contact.phones.title": "هواتف", "contact.phones.whatsapp": "(واتساب)",
+                "contact.hours.title": "ساعات العمل", "contact.hours.monday": "الإثنين", "contact.hours.tuesday": "الثلاثاء", "contact.hours.wednesday": "الأربعاء",
+                "contact.hours.thursday": "الخميس", "contact.hours.friday": "الجمعة", "contact.hours.saturday": "السبت", "contact.hours.sunday": "الأحد", "contact.hours.closed": "مغلق",
+                "contact.callNow": "اتصل الآن", "contact.whatsappNow": "واتساب", "contact.openMaps": "فتح في خرائط جوجل",
+                "form.title": "طلب موعد", "form.subtitle": "املأ هذا النموذج، سيفتح في واتساب جاهزاً للإرسال.",
+                "form.name": "الاسم الكامل", "form.phone": "الهاتف", "form.service": "الخدمة المطلوبة", "form.date": "الموعد المفضل",
+                "form.message": "رسالة (اختياري)", "form.messagePlaceholder": "حدد طلبك...", "form.submit": "إرسال عبر واتساب",
+                "form.note": "تُستخدم معلوماتك فقط لمعالجة طلب موعدك.",
+                "form.success": "تم تجهيز طلبك في واتساب. يرجى إرساله للتأكيد.",
+                "form.serviceOptions.general": "استشارة عامة", "form.serviceOptions.prosthetic": "التأهيل التعويضي",
+                "form.serviceOptions.aesthetic": "جمالية الأسنان", "form.serviceOptions.implantology": "زراعة الأسنان",
+                "form.serviceOptions.orthodontics": "تقويم الأسنان", "form.serviceOptions.endodontics": "علاج الجذور", "form.serviceOptions.emergency": "طوارئ سنية",
+                "cta.title": "مستعد لتحويل ابتسامتك؟", "cta.description": "احجز موعد اليوم للحصول على استشارة شخصية. فريقنا هنا ليستمع إليك.",
                 "cta.button": "موعد واتساب",
-
-                // Footer
-                "footer.about.title": "المركز السني العامري",
-                "footer.about.description": "شريكك في الابتسامة لأكثر من 10 سنوات. رعاية أسنان عالية الجودة في بيئة مهنية.",
-                "footer.links.title": "روابط سريعة",
-                "footer.hours.title": "ساعات العمل",
-                "footer.contact.title": "اتصل بنا",
-                "footer.rights": "جميع الحقوق محفوظة.",
-
-                // Chatbot
-                "chatbot.title": "المساعد السني",
-                "chatbot.welcome": "مرحباً! أنا مساعدك السني. كيف يمكنني مساعدتك اليوم؟",
-                "chatbot.placeholder": "اكتب رسالتك...",
-                "chatbot.appointment": "حجز موعد",
-                "chatbot.hours": "ساعات العمل",
-                "chatbot.services": "خدماتنا",
-                "chatbot.emergency": "طوارئ سنية"
+                "footer.about.title": "المركز السني العامري", "footer.about.description": "شريكك في الابتسامة لأكثر من 10 سنوات. رعاية أسنان عالية الجودة في بيئة مهنية.",
+                "footer.links.title": "روابط سريعة", "footer.hours.title": "ساعات العمل", "footer.contact.title": "اتصل بنا", "footer.rights": "جميع الحقوق محفوظة.",
+                "chatbot.title": "المساعد السني", "chatbot.welcome": "مرحباً! أنا مساعدك السني. كيف يمكنني مساعدتك اليوم؟",
+                "chatbot.placeholder": "اكتب رسالتك...", "chatbot.appointment": "حجز موعد", "chatbot.hours": "ساعات العمل",
+                "chatbot.services": "خدماتنا", "chatbot.emergency": "طوارئ سنية"
             }
         };
 
@@ -3744,21 +3671,21 @@
         // ===============================
         const chatbotResponses = {
             fr: {
-                "appointment": "Pour prendre rendez-vous, vous pouvez:\n• Appeler le 05 37 83 41 47\n• Envoyer un message WhatsApp au 06 79 01 04 81\n• Nous contacter via notre page de contact",
+                "appointment": "Pour prendre rendez-vous, vous pouvez:\n• Appeler le 05 37 83 41 47\n• Envoyer un message WhatsApp au 06 79 01 04 81\n• Remplir le formulaire dans la section Contact",
                 "hours": "Nos horaires d'ouverture:\nLundi, Mardi, Mercredi, Jeudi: 9h-18h\nVendredi: 9h-12h / 15h-19h\nSamedi: 9h-13h\nDimanche: Fermé",
                 "services": "Nous proposons:\n• Réhabilitation prothétique\n• Esthétique dentaire\n• Implantologie\n• Orthodontie\n• Endodontie\n• Soins dentaires généraux",
                 "emergency": "Pour les urgences dentaires:\n• Contactez-nous immédiatement au 05 37 83 41 47\n• Nous accordons la priorité aux urgences\n• Consultez rapidement en cas de douleur intense, saignement ou traumatisme",
                 "default": "Je comprends votre demande. Pour une réponse plus précise, n'hésitez pas à nous contacter directement au 05 37 83 41 47 ou via WhatsApp au 06 79 01 04 81."
             },
             en: {
-                "appointment": "To book an appointment, you can:\n• Call 05 37 83 41 47\n• Send a WhatsApp message to 06 79 01 04 81\n• Contact us via our contact page",
+                "appointment": "To book an appointment, you can:\n• Call 05 37 83 41 47\n• Send a WhatsApp message to 06 79 01 04 81\n• Fill in the form in the Contact section",
                 "hours": "Our opening hours:\nMonday, Tuesday, Wednesday, Thursday: 9am-6pm\nFriday: 9am-12pm / 3pm-7pm\nSaturday: 9am-1pm\nSunday: Closed",
                 "services": "We offer:\n• Prosthetic rehabilitation\n• Dental aesthetics\n• Implantology\n• Orthodontics\n• Endodontics\n• General dental care",
                 "emergency": "For dental emergencies:\n• Contact us immediately at 05 37 83 41 47\n• We prioritize emergencies\n• Consult quickly in case of severe pain, bleeding or trauma",
                 "default": "I understand your request. For a more precise answer, don't hesitate to contact us directly at 05 37 83 41 47 or via WhatsApp at 06 79 01 04 81."
             },
             ar: {
-                "appointment": "لحجز موعد، يمكنك:\n• الاتصال على 05 37 83 41 47\n• إرسال رسالة واتساب على 06 79 01 04 81\n• الاتصال بنا عبر صفحة الاتصال",
+                "appointment": "لحجز موعد، يمكنك:\n• الاتصال على 05 37 83 41 47\n• إرسال رسالة واتساب على 06 79 01 04 81\n• ملء النموذج في قسم الاتصال",
                 "hours": "ساعات عملنا:\nالإثنين، الثلاثاء، الأربعاء، الخميس: 9:00-18:00\nالجمعة: 9:00-12:00 / 15:00-19:00\nالسبت: 9:00-13:00\nالأحد: مغلق",
                 "services": "نقدم:\n• التأهيل التعويضي\n• جمالية الأسنان\n• زراعة الأسنان\n• تقويم الأسنان\n• علاج الجذور\n• العناية العامة بالأسنان",
                 "emergency": "لطوارئ الأسنان:\n• اتصل بنا فوراً على 05 37 83 41 47\n• نعطي الأولوية للطوارئ\n• استشر بسرعة في حالة الألم الشديد، النزيف أو الصدمة",
@@ -3766,26 +3693,25 @@
             }
         };
 
-        // ===============================
-        // FONCTIONS DE TRADUCTION
-        // ===============================
+        function getCurrentLang() {
+            const activeBtn = document.querySelector('.lang-btn.active');
+            return activeBtn ? activeBtn.dataset.lang : 'fr';
+        }
+
         function setLanguage(lang) {
-            // Mettre à jour les boutons de langue
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.lang === lang) {
-                    btn.classList.add('active');
-                }
+                const isActive = btn.dataset.lang === lang;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
 
-            // Mettre à jour la direction du texte
+            document.documentElement.setAttribute('lang', lang);
             if (lang === 'ar') {
                 document.body.classList.add('rtl');
             } else {
                 document.body.classList.remove('rtl');
             }
 
-            // Appliquer les traductions
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
@@ -3793,7 +3719,6 @@
                 }
             });
 
-            // Traduire les placeholders
             document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
                 const key = element.getAttribute('data-i18n-placeholder');
                 if (translations[lang] && translations[lang][key]) {
@@ -3801,26 +3726,18 @@
                 }
             });
 
-            // Sauvegarder la langue sélectionnée
             localStorage.setItem('preferred-language', lang);
         }
 
-        // ===============================
-        // INITIALISATION COMPLÈTE
-        // ===============================
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialiser la galerie
             new GallerySlider();
-            
-            // Initialiser la langue
+
             const savedLang = localStorage.getItem('preferred-language') || 'fr';
             setLanguage(savedLang);
 
-            // Gestionnaire des boutons de langue
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const lang = this.dataset.lang;
-                    setLanguage(lang);
+                    setLanguage(this.dataset.lang);
                 });
             });
 
@@ -3829,45 +3746,70 @@
             const mainNav = document.getElementById('main-nav');
 
             mobileMenu.addEventListener('click', function() {
-                this.classList.toggle('active');
+                const isActive = this.classList.toggle('active');
                 mainNav.classList.toggle('active');
+                this.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             });
 
-            // Fermer le menu en cliquant sur un lien
             document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mainNav.classList.remove('active');
+                    setTimeout(() => {
+                        mobileMenu.classList.remove('active');
+                        mainNav.classList.remove('active');
+                        mobileMenu.setAttribute('aria-expanded', 'false');
+                    }, 300);
                 });
             });
 
-            // Gestionnaire des modals de services
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mainNav.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    mobileMenu.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Modals de services
             document.querySelectorAll('.service-link').forEach(link => {
                 link.addEventListener('click', function() {
                     const service = this.dataset.service;
                     const modal = document.getElementById(`modal-${service}`);
                     if (modal) {
                         modal.classList.add('active');
+                        modal.setAttribute('aria-hidden', 'false');
                         document.body.style.overflow = 'hidden';
                     }
                 });
             });
 
-            // Fermer les modals
-            document.querySelectorAll('.close-modal, .service-modal').forEach(element => {
-                element.addEventListener('click', function(e) {
-                    if (e.target === this || e.target.classList.contains('close-modal')) {
-                        this.closest('.service-modal').classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
+            function closeModal(modal) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = 'auto';
+            }
+
+            document.querySelectorAll('.close-modal').forEach(closeBtn => {
+                const handler = () => closeModal(closeBtn.closest('.service-modal'));
+                closeBtn.addEventListener('click', handler);
+                closeBtn.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
                 });
             });
 
-            // Empêcher la fermeture en cliquant à l'intérieur du contenu
-            document.querySelectorAll('.modal-content').forEach(content => {
-                content.addEventListener('click', (e) => {
-                    e.stopPropagation();
+            document.querySelectorAll('.service-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) closeModal(this);
                 });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.service-modal.active').forEach(closeModal);
+                }
+            });
+
+            document.querySelectorAll('.modal-content').forEach(content => {
+                content.addEventListener('click', (e) => e.stopPropagation());
             });
 
             // Chatbot
@@ -3880,23 +3822,22 @@
             const quickReplies = document.getElementById('quick-replies');
 
             chatbotToggle.addEventListener('click', () => {
-                chatbotContainer.classList.toggle('active');
+                const isActive = chatbotContainer.classList.toggle('active');
+                chatbotContainer.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                chatbotToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             });
 
             chatbotClose.addEventListener('click', () => {
                 chatbotContainer.classList.remove('active');
+                chatbotContainer.setAttribute('aria-hidden', 'true');
+                chatbotToggle.setAttribute('aria-expanded', 'false');
             });
 
-            // Réponses rapides
             quickReplies.addEventListener('click', (e) => {
                 if (e.target.classList.contains('quick-reply')) {
                     const reply = e.target.dataset.reply;
-                    const currentLang = document.querySelector('.lang-btn.active').dataset.lang;
-                    
-                    // Ajouter le message de l'utilisateur
+                    const currentLang = getCurrentLang();
                     addMessage(e.target.textContent, 'user');
-                    
-                    // Réponse du bot
                     setTimeout(() => {
                         const response = chatbotResponses[currentLang][reply] || chatbotResponses[currentLang].default;
                         addMessage(response, 'bot');
@@ -3904,16 +3845,13 @@
                 }
             });
 
-            // Envoi de message
             function sendMessage() {
                 const message = chatbotInput.value.trim();
                 if (message) {
                     addMessage(message, 'user');
                     chatbotInput.value = '';
-                    
-                    // Réponse automatique
                     setTimeout(() => {
-                        const currentLang = document.querySelector('.lang-btn.active').dataset.lang;
+                        const currentLang = getCurrentLang();
                         addMessage(chatbotResponses[currentLang].default, 'bot');
                     }, 1000);
                 }
@@ -3921,29 +3859,43 @@
 
             chatbotSend.addEventListener('click', sendMessage);
             chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
+                if (e.key === 'Enter') sendMessage();
             });
 
             function addMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${sender}`;
-                
-                // Convertir les retours à la ligne en <br>
-                const formattedText = text.replace(/\n/g, '<br>');
-                messageDiv.innerHTML = formattedText;
-                
+                messageDiv.innerHTML = text.replace(/\n/g, '<br>');
                 chatbotMessages.appendChild(messageDiv);
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
             }
 
-            // Animation au scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // Formulaire de rendez-vous -> ouvre WhatsApp avec message pré-rempli
+            const appointmentForm = document.getElementById('appointment-form');
+            const formSuccess = document.getElementById('form-success');
 
+            appointmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('form-name').value.trim();
+                const phone = document.getElementById('form-phone').value.trim();
+                const serviceSelect = document.getElementById('form-service');
+                const serviceLabel = serviceSelect.options[serviceSelect.selectedIndex].text;
+                const preferred = document.getElementById('form-date').value.trim();
+                const message = document.getElementById('form-message').value.trim();
+
+                let text = `Bonjour, je souhaite prendre rendez-vous.\nNom: ${name}\nTéléphone: ${phone}\nService: ${serviceLabel}`;
+                if (preferred) text += `\nCréneau souhaité: ${preferred}`;
+                if (message) text += `\nMessage: ${message}`;
+
+                const waUrl = `https://wa.me/212679010481?text=${encodeURIComponent(text)}`;
+                window.open(waUrl, '_blank', 'noopener');
+
+                formSuccess.classList.add('active');
+                setTimeout(() => formSuccess.classList.remove('active'), 6000);
+            });
+
+            // Animation au scroll
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -3953,7 +3905,6 @@
                 });
             }, observerOptions);
 
-            // Observer les éléments à animer
             document.querySelectorAll('.feature-card, .service-card, .about-content, .contact-info, .gallery-container, .map-container').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
@@ -3961,45 +3912,18 @@
                 observer.observe(el);
             });
 
-            // Préchargement des images de la galerie
             preloadGalleryImages();
-        });
 
-        // ===============================
-        // CORRECTION DE LA NAVIGATION
-        // ===============================
-        
-        // Fermer le menu mobile quand on clique en dehors
-        document.addEventListener('click', function(e) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mainNav = document.getElementById('main-nav');
-            const headerActions = document.querySelector('.header-actions');
-            
-            // Si on clique en dehors du menu mobile et de son bouton
-            if (!mobileMenu.contains(e.target) && !mainNav.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                mainNav.classList.remove('active');
-            }
-        });
-
-        // Empêcher la fermeture immédiate quand on clique sur les liens
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                // Laisser le temps à l'animation de smooth scroll de se faire
-                setTimeout(() => {
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    const mainNav = document.getElementById('main-nav');
-                    mobileMenu.classList.remove('active');
-                    mainNav.classList.remove('active');
-                }, 300);
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    console.warn('Image non chargée:', this.src);
+                });
             });
         });
 
-        // Correction du header au scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             const scrollY = window.scrollY;
-            
             if (scrollY > 50) {
                 header.style.background = 'rgba(255, 255, 255, 0.98)';
                 header.style.backdropFilter = 'blur(10px)';
@@ -4011,68 +3935,30 @@
             }
         });
 
-        // Initialisation du header au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.querySelector('header');
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.backdropFilter = 'blur(5px)';
-        });
-
-        // Empêcher le comportement par défaut des liens d'ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Ne prévenir le comportement par défaut que pour les liens internes
                 if (this.getAttribute('href') !== '#') {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 }
             });
         });
 
-        // ===============================
-        // PRÉCHARGEMENT DES IMAGES
-        // ===============================
         function preloadGalleryImages() {
-            const imageUrls = [
-                'img/cabinet1.jpeg',
-                'img/cabinet2.jpeg', 
-                'img/cabinet3.jpeg',
-                'img/cabinet4.jpeg',
-                'img/cabinet5.jpeg'
-            ];
-
+            const imageUrls = ['img/cabinet1.jpeg', 'img/cabinet2.jpeg', 'img/cabinet3.jpeg', 'img/cabinet4.jpeg', 'img/cabinet5.jpeg'];
             imageUrls.forEach(url => {
                 const img = new Image();
                 img.src = url;
             });
         }
 
-        // ===============================
-        // GESTION DES ERREURS D'IMAGES
-        // ===============================
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestionnaire d'erreur global pour les images
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('error', function() {
-                    console.warn('Image non chargée:', this.src);
-                });
-            });
-        });
-
-        // ===============================
-        // OPTIMISATION DES PERFORMANCES
-        // ===============================
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(function() {
-                // Recréer la galerie si nécessaire après redimensionnement
                 const gallery = document.querySelector('.gallery-track');
                 if (gallery) {
                     const currentSlide = document.querySelector('.gallery-dot.active');
@@ -4086,5 +3972,3 @@
     </script>
 </body>
 </html>
-
-
