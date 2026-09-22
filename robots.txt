@@ -1,16 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://www.centredentaireelamri.com/sitemap.xml
-
-# Désactiver l'indexation de l'admin en production
-Disallow: /admin/
-
-# Autoriser les assets
-Allow: /img/
-Allow: /css/
-Allow: /js/
-
-# Crawl delay
-Crawl-delay: 1
+Sitemap: https://centre-dentaire-el-amri.com/sitemap.xml
